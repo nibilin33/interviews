@@ -64,8 +64,6 @@
   - [iOS 上拉边界下拉出现白色空白](#ios-%E4%B8%8A%E6%8B%89%E8%BE%B9%E7%95%8C%E4%B8%8B%E6%8B%89%E5%87%BA%E7%8E%B0%E7%99%BD%E8%89%B2%E7%A9%BA%E7%99%BD)
   - [软键盘将页面顶起来、收起未回落](#%E8%BD%AF%E9%94%AE%E7%9B%98%E5%B0%86%E9%A1%B5%E9%9D%A2%E9%A1%B6%E8%B5%B7%E6%9D%A5%E6%94%B6%E8%B5%B7%E6%9C%AA%E5%9B%9E%E8%90%BD)
   - [iPhone X系列安全区域适配问题](#iphone-x%E7%B3%BB%E5%88%97%E5%AE%89%E5%85%A8%E5%8C%BA%E5%9F%9F%E9%80%82%E9%85%8D%E9%97%AE%E9%A2%98)
-  - [JSBridge原理是什么？如何设计一个JSBridge？](#jsbridge%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AAjsbridge)
-  - [离线包怎么设计？](#%E7%A6%BB%E7%BA%BF%E5%8C%85%E6%80%8E%E4%B9%88%E8%AE%BE%E8%AE%A1)
   - [Hybrid  H5开发需要注意些什么？](#hybrid--h5%E5%BC%80%E5%8F%91%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E4%BA%9B%E4%BB%80%E4%B9%88)
   - [Webview的缓存机制是什么？](#webview%E7%9A%84%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6%E6%98%AF%E4%BB%80%E4%B9%88)
   - [有哪些监控网页卡顿的方法](#%E6%9C%89%E5%93%AA%E4%BA%9B%E7%9B%91%E6%8E%A7%E7%BD%91%E9%A1%B5%E5%8D%A1%E9%A1%BF%E7%9A%84%E6%96%B9%E6%B3%95)
@@ -162,6 +160,47 @@
     - [Node中的事件循环是什么？](#node%E4%B8%AD%E7%9A%84%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E6%98%AF%E4%BB%80%E4%B9%88)
   - [架构的设计步骤](#%E6%9E%B6%E6%9E%84%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%AD%A5%E9%AA%A4)
   - [设计原则](#%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99)
+  - [移动端高清方案如何解决 ?](#%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%AB%98%E6%B8%85%E6%96%B9%E6%A1%88%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3-)
+  - [请谈谈微信小程序主要目录和文件的作用？](#%E8%AF%B7%E8%B0%88%E8%B0%88%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B8%BB%E8%A6%81%E7%9B%AE%E5%BD%95%E5%92%8C%E6%96%87%E4%BB%B6%E7%9A%84%E4%BD%9C%E7%94%A8)
+  - [请谈谈wxml与标准的html的异同？](#%E8%AF%B7%E8%B0%88%E8%B0%88wxml%E4%B8%8E%E6%A0%87%E5%87%86%E7%9A%84html%E7%9A%84%E5%BC%82%E5%90%8C)
+  - [请谈谈WXSS和CSS的异同？](#%E8%AF%B7%E8%B0%88%E8%B0%88wxss%E5%92%8Ccss%E7%9A%84%E5%BC%82%E5%90%8C)
+  - [你是怎么封装微信小程序的数据请求的？](#%E4%BD%A0%E6%98%AF%E6%80%8E%E4%B9%88%E5%B0%81%E8%A3%85%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%95%B0%E6%8D%AE%E8%AF%B7%E6%B1%82%E7%9A%84)
+  - [小程序页面间有哪些传递数据的方法？](#%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%A1%B5%E9%9D%A2%E9%97%B4%E6%9C%89%E5%93%AA%E4%BA%9B%E4%BC%A0%E9%80%92%E6%95%B0%E6%8D%AE%E7%9A%84%E6%96%B9%E6%B3%95)
+  - [请谈谈小程序的双向绑定和vue的异同？](#%E8%AF%B7%E8%B0%88%E8%B0%88%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A%E5%92%8Cvue%E7%9A%84%E5%BC%82%E5%90%8C)
+  - [请谈谈小程序的生命周期函数？](#%E8%AF%B7%E8%B0%88%E8%B0%88%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%87%BD%E6%95%B0)
+  - [请谈谈原生开发小程序、wepy、mpvue 的对比？](#%E8%AF%B7%E8%B0%88%E8%B0%88%E5%8E%9F%E7%94%9F%E5%BC%80%E5%8F%91%E5%B0%8F%E7%A8%8B%E5%BA%8Fwepympvue-%E7%9A%84%E5%AF%B9%E6%AF%94)
+  - [哪些方法来提高微信小程序的应用速度？](#%E5%93%AA%E4%BA%9B%E6%96%B9%E6%B3%95%E6%9D%A5%E6%8F%90%E9%AB%98%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%BA%94%E7%94%A8%E9%80%9F%E5%BA%A6)
+  - [分析微信小程序的优劣势？](#%E5%88%86%E6%9E%90%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%9A%84%E4%BC%98%E5%8A%A3%E5%8A%BF)
+  - [怎么解决微信小程序的异步请求问题？](#%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%BC%82%E6%AD%A5%E8%AF%B7%E6%B1%82%E9%97%AE%E9%A2%98)
+  - [小程序关联微信公众号如何确定用户的唯一性？](#%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%85%B3%E8%81%94%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E5%A6%82%E4%BD%95%E7%A1%AE%E5%AE%9A%E7%94%A8%E6%88%B7%E7%9A%84%E5%94%AF%E4%B8%80%E6%80%A7)
+  - [使用webview直接加载要注意哪些事项？](#%E4%BD%BF%E7%94%A8webview%E7%9B%B4%E6%8E%A5%E5%8A%A0%E8%BD%BD%E8%A6%81%E6%B3%A8%E6%84%8F%E5%93%AA%E4%BA%9B%E4%BA%8B%E9%A1%B9)
+  - [小程序调用后台接口遇到哪些问题？](#%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%B0%83%E7%94%A8%E5%90%8E%E5%8F%B0%E6%8E%A5%E5%8F%A3%E9%81%87%E5%88%B0%E5%93%AA%E4%BA%9B%E9%97%AE%E9%A2%98)
+  - [微信小程序如何实现下拉刷新？](#%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E4%B8%8B%E6%8B%89%E5%88%B7%E6%96%B0)
+  - [webview中的页面怎么跳转回小程序？](#webview%E4%B8%AD%E7%9A%84%E9%A1%B5%E9%9D%A2%E6%80%8E%E4%B9%88%E8%B7%B3%E8%BD%AC%E5%9B%9E%E5%B0%8F%E7%A8%8B%E5%BA%8F)
+  - [bindtap和catchtap的区别？](#bindtap%E5%92%8Ccatchtap%E7%9A%84%E5%8C%BA%E5%88%AB)
+  - [简述wx.navigateTo(),wx.redirectTo(),wx.switchTab(),wx.navigateBack(),wx.reLaunch()的区别？](#%E7%AE%80%E8%BF%B0wxnavigatetowxredirecttowxswitchtabwxnavigatebackwxrelaunch%E7%9A%84%E5%8C%BA%E5%88%AB)
+  - [小程序的生命周期函数？](#%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%87%BD%E6%95%B0)
+  - [微信小程序与H5的区别？](#%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B8%8Eh5%E7%9A%84%E5%8C%BA%E5%88%AB)
+  - [小程序和Vue写法的区别？](#%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%92%8Cvue%E5%86%99%E6%B3%95%E7%9A%84%E5%8C%BA%E5%88%AB)
+  - [Loader和Plugin的区别？](#loader%E5%92%8Cplugin%E7%9A%84%E5%8C%BA%E5%88%AB)
+  - [Webpack构建流程简单说一下](#webpack%E6%9E%84%E5%BB%BA%E6%B5%81%E7%A8%8B%E7%AE%80%E5%8D%95%E8%AF%B4%E4%B8%80%E4%B8%8B)
+  - [source map是什么？生产环境怎么用？](#source-map%E6%98%AF%E4%BB%80%E4%B9%88%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E6%80%8E%E4%B9%88%E7%94%A8)
+  - [模块打包原理](#%E6%A8%A1%E5%9D%97%E6%89%93%E5%8C%85%E5%8E%9F%E7%90%86)
+  - [Webpack 的热更新原理](#webpack-%E7%9A%84%E7%83%AD%E6%9B%B4%E6%96%B0%E5%8E%9F%E7%90%86)
+  - [如何优化 Webpack 的构建速度？](#%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96-webpack-%E7%9A%84%E6%9E%84%E5%BB%BA%E9%80%9F%E5%BA%A6)
+  - [JS 数字丢失精度的原因?](#js-%E6%95%B0%E5%AD%97%E4%B8%A2%E5%A4%B1%E7%B2%BE%E5%BA%A6%E7%9A%84%E5%8E%9F%E5%9B%A0)
+  - [为什么 Javascript 要是单线程的 ?](#%E4%B8%BA%E4%BB%80%E4%B9%88-javascript-%E8%A6%81%E6%98%AF%E5%8D%95%E7%BA%BF%E7%A8%8B%E7%9A%84-)
+  - [为什么 JS 阻塞页面加载 ?](#%E4%B8%BA%E4%BB%80%E4%B9%88-js-%E9%98%BB%E5%A1%9E%E9%A1%B5%E9%9D%A2%E5%8A%A0%E8%BD%BD-)
+  - [css 加载会造成阻塞吗 ？](#css-%E5%8A%A0%E8%BD%BD%E4%BC%9A%E9%80%A0%E6%88%90%E9%98%BB%E5%A1%9E%E5%90%97-)
+  - [DOMContentLoaded 与 load 的区别 ?](#domcontentloaded-%E4%B8%8E-load-%E7%9A%84%E5%8C%BA%E5%88%AB-)
+  - [什么是 CRP,即关键渲染路径(Critical Rendering Path)? 如何优化 ?](#%E4%BB%80%E4%B9%88%E6%98%AF-crp%E5%8D%B3%E5%85%B3%E9%94%AE%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84critical-rendering-path-%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96-)
+  - [defer 和 async 的区别 ?](#defer-%E5%92%8C-async-%E7%9A%84%E5%8C%BA%E5%88%AB-)
+  - [谈谈浏览器的回流与重绘](#%E8%B0%88%E8%B0%88%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E5%9B%9E%E6%B5%81%E4%B8%8E%E9%87%8D%E7%BB%98)
+  - [什么是渲染层合并 (Composite) ?](#%E4%BB%80%E4%B9%88%E6%98%AF%E6%B8%B2%E6%9F%93%E5%B1%82%E5%90%88%E5%B9%B6-composite-)
+  - [dns解析的具体过程](#dns%E8%A7%A3%E6%9E%90%E7%9A%84%E5%85%B7%E4%BD%93%E8%BF%87%E7%A8%8B)
+  - [new String('a') 和 'a' 是一样的么?](#new-stringa-%E5%92%8C-a-%E6%98%AF%E4%B8%80%E6%A0%B7%E7%9A%84%E4%B9%88)
+  - [JSBridge原理是什么？如何设计一个JSBridge？](#jsbridge%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AAjsbridge)
+  - [离线包怎么设计？](#%E7%A6%BB%E7%BA%BF%E5%8C%85%E6%80%8E%E4%B9%88%E8%AE%BE%E8%AE%A1)
   - [Dev-Server是怎么跑起来](#dev-server%E6%98%AF%E6%80%8E%E4%B9%88%E8%B7%91%E8%B5%B7%E6%9D%A5)
   - [抽取公共文件是怎么配置的](#%E6%8A%BD%E5%8F%96%E5%85%AC%E5%85%B1%E6%96%87%E4%BB%B6%E6%98%AF%E6%80%8E%E4%B9%88%E9%85%8D%E7%BD%AE%E7%9A%84)
   - [项目中如何处理安全问题](#%E9%A1%B9%E7%9B%AE%E4%B8%AD%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98)
@@ -208,52 +247,13 @@
   - [请指出以下代码的区别：function Person(){}、var person = Person()、var person = new Person()？](#%E8%AF%B7%E6%8C%87%E5%87%BA%E4%BB%A5%E4%B8%8B%E4%BB%A3%E7%A0%81%E7%9A%84%E5%8C%BA%E5%88%ABfunction-personvar-person--personvar-person--new-person)
   - [请解释变量声明提升 (hoisting)。](#%E8%AF%B7%E8%A7%A3%E9%87%8A%E5%8F%98%E9%87%8F%E5%A3%B0%E6%98%8E%E6%8F%90%E5%8D%87-hoisting)
   - [什么是 “use strict”; ? 使用它的好处和坏处分别是什么？](#%E4%BB%80%E4%B9%88%E6%98%AF-use-strict--%E4%BD%BF%E7%94%A8%E5%AE%83%E7%9A%84%E5%A5%BD%E5%A4%84%E5%92%8C%E5%9D%8F%E5%A4%84%E5%88%86%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88)
-  - [移动端高清方案如何解决 ?](#%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%AB%98%E6%B8%85%E6%96%B9%E6%A1%88%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3-)
-  - [new String('a') 和 'a' 是一样的么?](#new-stringa-%E5%92%8C-a-%E6%98%AF%E4%B8%80%E6%A0%B7%E7%9A%84%E4%B9%88)
-  - [请谈谈微信小程序主要目录和文件的作用？](#%E8%AF%B7%E8%B0%88%E8%B0%88%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B8%BB%E8%A6%81%E7%9B%AE%E5%BD%95%E5%92%8C%E6%96%87%E4%BB%B6%E7%9A%84%E4%BD%9C%E7%94%A8)
-  - [请谈谈wxml与标准的html的异同？](#%E8%AF%B7%E8%B0%88%E8%B0%88wxml%E4%B8%8E%E6%A0%87%E5%87%86%E7%9A%84html%E7%9A%84%E5%BC%82%E5%90%8C)
-  - [请谈谈WXSS和CSS的异同？](#%E8%AF%B7%E8%B0%88%E8%B0%88wxss%E5%92%8Ccss%E7%9A%84%E5%BC%82%E5%90%8C)
-  - [你是怎么封装微信小程序的数据请求的？](#%E4%BD%A0%E6%98%AF%E6%80%8E%E4%B9%88%E5%B0%81%E8%A3%85%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%95%B0%E6%8D%AE%E8%AF%B7%E6%B1%82%E7%9A%84)
-  - [小程序页面间有哪些传递数据的方法？](#%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%A1%B5%E9%9D%A2%E9%97%B4%E6%9C%89%E5%93%AA%E4%BA%9B%E4%BC%A0%E9%80%92%E6%95%B0%E6%8D%AE%E7%9A%84%E6%96%B9%E6%B3%95)
-  - [请谈谈小程序的双向绑定和vue的异同？](#%E8%AF%B7%E8%B0%88%E8%B0%88%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A%E5%92%8Cvue%E7%9A%84%E5%BC%82%E5%90%8C)
-  - [请谈谈小程序的生命周期函数？](#%E8%AF%B7%E8%B0%88%E8%B0%88%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%87%BD%E6%95%B0)
-  - [请谈谈原生开发小程序、wepy、mpvue 的对比？](#%E8%AF%B7%E8%B0%88%E8%B0%88%E5%8E%9F%E7%94%9F%E5%BC%80%E5%8F%91%E5%B0%8F%E7%A8%8B%E5%BA%8Fwepympvue-%E7%9A%84%E5%AF%B9%E6%AF%94)
-  - [哪些方法来提高微信小程序的应用速度？](#%E5%93%AA%E4%BA%9B%E6%96%B9%E6%B3%95%E6%9D%A5%E6%8F%90%E9%AB%98%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%BA%94%E7%94%A8%E9%80%9F%E5%BA%A6)
-  - [分析微信小程序的优劣势？](#%E5%88%86%E6%9E%90%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%9A%84%E4%BC%98%E5%8A%A3%E5%8A%BF)
-  - [怎么解决微信小程序的异步请求问题？](#%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%BC%82%E6%AD%A5%E8%AF%B7%E6%B1%82%E9%97%AE%E9%A2%98)
-  - [小程序关联微信公众号如何确定用户的唯一性？](#%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%85%B3%E8%81%94%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7%E5%A6%82%E4%BD%95%E7%A1%AE%E5%AE%9A%E7%94%A8%E6%88%B7%E7%9A%84%E5%94%AF%E4%B8%80%E6%80%A7)
-  - [使用webview直接加载要注意哪些事项？](#%E4%BD%BF%E7%94%A8webview%E7%9B%B4%E6%8E%A5%E5%8A%A0%E8%BD%BD%E8%A6%81%E6%B3%A8%E6%84%8F%E5%93%AA%E4%BA%9B%E4%BA%8B%E9%A1%B9)
-  - [小程序调用后台接口遇到哪些问题？](#%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%B0%83%E7%94%A8%E5%90%8E%E5%8F%B0%E6%8E%A5%E5%8F%A3%E9%81%87%E5%88%B0%E5%93%AA%E4%BA%9B%E9%97%AE%E9%A2%98)
-  - [微信小程序如何实现下拉刷新？](#%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E4%B8%8B%E6%8B%89%E5%88%B7%E6%96%B0)
-  - [webview中的页面怎么跳转回小程序？](#webview%E4%B8%AD%E7%9A%84%E9%A1%B5%E9%9D%A2%E6%80%8E%E4%B9%88%E8%B7%B3%E8%BD%AC%E5%9B%9E%E5%B0%8F%E7%A8%8B%E5%BA%8F)
-  - [bindtap和catchtap的区别？](#bindtap%E5%92%8Ccatchtap%E7%9A%84%E5%8C%BA%E5%88%AB)
-  - [简述wx.navigateTo(),wx.redirectTo(),wx.switchTab(),wx.navigateBack(),wx.reLaunch()的区别？](#%E7%AE%80%E8%BF%B0wxnavigatetowxredirecttowxswitchtabwxnavigatebackwxrelaunch%E7%9A%84%E5%8C%BA%E5%88%AB)
-  - [小程序的生命周期函数？](#%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%87%BD%E6%95%B0)
-  - [微信小程序与H5的区别？](#%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%B8%8Eh5%E7%9A%84%E5%8C%BA%E5%88%AB)
-  - [小程序和Vue写法的区别？](#%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%92%8Cvue%E5%86%99%E6%B3%95%E7%9A%84%E5%8C%BA%E5%88%AB)
-  - [Loader和Plugin的区别？](#loader%E5%92%8Cplugin%E7%9A%84%E5%8C%BA%E5%88%AB)
-  - [Webpack构建流程简单说一下](#webpack%E6%9E%84%E5%BB%BA%E6%B5%81%E7%A8%8B%E7%AE%80%E5%8D%95%E8%AF%B4%E4%B8%80%E4%B8%8B)
-  - [source map是什么？生产环境怎么用？](#source-map%E6%98%AF%E4%BB%80%E4%B9%88%E7%94%9F%E4%BA%A7%E7%8E%AF%E5%A2%83%E6%80%8E%E4%B9%88%E7%94%A8)
-  - [模块打包原理](#%E6%A8%A1%E5%9D%97%E6%89%93%E5%8C%85%E5%8E%9F%E7%90%86)
-  - [Webpack 的热更新原理](#webpack-%E7%9A%84%E7%83%AD%E6%9B%B4%E6%96%B0%E5%8E%9F%E7%90%86)
-  - [如何优化 Webpack 的构建速度？](#%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96-webpack-%E7%9A%84%E6%9E%84%E5%BB%BA%E9%80%9F%E5%BA%A6)
-  - [JS 数字丢失精度的原因?](#js-%E6%95%B0%E5%AD%97%E4%B8%A2%E5%A4%B1%E7%B2%BE%E5%BA%A6%E7%9A%84%E5%8E%9F%E5%9B%A0)
-  - [为什么 Javascript 要是单线程的 ?](#%E4%B8%BA%E4%BB%80%E4%B9%88-javascript-%E8%A6%81%E6%98%AF%E5%8D%95%E7%BA%BF%E7%A8%8B%E7%9A%84-)
-  - [为什么 JS 阻塞页面加载 ?](#%E4%B8%BA%E4%BB%80%E4%B9%88-js-%E9%98%BB%E5%A1%9E%E9%A1%B5%E9%9D%A2%E5%8A%A0%E8%BD%BD-)
-  - [css 加载会造成阻塞吗 ？](#css-%E5%8A%A0%E8%BD%BD%E4%BC%9A%E9%80%A0%E6%88%90%E9%98%BB%E5%A1%9E%E5%90%97-)
-  - [DOMContentLoaded 与 load 的区别 ?](#domcontentloaded-%E4%B8%8E-load-%E7%9A%84%E5%8C%BA%E5%88%AB-)
-  - [什么是 CRP,即关键渲染路径(Critical Rendering Path)? 如何优化 ?](#%E4%BB%80%E4%B9%88%E6%98%AF-crp%E5%8D%B3%E5%85%B3%E9%94%AE%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84critical-rendering-path-%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96-)
-  - [defer 和 async 的区别 ?](#defer-%E5%92%8C-async-%E7%9A%84%E5%8C%BA%E5%88%AB-)
-  - [谈谈浏览器的回流与重绘](#%E8%B0%88%E8%B0%88%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E5%9B%9E%E6%B5%81%E4%B8%8E%E9%87%8D%E7%BB%98)
-  - [什么是渲染层合并 (Composite) ?](#%E4%BB%80%E4%B9%88%E6%98%AF%E6%B8%B2%E6%9F%93%E5%B1%82%E5%90%88%E5%B9%B6-composite-)
-  - [dns解析的具体过程](#dns%E8%A7%A3%E6%9E%90%E7%9A%84%E5%85%B7%E4%BD%93%E8%BF%87%E7%A8%8B)
   - [面试中查考的Web安全问题](#%E9%9D%A2%E8%AF%95%E4%B8%AD%E6%9F%A5%E8%80%83%E7%9A%84web%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 # Interviews    
 准备面试过程看过的题目🙉    
-
+再看一遍还是会感觉叹息。    
 
 ## HTML的盒子模型有哪些构成，盒子模型有哪几种，默认的是哪一种    
 
@@ -810,11 +810,7 @@ safe-area-inset-top, safe-area-inset-right, safe-area-inset-bottom, safe-area-in
 
 其中 var() 用法为 var( <custom-property-name> , <declaration-value>? )，作用是在 env() 不生效的情况下，给出一个备用值。
 
-constant（） 被 css 2017-2018 年为草稿阶段，是否已被标准化未知。而其他iOS 浏览器版本中是否有此函数未知，作为兼容处理而添加进去。 
-
-## JSBridge原理是什么？如何设计一个JSBridge？
-
-## 离线包怎么设计？    
+constant（） 被 css 2017-2018 年为草稿阶段，是否已被标准化未知。而其他iOS 浏览器版本中是否有此函数未知，作为兼容处理而添加进去。   
 
 ## Hybrid  H5开发需要注意些什么？   
 
@@ -1599,67 +1595,10 @@ node-memwatch
 创建型：单例模式、工厂模式、抽象工厂模式、建造者模式、原始模式      
 结构型：适配器模式、装饰模式、代理模式      
 行为型：模板方法模式、命令模式、迭代器模式、观察者模式、策略模式        
-     
-## Dev-Server是怎么跑起来             
-## 抽取公共文件是怎么配置的    
-## 项目中如何处理安全问题      
-## 怎么实现this对象的深拷贝        
-## 表单可以跨域吗         
-## 介绍观察者模式,中介者模式      
-观察者和订阅-发布的区别，各自用在哪里        
-## http1.1时如何复用Tcp连接       
-## 介绍Service Worker      
-## 介绍CSS3中Position:sticky               
-## a标签默认事件禁掉之后做了什么才实现了跳转             
-## 使用import时，Webpack对node_modules里的依赖会做什么      
-## Http报文的请求会有几个部分            
-## 介绍AST（Abstract Syntax Tree）抽象语法树              
-## ES6中的Map和原生的对象有什么区别           
-## JS里垃圾回收机制是什么，常用的是哪种，怎么处理的   
-## 小程序里面开页面最多是多少              
-## Webpack如何配Sass，需要配哪些Loader         
-## 配CSS需要哪些Loader     
-## 如何配置把JS、CSS、Html单独打包成一个文件       
-## Div垂直水平居中（Flex、绝对定位）       
-## 两个元素块，一左一右，中间相距10像素        
-## 上下固定，中间滚动布局如何实现             
-## 盒子模型，以及标准情况和IE下的区别      
-## 如何实现高度自适应          
-## Prototype和Proto区别       
-## new是怎么实现的         
-## em和px的区别      
-## 如何去除url中的#号          
-## Webpack和Gulp的优缺点            
-## base64为什么能提升性能，缺点        
-## 数据类型分别存在哪里
-var a = {name: "前端开发"}; var b = a; a = null那么b输出什么
-var a = {b: 1}存放在哪里
-var a = {b: {c: 1}}存放在哪里
-## 垃圾回收时栈和堆的区别
-## 打包时Hash码是怎么生成的
-## 使用Canvas绘图时如何组织成通用组件
-## formData和原生的Ajax有什么区别
-## 如何对相对路径引用进行优化
-## Node文件查找优先级
-## Npm2和Npm3+有什么区别
-## Doctype作用？严格模式与混杂模式如何区分？它们有何意义？
 
-## 页面导入样式时，使用link和@import有什么区别？
-## 如何区分HTML和HTML5？
-
-## HTML5的离线储存怎么使用，工作原理能不能解释一下？    
-## 用纯CSS创建一个三角形的原理是什么？
-## 请指出以下代码的区别：function Person(){}、var person = Person()、var person = new Person()？
-
-## 请解释变量声明提升 (hoisting)。
-
-## 什么是 “use strict”; ? 使用它的好处和坏处分别是什么？
-
- 
 ## 移动端高清方案如何解决 ?        
 用JS根据屏幕尺寸和dpr精确地设置不同屏幕所应有的rem基准值和initial-scale缩放值，   
 图片模糊问题，只需要根据data-dpr的值动态加载不同尺寸的图就可以了。          
-## new String('a') 和 'a' 是一样的么?
 
 ## 请谈谈微信小程序主要目录和文件的作用？        
 project.config.json      项目配置文件，用得最多的就是配置是否开启https校验；
@@ -2133,7 +2072,59 @@ GraphicsContext 绘图上下文的责任就是向屏幕进行像素绘制(这个
 注意不能滥用 GPU 加速,一定要分析其实际性能表现。因为 GPU 加速创建渲染层是有代价的,每创建一个新的渲染层,就意味着新的内存分配和更复杂的层的管理。并且在移动端 GPU 和 CPU 的带宽有限制,创建的渲染层过多时,合成也会消耗跟多的时间,随之而来的就是耗电更多,内存占用更多。过多的渲染层来带的开销而对页面渲染性能产生的影响,甚至远远超过了它在性能改善上带来的好处。
 
 ## dns解析的具体过程
-
+## new String('a') 和 'a' 是一样的么?
+## JSBridge原理是什么？如何设计一个JSBridge？
+## 离线包怎么设计？  
+## Dev-Server是怎么跑起来             
+## 抽取公共文件是怎么配置的    
+## 项目中如何处理安全问题      
+## 怎么实现this对象的深拷贝        
+## 表单可以跨域吗         
+## 介绍观察者模式,中介者模式      
+观察者和订阅-发布的区别，各自用在哪里        
+## http1.1时如何复用Tcp连接       
+## 介绍Service Worker      
+## 介绍CSS3中Position:sticky               
+## a标签默认事件禁掉之后做了什么才实现了跳转             
+## 使用import时，Webpack对node_modules里的依赖会做什么      
+## Http报文的请求会有几个部分            
+## 介绍AST（Abstract Syntax Tree）抽象语法树              
+## ES6中的Map和原生的对象有什么区别           
+## JS里垃圾回收机制是什么，常用的是哪种，怎么处理的   
+## 小程序里面开页面最多是多少              
+## Webpack如何配Sass，需要配哪些Loader         
+## 配CSS需要哪些Loader     
+## 如何配置把JS、CSS、Html单独打包成一个文件       
+## Div垂直水平居中（Flex、绝对定位）       
+## 两个元素块，一左一右，中间相距10像素        
+## 上下固定，中间滚动布局如何实现             
+## 盒子模型，以及标准情况和IE下的区别      
+## 如何实现高度自适应          
+## Prototype和Proto区别       
+## new是怎么实现的         
+## em和px的区别      
+## 如何去除url中的#号          
+## Webpack和Gulp的优缺点            
+## base64为什么能提升性能，缺点        
+## 数据类型分别存在哪里
+var a = {name: "前端开发"}; var b = a; a = null那么b输出什么
+var a = {b: 1}存放在哪里
+var a = {b: {c: 1}}存放在哪里
+## 垃圾回收时栈和堆的区别
+## 打包时Hash码是怎么生成的
+## 使用Canvas绘图时如何组织成通用组件
+## formData和原生的Ajax有什么区别
+## 如何对相对路径引用进行优化
+## Node文件查找优先级
+## Npm2和Npm3+有什么区别
+## Doctype作用？严格模式与混杂模式如何区分？它们有何意义？
+## 页面导入样式时，使用link和@import有什么区别？
+## 如何区分HTML和HTML5？
+## HTML5的离线储存怎么使用，工作原理能不能解释一下？    
+## 用纯CSS创建一个三角形的原理是什么？
+## 请指出以下代码的区别：function Person(){}、var person = Person()、var person = new Person()？
+## 请解释变量声明提升 (hoisting)。
+## 什么是 “use strict”; ? 使用它的好处和坏处分别是什么？
 ## 面试中查考的Web安全问题
 SQL 注入    
 XSS：跨站脚本攻击   
