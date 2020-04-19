@@ -2153,6 +2153,7 @@ var a = {b: {c: 1}}存放在哪里
 ## formData和原生的Ajax有什么区别
 ## 如何对相对路径引用进行优化
 ## Node文件查找优先级
+![Node文件查找优先级](http://image.zhizuobiao.com/upload/20180515/1526368034080049950.png)  
 ## Npm2和Npm3+有什么区别
 ## Doctype作用？严格模式与混杂模式如何区分？它们有何意义？
 ## 页面导入样式时，使用link和@import有什么区别？
