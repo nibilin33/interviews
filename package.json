@@ -1,0 +1,13 @@
+{
+  "name": "nibl-doc",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "md": "doctoc README.md"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "doctoc": "^1.4.0"
+  }
+}
