@@ -200,7 +200,6 @@
   - [dns解析的具体过程](#dns%E8%A7%A3%E6%9E%90%E7%9A%84%E5%85%B7%E4%BD%93%E8%BF%87%E7%A8%8B)
   - [new String('a') 和 'a' 是一样的么?](#new-stringa-%E5%92%8C-a-%E6%98%AF%E4%B8%80%E6%A0%B7%E7%9A%84%E4%B9%88)
   - [JSBridge原理是什么？如何设计一个JSBridge？](#jsbridge%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AAjsbridge)
-  - [离线包怎么设计？](#%E7%A6%BB%E7%BA%BF%E5%8C%85%E6%80%8E%E4%B9%88%E8%AE%BE%E8%AE%A1)
   - [Dev-Server是怎么跑起来](#dev-server%E6%98%AF%E6%80%8E%E4%B9%88%E8%B7%91%E8%B5%B7%E6%9D%A5)
   - [抽取公共文件是怎么配置的](#%E6%8A%BD%E5%8F%96%E5%85%AC%E5%85%B1%E6%96%87%E4%BB%B6%E6%98%AF%E6%80%8E%E4%B9%88%E9%85%8D%E7%BD%AE%E7%9A%84)
   - [项目中如何处理安全问题](#%E9%A1%B9%E7%9B%AE%E4%B8%AD%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98)
@@ -246,7 +245,6 @@
   - [用纯CSS创建一个三角形的原理是什么？](#%E7%94%A8%E7%BA%AFcss%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E4%B8%89%E8%A7%92%E5%BD%A2%E7%9A%84%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88)
   - [请指出以下代码的区别：function Person(){}、var person = Person()、var person = new Person()？](#%E8%AF%B7%E6%8C%87%E5%87%BA%E4%BB%A5%E4%B8%8B%E4%BB%A3%E7%A0%81%E7%9A%84%E5%8C%BA%E5%88%ABfunction-personvar-person--personvar-person--new-person)
   - [请解释变量声明提升 (hoisting)。](#%E8%AF%B7%E8%A7%A3%E9%87%8A%E5%8F%98%E9%87%8F%E5%A3%B0%E6%98%8E%E6%8F%90%E5%8D%87-hoisting)
-  - [什么是 “use strict”; ? 使用它的好处和坏处分别是什么？](#%E4%BB%80%E4%B9%88%E6%98%AF-use-strict--%E4%BD%BF%E7%94%A8%E5%AE%83%E7%9A%84%E5%A5%BD%E5%A4%84%E5%92%8C%E5%9D%8F%E5%A4%84%E5%88%86%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88)
   - [面试中查考的Web安全问题](#%E9%9D%A2%E8%AF%95%E4%B8%AD%E6%9F%A5%E8%80%83%E7%9A%84web%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -2097,13 +2095,28 @@ DNS是应用层协议，，包括不限于HTTP和SMTP以及FTP，用于将用户
 8. 保存结果至缓存
 本地域名服务器把返回的结果保存到缓存，以备下一次使用，同时将该结果反馈给客户端，客户端通过这个IP地址与web服务器建立链接。
 ## new String('a') 和 'a' 是一样的么?
+new String('a') 得到的是一个对象。'a' 是字符常量。  
+一个是值类型，一个是引用类型；一个入栈，一个入堆。  
+
 ## JSBridge原理是什么？如何设计一个JSBridge？
-## 离线包怎么设计？  
+JSBridge是Native代码与JS代码的通信桥梁。目前的一种统一方案是:H5触发url scheme->Native捕获url scheme->原生分析,执行->原生调用h5
+要实现JSBridge,我们可以进行关键步骤分析
+JSBridge实现思路：  
+第一步:设计出一个Native与JS交互的全局桥对象
+第二步:JS如何调用Native
+第三步:Native如何得知api被调用
+第四步:分析url-参数和回调的格式
+第五步:Native如何调用JS
+第六步:H5中api方法的注册以及格式
+详细https://www.cnblogs.com/dailc/p/5931324.html 
 ## Dev-Server是怎么跑起来             
 ## 抽取公共文件是怎么配置的    
 ## 项目中如何处理安全问题      
 ## 怎么实现this对象的深拷贝        
-## 表单可以跨域吗         
+## 表单可以跨域吗  
+可以。  
+根本原因应该是传统的表单提交不是从脚本发起的请求，所以无需遵循同源策略。   
+拿不到返回的数据。      
 ## 介绍观察者模式,中介者模式      
 观察者和订阅-发布的区别，各自用在哪里        
 ## http1.1时如何复用Tcp连接       
@@ -2145,10 +2158,46 @@ var a = {b: {c: 1}}存放在哪里
 ## 页面导入样式时，使用link和@import有什么区别？
 ## 如何区分HTML和HTML5？
 ## HTML5的离线储存怎么使用，工作原理能不能解释一下？    
+原理：HTML5的离线存储是基于一个新建的.appcache文件的缓存机制(不是存储技术)，    
+通过这个文件上的解析清单离线存储资源，    
+这些资源就会像cookie一样被存储了下来。之后当网络在处于离线状态下时，浏览器会通过被离线存储的数据进行页面展示。    
+
+如何使用：    
+1、页面头部像下面一样加入一个manifest的属性;
+2、在cache.manifest文件的编写离线存储的资源;    
+CACHE MANIFEST
+#v0.11
+CACHE:
+js/app.js
+css/style.css
+NETWORK:
+resourse/logo.png
+FALLBACK:
+/ /offline.html
+3、在离线状态时，操作window.applicationCache进行需求实现。    
 ## 用纯CSS创建一个三角形的原理是什么？
 ## 请指出以下代码的区别：function Person(){}、var person = Person()、var person = new Person()？
-## 请解释变量声明提升 (hoisting)。
-## 什么是 “use strict”; ? 使用它的好处和坏处分别是什么？
+## 请解释变量声明提升 (hoisting)。  
+js引擎会在正式执行代码之前进行一次"预编译"，预编译简单理解就是在内存中开辟一些空间，    
+存放一些变量和函数。    
+具体步骤如下：        
+（1）页面创建GO全局对象（Global Object）对象（window对象）。    
+（2）加载第一个脚本文件。   
+（3）脚本加载完毕后，进行语法分析。   
+（4）开始预编译   
+查找函数声明，作为GO属性，值赋予函数体（函数声明优先）    
+查找变量声明，作为GO属性，值赋予undefined   
+（5）解释执行代码（直到执行函数b，该部分也被叫做词法分析）    
+创建AO活动对象（Active Object）   
+查找形参和变量声明，值赋予undefined   
+实参值赋给形参    
+查找函数声明，值赋给函数体    
+解释执行函数中的代码    
+（6）第一个脚本文件执行完毕，加载第二个脚本文件   
+（7）第二个文件加载完毕后，进行语法分析   
+（8）开始预编译   
+重复编译步骤        
+与解析机制使得变量提升（Hoisting），从字面上理解就是变量和函数的声明会移动到函数或者全局代码的开头位置。    
 ## 面试中查考的Web安全问题
 SQL 注入    
 XSS：跨站脚本攻击   
