@@ -320,15 +320,9 @@
 
 ### 算法    
 <ul>
-<li><a href="https://github.com/rishabh115/Interview-Questions">Comprehensive list of interview questions of top tech companies</a></li>
-<li><a href="http://java2novice.com/java-interview-programs/" rel="nofollow">A great list of Java interview questions</a></li>
-<li><a href="https://github.com/sagivo/algorithms">Algorithms playground for common interview questions written in Ruby</a></li>
-<li><a href="https://github.com/EvgenyKarkan/EKAlgorithms">EKAlgorithms contains some well known CS algorithms &amp; data structures</a></li>
-<li><a href="http://www.shiftedup.com/2015/05/07/five-programming-problems-every-software-engineer-should-be-able-to-solve-in-less-than-1-hour" rel="nofollow">Five programming problems every Software Engineer should be able to solve in less than 1 hour</a></li>
-<li><a href="http://www.programcreek.com/2012/11/top-10-algorithms-for-coding-interview/" rel="nofollow">Top 10 Algorithms for Coding Interview</a></li>
-<li><a href="http://javarevisited.blogspot.com.by/2013/03/top-15-data-structures-algorithm-interview-questions-answers-java-programming.html" rel="nofollow">Top 15 Data Structures and Algorithm Interview Questions for Java programmer</a></li>
+<li><a href="https://github.com/rishabh115/Interview-Questions">国外Top技术公司的面试题</a></li>
+<li><a href="http://www.programcreek.com/2012/11/top-10-algorithms-for-coding-interview/" rel="nofollow">10大类算法面试题</a></li>
 <li><a href="https://github.com/yangshun/tech-interview-handbook/blob/master/algorithms/README.md">Top Algorithms Questions by Topics</a></li>
-<li><a href="https://www.techseries.dev/daily" rel="nofollow">Daily Coding Interview Practice</a></li>
 </ul>
 
 ### 安全    
