@@ -239,6 +239,7 @@
   - [数据类型分别存在哪里](#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%88%86%E5%88%AB%E5%AD%98%E5%9C%A8%E5%93%AA%E9%87%8C)
   - [垃圾回收时栈和堆的区别](#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%97%B6%E6%A0%88%E5%92%8C%E5%A0%86%E7%9A%84%E5%8C%BA%E5%88%AB)
   - [打包时Hash码是怎么生成的](#%E6%89%93%E5%8C%85%E6%97%B6hash%E7%A0%81%E6%98%AF%E6%80%8E%E4%B9%88%E7%94%9F%E6%88%90%E7%9A%84)
+  - [webpack中hash、chunkhash和contenthash三者的区别?](#webpack%E4%B8%ADhashchunkhash%E5%92%8Ccontenthash%E4%B8%89%E8%80%85%E7%9A%84%E5%8C%BA%E5%88%AB)
   - [使用Canvas绘图时如何组织成通用组件](#%E4%BD%BF%E7%94%A8canvas%E7%BB%98%E5%9B%BE%E6%97%B6%E5%A6%82%E4%BD%95%E7%BB%84%E7%BB%87%E6%88%90%E9%80%9A%E7%94%A8%E7%BB%84%E4%BB%B6)
   - [formData和原生的Ajax有什么区别](#formdata%E5%92%8C%E5%8E%9F%E7%94%9F%E7%9A%84ajax%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB)
   - [如何对相对路径引用进行优化](#%E5%A6%82%E4%BD%95%E5%AF%B9%E7%9B%B8%E5%AF%B9%E8%B7%AF%E5%BE%84%E5%BC%95%E7%94%A8%E8%BF%9B%E8%A1%8C%E4%BC%98%E5%8C%96)
@@ -328,10 +329,6 @@
 ### 安全    
 
 <ul>
-<li><a href="http://careers.simplicable.com/careers/new/101-IT-security-interview-questions" rel="nofollow">101 IT Security Interview Questions</a></li>
-<li><a href="http://searchsecurity.techtarget.com/tip/How-to-prepare-for-an-information-security-job-interview" rel="nofollow">How to prepare for an information security job interview?</a></li>
-<li><a href="https://danielmiessler.com/study/infosec_interview_questions/" rel="nofollow">Information Security Interview Questions from Daniel Miessler</a></li>
-<li><a href="http://resources.infosecinstitute.com/top-50-information-security-interview-questions/" rel="nofollow">Top 50 Information Security Interview Questions for freshers and experts</a></li>
 <li><a href="https://mkadeline.github.io/security/Security-Interview-Questions-Answers" rel="nofollow">Security Interview Questions (and Answers) from Matthew Adeline</a></li>
 </ul>
 
@@ -361,8 +358,8 @@ float造成的影响：
 
 ## 清除浮动的所有方法     
 
-01. clear:both
-02. overflow:hidden  
+1. clear:both
+2. overflow:hidden  
 
 ## cookie有哪些特征           
 
@@ -2301,22 +2298,54 @@ URL中#号(井号)的作用：
 gulp是一个自动化构建工具，主要用来设定程序自动处理静态资源的工作。  
 webpack是一个模块打包器。webpack 的主要目标是将 JavaScript 文件打包在一起,打包后的文件用于在浏览器中使用.   
 各自侧重点不一样。    
-## base64为什么能提升性能，缺点        
+## base64为什么能提升性能，缺点     
+它仅适用于非常小的图像。 Base64编码文件比原始文件大。其优势在于不必打开另一个连接并向服务器发送图像的HTTP请求。 然而，与之同时付出的代价则是 CSS 文件体积的增大。
+而 CSS 文件体积的增大意味着什么呢？意味着 CRP 的阻塞。
+CRP（Critical Rendering Path，关键渲染路径）：当浏览器从服务器接收到一个HTML页面的请求时，到屏幕上渲染出来要经过很多个步骤。浏览器完成这一系列的运行，或者说渲染出来我们常常称之为"关键渲染路径"。  
+图片不会导致关键渲染路径的阻塞，而转化为 Base64 的图片大大增加了 CSS 文件的体积，CSS 文件的体积直接影响渲染，导致用户会长时间注视空白屏幕。
+
 ## 数据类型分别存在哪里
 var a = {name: "前端开发"}; var b = a; a = null那么b输出什么
 var a = {b: 1}存放在哪里
 var a = {b: {c: 1}}存放在哪里
 ## 垃圾回收时栈和堆的区别
-## 打包时Hash码是怎么生成的
+## 打包时Hash码是怎么生成的   
+hash 字段是根据每次编译compilation的内容计算所得，也可以理解为项目总体文件的hash值。    
+## webpack中hash、chunkhash和contenthash三者的区别? 
+hash:是跟整个项目的构建相关，只要项目里有文件更改，整个项目构建的hash值都会更改，并且全部文件都共用相同的hash值.     
+chunkhash:根据不同的入口文件(Entry)进行依赖文件解析、构建对应的chunk，生成对应的哈希值。我们在生产环境里把一些公共库和程序入口文件区分开，单独打包构建，接着我们采用chunkhash的方式生成哈希值，那么只要我们不改动公共库的代码，就可以保证其哈希值不会受影响.   
+contenthash:在使用chunkhash的例子中，如果index.css被index.js引用了，那么就会共用相同的chunkhash值。但是这样子有个问题，如果index.js更改了代码，css文件就算内容没有任何改变，由于是该模块发生了改变，导致css文件会重复构建。这个时候，我们可以使用extra-text-webpack-plugin里的contenthash值，保证即使css文件所处的模块里就算其他文件内容改变，只要css文件内容不变，那么不会重复构建。   
 ## 使用Canvas绘图时如何组织成通用组件
 ## formData和原生的Ajax有什么区别
 ## 如何对相对路径引用进行优化
 ## Node文件查找优先级
 ![Node文件查找优先级](http://image.zhizuobiao.com/upload/20180515/1526368034080049950.png)    
 ## Npm2和Npm3+有什么区别
-## Doctype作用？严格模式与混杂模式如何区分？它们有何意义？
-## 页面导入样式时，使用link和@import有什么区别？
-## 如何区分HTML和HTML5？
+npm3 和 npm2 对于依赖的处理不一样了。   
+npm2所有项目依赖是嵌套关系，而npm3为了改进嵌套过多、套路过深的情况，会将所有依赖放在第二层依赖中（所有依赖只嵌套一次，彼此平行，也就是平铺的结构）    
+## Doctype作用？严格模式与混杂模式如何区分？它们有何意义？  
+声明位于位于HTML文档中的第一行，处于html标签之前。    
+告知浏览器的解析器用什么文档标准解析这个文档。DOCTYPE不存在或格式不正确会导致文档以兼容模式呈现。   
+HTML5 不基于 SGML，因此不需要对DTD进行引用，但是需要doctype来规范浏览器的行为（让浏览器按照它们应该的方式来运行）；   
+严格模式：严格模式的排版和JS运作模式是以该浏览器支持的最高标准运行。    
+混杂模式：混杂模式的页面以宽松的向后兼容的方式显示；模拟老的浏览器的行为以防止站点无法工作。    
+怪异模式：怪异模式则是使用浏览器自己的方式来解析执行代码。    
+## 页面导入样式时，使用link和@import有什么区别？  
+1. link是XHTML标签，除了加载CSS外，还能用于定义RSS, 定义rel连接属性等作用；而@import是CSS提供的，只能用于加载CSS;   
+2. link引用CSS时，在页面载入时同时加载；@import需要页面网页完全载入以后加载。   
+3. link是XHTML标签，无兼容问题；@import是在CSS2.1提出的，低版本(IE5及以下)的浏览器不支持。    
+4. link支持使用Javascript控制DOM去改变样式；而@import不支持。
+
+## 如何区分HTML和HTML5？  
+最明显的在文档类型声明上    
+html:
+```html
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "&nbsp;&nbsp;<html xmlns="/>　
+````
+HTML5:
+```
+<!DOCTYPE html>
+```
 ## HTML5的离线储存怎么使用，工作原理能不能解释一下？    
 原理：HTML5的离线存储是基于一个新建的.appcache文件的缓存机制(不是存储技术)，    
 通过这个文件上的解析清单离线存储资源，    
@@ -2361,8 +2390,11 @@ js引擎会在正式执行代码之前进行一次"预编译"，预编译简单�
 ## 面试中查考的Web安全问题
 参考[Web项目开发中常见安全问题及防范](https://www.cnblogs.com/aiandbigdata/p/10057659.html)   
 SQL 注入    
-XSS：跨站脚本攻击   
+XSS：跨站脚本攻击  
+XSS是注入恶意的javascript代码，然后由受害者浏览器执行。这是对应用程序用户的攻击，而不是系统本身。   
+针对XSS的常见防御措施是什么？在代码符号不合适的情况下进行输入验证，但对输出进行清除更为重要。 
 CSRF: 跨站请求伪造    
+如何防御CSRF？一种缓解措施是使用Cookie的双重提交，其中将令牌分配给Cookie并作为请求参数包括在内，并且任何不匹配都表示请求不是来自用户的，因为请求将始终以正确的Cookie发送，但是攻击者无法生成Cookie用作请求参数。另一种方法是生成随机令牌，并将其作为参数包含在每个请求中。令牌已由服务器验证，因此攻击者不应将其包括在恶意CSRF攻击中。在有效的情况下，如果受保护的站点链接到外部URL，则可以在多个点公开令牌，包括在浏览器历史记录，HTTP日志文件，记录HTTP请求第一行的网络设备和引荐来源标头中。
 中间人攻击    
 DDoS    
 点击劫持
