@@ -2109,10 +2109,13 @@ JSBridge实现思路：
 第五步:Native如何调用JS
 第六步:H5中api方法的注册以及格式
 详细https://www.cnblogs.com/dailc/p/5931324.html 
-## Dev-Server是怎么跑起来             
-## 抽取公共文件是怎么配置的    
-## 项目中如何处理安全问题      
-## 怎么实现this对象的深拷贝        
+## Dev-Server是怎么跑起来       
+wekpack-dev-server内部通过express实现, 运行时并不真正的生成打包文件，只是生成内存中的打包.       
+使用sockjs建立实时通信通道，在后端检测到文件变化， 且编译发布完成后， 会主动通知前端， 前端执行刷新动作。 
+## 抽取公共文件是怎么配置的  
+plugins:[
+ new webpack.optimize.CommonsChunkPlugin('common.js'), // 默认会把所有入口节点的公共代码提取出来,生成一个common.js 
+]      
 ## 表单可以跨域吗  
 可以。  
 根本原因应该是传统的表单提交不是从脚本发起的请求，所以无需遵循同源策略。   
@@ -2155,23 +2158,51 @@ click 事件，通过js来做跳转
 ## Http报文的请求会有几个部分       
 一个HTTP请求报文由请求行（request line）、请求头部（header）、空行和请求数据4个部分组成.       
 ## 介绍AST（Abstract Syntax Tree）抽象语法树              
-## ES6中的Map和原生的对象有什么区别           
+## ES6中的Map和原生的对象有什么区别   
+Object的键的类型是字符串; 
+Map的键的类型是 可以是任意类型; 
+Object获取键值使用Object.keys(返回数组); 
+Map获取键值使用 map变量.keys() (返回迭代器)。         
 ## JS里垃圾回收机制是什么，常用的是哪种，怎么处理的   
+原理：垃圾收集器会定期（周期性）找出那些不在继续使用的变量，然后释放其内存。
+常用的标记清除法：垃圾回收器在运行时候会给存储在内存中中的所有变量都加上标记。然后它会去掉环境中的变量以及被环境中的变量引用的变量的标记（闭包）。  
+引用计数法:跟踪记录每个值被引用的次数.    
+
 ## 小程序里面开页面最多是多少     
 在微信小程序中打开的页面不能超过10个，达到10个页面后，就不能再打开新的页面。           
-## Webpack如何配Sass，需要配哪些Loader         
-## 配CSS需要哪些Loader     
+## Webpack如何配Sass，需要配哪些Loader      
+style-loader,css-loader,sass-loader       
+## 配CSS需要哪些Loader    
+style-loader,css-loader  
 ## 如何配置把JS、CSS、Html单独打包成一个文件       
 ## Div垂直水平居中（Flex、绝对定位）       
 ## 两个元素块，一左一右，中间相距10像素        
 ## 上下固定，中间滚动布局如何实现             
-## 盒子模型，以及标准情况和IE下的区别      
+## 盒子模型，以及标准情况和IE下的区别    
+IE 盒子模型的范围也包括 margin、border、padding、content，和标准 W3C 盒子模型不同的是：IE 盒子模型的 content 部分包含了 border 和 pading。  
 ## 如何实现高度自适应          
-## Prototype和Proto区别       
-## new是怎么实现的         
-## em和px的区别      
-## 如何去除url中的#号          
-## Webpack和Gulp的优缺点            
+## Prototype和Proto区别   
+__proto__可以理解为"构造器的原型"    
+``` 
+__proto__===constructor.prototype
+```   
+## em和px的区别    
+px像素(Pixel)。相对长度单位。像素px是相对于显示器屏幕分辨率而言的。   
+em是相对长度单位。相对于当前对象内文本的字体尺寸。如当前对行内文本的字体尺寸未被人为设置，则相对于浏览器的默认字体尺寸。      
+## 如何去除url中的#号       
+使用history模式.     
+URL中#号(井号)的作用：  
+1. 页面定位符
+比如：http://www.httpwatch.com/features.htm#print ，此URL表示在页面features.htm中print的位置。浏览器读取这个URL后，会自动将print位置滚动至可视区域。    
+在页面上添加锚点的方法为：<a name=”print”></a>或使用<div id=”print” >。
+2. #号后面的数据不会发送到HTTP请求中。  
+3. 位于#号后面的字符都是位置标识符。  
+4. 改变#号后面的参数不会触发页面的重新加载但是会留下一个历史记录。  
+参考[URL的井号](http://www.ruanyifeng.com/blog/2011/03/url_hash.html)   
+## Webpack和Gulp的优缺点      
+gulp是一个自动化构建工具，主要用来设定程序自动处理静态资源的工作。  
+webpack是一个模块打包器。webpack 的主要目标是将 JavaScript 文件打包在一起,打包后的文件用于在浏览器中使用.   
+各自侧重点不一样。    
 ## base64为什么能提升性能，缺点        
 ## 数据类型分别存在哪里
 var a = {name: "前端开发"}; var b = a; a = null那么b输出什么
@@ -2230,6 +2261,7 @@ js引擎会在正式执行代码之前进行一次"预编译"，预编译简单�
 重复编译步骤        
 与解析机制使得变量提升（Hoisting），从字面上理解就是变量和函数的声明会移动到函数或者全局代码的开头位置。    
 ## 面试中查考的Web安全问题
+参考[Web项目开发中常见安全问题及防范](https://www.cnblogs.com/aiandbigdata/p/10057659.html)   
 SQL 注入    
 XSS：跨站脚本攻击   
 CSRF: 跨站请求伪造    
