@@ -224,25 +224,14 @@
   - [小程序里面开页面最多是多少](#%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%87%8C%E9%9D%A2%E5%BC%80%E9%A1%B5%E9%9D%A2%E6%9C%80%E5%A4%9A%E6%98%AF%E5%A4%9A%E5%B0%91)
   - [Webpack如何配Sass，需要配哪些Loader](#webpack%E5%A6%82%E4%BD%95%E9%85%8Dsass%E9%9C%80%E8%A6%81%E9%85%8D%E5%93%AA%E4%BA%9Bloader)
   - [配CSS需要哪些Loader](#%E9%85%8Dcss%E9%9C%80%E8%A6%81%E5%93%AA%E4%BA%9Bloader)
-  - [如何配置把JS、CSS、Html单独打包成一个文件](#%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E6%8A%8Ajscsshtml%E5%8D%95%E7%8B%AC%E6%89%93%E5%8C%85%E6%88%90%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6)
   - [Div垂直水平居中（Flex、绝对定位）](#div%E5%9E%82%E7%9B%B4%E6%B0%B4%E5%B9%B3%E5%B1%85%E4%B8%ADflex%E7%BB%9D%E5%AF%B9%E5%AE%9A%E4%BD%8D)
-  - [两个元素块，一左一右，中间相距10像素](#%E4%B8%A4%E4%B8%AA%E5%85%83%E7%B4%A0%E5%9D%97%E4%B8%80%E5%B7%A6%E4%B8%80%E5%8F%B3%E4%B8%AD%E9%97%B4%E7%9B%B8%E8%B7%9D10%E5%83%8F%E7%B4%A0)
   - [上下固定，中间滚动布局如何实现](#%E4%B8%8A%E4%B8%8B%E5%9B%BA%E5%AE%9A%E4%B8%AD%E9%97%B4%E6%BB%9A%E5%8A%A8%E5%B8%83%E5%B1%80%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0)
-  - [盒子模型，以及标准情况和IE下的区别](#%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B%E4%BB%A5%E5%8F%8A%E6%A0%87%E5%87%86%E6%83%85%E5%86%B5%E5%92%8Cie%E4%B8%8B%E7%9A%84%E5%8C%BA%E5%88%AB)
-  - [如何实现高度自适应](#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E9%AB%98%E5%BA%A6%E8%87%AA%E9%80%82%E5%BA%94)
-  - [如何实现new](#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0new)
-  - [Prototype和Proto区别](#prototype%E5%92%8Cproto%E5%8C%BA%E5%88%AB)
-  - [em和px的区别](#em%E5%92%8Cpx%E7%9A%84%E5%8C%BA%E5%88%AB)
-  - [如何去除url中的#号](#%E5%A6%82%E4%BD%95%E5%8E%BB%E9%99%A4url%E4%B8%AD%E7%9A%84%E5%8F%B7)
-  - [Webpack和Gulp的优缺点](#webpack%E5%92%8Cgulp%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9)
-  - [base64为什么能提升性能，缺点](#base64%E4%B8%BA%E4%BB%80%E4%B9%88%E8%83%BD%E6%8F%90%E5%8D%87%E6%80%A7%E8%83%BD%E7%BC%BA%E7%82%B9)
   - [数据类型分别存在哪里](#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%88%86%E5%88%AB%E5%AD%98%E5%9C%A8%E5%93%AA%E9%87%8C)
   - [垃圾回收时栈和堆的区别](#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%97%B6%E6%A0%88%E5%92%8C%E5%A0%86%E7%9A%84%E5%8C%BA%E5%88%AB)
   - [打包时Hash码是怎么生成的](#%E6%89%93%E5%8C%85%E6%97%B6hash%E7%A0%81%E6%98%AF%E6%80%8E%E4%B9%88%E7%94%9F%E6%88%90%E7%9A%84)
   - [webpack中hash、chunkhash和contenthash三者的区别?](#webpack%E4%B8%ADhashchunkhash%E5%92%8Ccontenthash%E4%B8%89%E8%80%85%E7%9A%84%E5%8C%BA%E5%88%AB)
-  - [使用Canvas绘图时如何组织成通用组件](#%E4%BD%BF%E7%94%A8canvas%E7%BB%98%E5%9B%BE%E6%97%B6%E5%A6%82%E4%BD%95%E7%BB%84%E7%BB%87%E6%88%90%E9%80%9A%E7%94%A8%E7%BB%84%E4%BB%B6)
   - [formData和原生的Ajax有什么区别](#formdata%E5%92%8C%E5%8E%9F%E7%94%9F%E7%9A%84ajax%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB)
-  - [如何对相对路径引用进行优化](#%E5%A6%82%E4%BD%95%E5%AF%B9%E7%9B%B8%E5%AF%B9%E8%B7%AF%E5%BE%84%E5%BC%95%E7%94%A8%E8%BF%9B%E8%A1%8C%E4%BC%98%E5%8C%96)
+  - [SEO优化中用相对路径还是用绝对路径](#seo%E4%BC%98%E5%8C%96%E4%B8%AD%E7%94%A8%E7%9B%B8%E5%AF%B9%E8%B7%AF%E5%BE%84%E8%BF%98%E6%98%AF%E7%94%A8%E7%BB%9D%E5%AF%B9%E8%B7%AF%E5%BE%84)
   - [Node文件查找优先级](#node%E6%96%87%E4%BB%B6%E6%9F%A5%E6%89%BE%E4%BC%98%E5%85%88%E7%BA%A7)
   - [Npm2和Npm3+有什么区别](#npm2%E5%92%8Cnpm3%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB)
   - [Doctype作用？严格模式与混杂模式如何区分？它们有何意义？](#doctype%E4%BD%9C%E7%94%A8%E4%B8%A5%E6%A0%BC%E6%A8%A1%E5%BC%8F%E4%B8%8E%E6%B7%B7%E6%9D%82%E6%A8%A1%E5%BC%8F%E5%A6%82%E4%BD%95%E5%8C%BA%E5%88%86%E5%AE%83%E4%BB%AC%E6%9C%89%E4%BD%95%E6%84%8F%E4%B9%89)
@@ -1605,7 +1594,7 @@ Round-robin调度策略主要是master主线程负责接收所有的连接并派
 拥有资源：进程是拥有资源的一个独立单位，线程不拥有系统资源，但可以访问隶属于进程的资源    
 
 ### Node中如何创建一个进程？
-
+require('child_process')    
 ### Node的多个进程如何通信？   
 使用共享内存，信号量。这种方式可以通过 child_process 模块实现。   
 使用套接。这种方式可以使用 net，http，websocket 模块实现，还可以使用 socket.io 来实现（推荐）。   
@@ -2237,7 +2226,19 @@ click 事件，通过js来做跳转
 开发的 JavaScript 文件需要使用 babel-loader 处理.  
 ## Http报文的请求会有几个部分       
 一个HTTP请求报文由请求行（request line）、请求头部（header）、空行和请求数据4个部分组成.       
-## 介绍AST（Abstract Syntax Tree）抽象语法树              
+## 介绍AST（Abstract Syntax Tree）抽象语法树       
+抽象语法树（abstract syntax tree或者缩写为AST），或者语法树（syntax tree），是源代码的抽象语法结构的树状表现形式，这里特指编程语言的源代码。
+常见的几种用途：    
+代码语法的检查、代码风格的检查、代码的格式化、代码的高亮、代码错误提示、代码自动补全等等      
+如JSLint、JSHint对代码错误或风格的检查，发现一些潜在的错误    
+IDE的错误提示、格式化、高亮、自动补全等等   
+代码混淆压缩    
+UglifyJS2等   
+优化变更代码，改变代码结构使达到想要的结构    
+代码打包工具webpack、rollup等等   
+CommonJS、AMD、CMD、UMD等代码规范之间的转化     
+CoffeeScript、TypeScript、JSX等转化为原生Javascript   
+
 ## ES6中的Map和原生的对象有什么区别   
 Object的键的类型是字符串; 
 Map的键的类型是 可以是任意类型; 
@@ -2253,14 +2254,23 @@ Map获取键值使用 map变量.keys() (返回迭代器)。
 ## Webpack如何配Sass，需要配哪些Loader      
 style-loader,css-loader,sass-loader       
 ## 配CSS需要哪些Loader    
-style-loader,css-loader  
-## 如何配置把JS、CSS、Html单独打包成一个文件       
-## Div垂直水平居中（Flex、绝对定位）       
-## 两个元素块，一左一右，中间相距10像素        
-## 上下固定，中间滚动布局如何实现             
+style-loader,css-loader        
+## Div垂直水平居中（Flex、绝对定位）    
+<div style="display: flex;align-items:center;justify-content:center;border:1px solid red;height:200px;">
+<div style=" width: 50px;height: 40px;border: 1px solid #00C1B3;"></div>
+</div>  
+
+
+      
+## 上下固定，中间滚动布局如何实现     
+<div style="height:200px; display: flex;flex-direction: column;">
+<div style="height:20px;background:pink;">22</div> 
+<div style="background:orange;flex:1;">33</div>
+<div style="height:20px;background:pink;">222</div>
+</div>
+       
 ## 盒子模型，以及标准情况和IE下的区别    
 IE 盒子模型的范围也包括 margin、border、padding、content，和标准 W3C 盒子模型不同的是：IE 盒子模型的 content 部分包含了 border 和 pading。  
-## 如何实现高度自适应  
 ## 如何实现new  
 它创建了一个全新的对象。    
 它会被执行[[Prototype]]（也就是__proto__）链接。 res.__proto__ = func.prototype;    
@@ -2315,9 +2325,22 @@ hash 字段是根据每次编译compilation的内容计算所得，也可以理�
 hash:是跟整个项目的构建相关，只要项目里有文件更改，整个项目构建的hash值都会更改，并且全部文件都共用相同的hash值.     
 chunkhash:根据不同的入口文件(Entry)进行依赖文件解析、构建对应的chunk，生成对应的哈希值。我们在生产环境里把一些公共库和程序入口文件区分开，单独打包构建，接着我们采用chunkhash的方式生成哈希值，那么只要我们不改动公共库的代码，就可以保证其哈希值不会受影响.   
 contenthash:在使用chunkhash的例子中，如果index.css被index.js引用了，那么就会共用相同的chunkhash值。但是这样子有个问题，如果index.js更改了代码，css文件就算内容没有任何改变，由于是该模块发生了改变，导致css文件会重复构建。这个时候，我们可以使用extra-text-webpack-plugin里的contenthash值，保证即使css文件所处的模块里就算其他文件内容改变，只要css文件内容不变，那么不会重复构建。   
-## 使用Canvas绘图时如何组织成通用组件
-## formData和原生的Ajax有什么区别
-## 如何对相对路径引用进行优化
+## formData和原生的Ajax有什么区别 
+form data 不用设置request header 类型   
+## SEO优化中用相对路径还是用绝对路径    
+(1)在绝对路径下，你的文章内容被转载或采集且对方比较懒，没有除去你加的链接，就会给你的网站增加一些外链。   
+
+(2)如果你的网站没有做301，并且你把带www和不带www的域名都解析到一个站点，可能会产生网址规范化问题。使用绝对路径，可以告诉搜索引擎你使用的是哪个版本的URL，防止搜索引擎自动选择你不想让它收录的URL版本。    
+
+(3)在绝对路径下，如果你的网页移动位置，不会影响站内链接，因为是固定的链接。   
+
+(4)绝对路径不利于测试，有规模的网站一般会有线下测试，如果网站内的链接不是动态参数，就会造成很多死链接，没办法进行测试。   
+
+(5)如果网页中链接过多，绝对路径会加大网页的体积。   
+
+(6)相对路径地址是模糊的，不具备独立性。采用绝对地址，可以有效地防止你的竞争对手镜像你的网站。     
+
+以上优缺点的对比判断出的结论是在SEO优化中相对来说绝对路径更好一些。   
 ## Node文件查找优先级
 ![Node文件查找优先级](http://image.zhizuobiao.com/upload/20180515/1526368034080049950.png)    
 ## Npm2和Npm3+有什么区别
