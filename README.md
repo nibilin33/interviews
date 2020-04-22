@@ -226,6 +226,13 @@
   - [配CSS需要哪些Loader](#%E9%85%8Dcss%E9%9C%80%E8%A6%81%E5%93%AA%E4%BA%9Bloader)
   - [Div垂直水平居中（Flex、绝对定位）](#div%E5%9E%82%E7%9B%B4%E6%B0%B4%E5%B9%B3%E5%B1%85%E4%B8%ADflex%E7%BB%9D%E5%AF%B9%E5%AE%9A%E4%BD%8D)
   - [上下固定，中间滚动布局如何实现](#%E4%B8%8A%E4%B8%8B%E5%9B%BA%E5%AE%9A%E4%B8%AD%E9%97%B4%E6%BB%9A%E5%8A%A8%E5%B8%83%E5%B1%80%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0)
+  - [盒子模型，以及标准情况和IE下的区别](#%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B%E4%BB%A5%E5%8F%8A%E6%A0%87%E5%87%86%E6%83%85%E5%86%B5%E5%92%8Cie%E4%B8%8B%E7%9A%84%E5%8C%BA%E5%88%AB)
+  - [如何实现new](#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0new)
+  - [Prototype和Proto区别](#prototype%E5%92%8Cproto%E5%8C%BA%E5%88%AB)
+  - [em和px的区别](#em%E5%92%8Cpx%E7%9A%84%E5%8C%BA%E5%88%AB)
+  - [如何去除url中的#号](#%E5%A6%82%E4%BD%95%E5%8E%BB%E9%99%A4url%E4%B8%AD%E7%9A%84%E5%8F%B7)
+  - [Webpack和Gulp的优缺点](#webpack%E5%92%8Cgulp%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9)
+  - [base64为什么能提升性能，缺点](#base64%E4%B8%BA%E4%BB%80%E4%B9%88%E8%83%BD%E6%8F%90%E5%8D%87%E6%80%A7%E8%83%BD%E7%BC%BA%E7%82%B9)
   - [数据类型分别存在哪里](#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%88%86%E5%88%AB%E5%AD%98%E5%9C%A8%E5%93%AA%E9%87%8C)
   - [垃圾回收时栈和堆的区别](#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%97%B6%E6%A0%88%E5%92%8C%E5%A0%86%E7%9A%84%E5%8C%BA%E5%88%AB)
   - [打包时Hash码是怎么生成的](#%E6%89%93%E5%8C%85%E6%97%B6hash%E7%A0%81%E6%98%AF%E6%80%8E%E4%B9%88%E7%94%9F%E6%88%90%E7%9A%84)
@@ -2255,20 +2262,22 @@ Map获取键值使用 map变量.keys() (返回迭代器)。
 style-loader,css-loader,sass-loader       
 ## 配CSS需要哪些Loader    
 style-loader,css-loader        
-## Div垂直水平居中（Flex、绝对定位）    
+## Div垂直水平居中（Flex、绝对定位）   
+``` html
 <div style="display: flex;align-items:center;justify-content:center;border:1px solid red;height:200px;">
 <div style=" width: 50px;height: 40px;border: 1px solid #00C1B3;"></div>
 </div>  
 
-
+```
       
 ## 上下固定，中间滚动布局如何实现     
+```html
 <div style="height:200px; display: flex;flex-direction: column;">
 <div style="height:20px;background:pink;">22</div> 
 <div style="background:orange;flex:1;">33</div>
 <div style="height:20px;background:pink;">222</div>
 </div>
-       
+```      
 ## 盒子模型，以及标准情况和IE下的区别    
 IE 盒子模型的范围也包括 margin、border、padding、content，和标准 W3C 盒子模型不同的是：IE 盒子模型的 content 部分包含了 border 和 pading。  
 ## 如何实现new  
@@ -2318,7 +2327,8 @@ CRP（Critical Rendering Path，关键渲染路径）：当浏览器从服务器
 var a = {name: "前端开发"}; var b = a; a = null那么b输出什么
 var a = {b: 1}存放在哪里
 var a = {b: {c: 1}}存放在哪里
-## 垃圾回收时栈和堆的区别
+## 垃圾回收时栈和堆的区别   
+在栈中变量用完之后自动释放，v8堆内存分为新生代和老生代内存    
 ## 打包时Hash码是怎么生成的   
 hash 字段是根据每次编译compilation的内容计算所得，也可以理解为项目总体文件的hash值。    
 ## webpack中hash、chunkhash和contenthash三者的区别? 
