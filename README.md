@@ -22,7 +22,7 @@
   - [localstorage存数据的格式是什么](#localstorage%E5%AD%98%E6%95%B0%E6%8D%AE%E7%9A%84%E6%A0%BC%E5%BC%8F%E6%98%AF%E4%BB%80%E4%B9%88)
   - [箭头函数](#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0)
   - [如果一个页面要做性能优化，从哪方面考察，从哪些地方优化](#%E5%A6%82%E6%9E%9C%E4%B8%80%E4%B8%AA%E9%A1%B5%E9%9D%A2%E8%A6%81%E5%81%9A%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E4%BB%8E%E5%93%AA%E6%96%B9%E9%9D%A2%E8%80%83%E5%AF%9F%E4%BB%8E%E5%93%AA%E4%BA%9B%E5%9C%B0%E6%96%B9%E4%BC%98%E5%8C%96)
-  - [请解释原型继承（prototypal inheritance）的工作原理](#%E8%AF%B7%E8%A7%A3%E9%87%8A%E5%8E%9F%E5%9E%8B%E7%BB%A7%E6%89%BFprototypal-inheritance%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86)
+  - [请解释原型继承（prototype inheritance）的工作原理](#%E8%AF%B7%E8%A7%A3%E9%87%8A%E5%8E%9F%E5%9E%8B%E7%BB%A7%E6%89%BFprototype-inheritance%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86)
   - [说说你对 AMD 和 CommonJS 的了解](#%E8%AF%B4%E8%AF%B4%E4%BD%A0%E5%AF%B9-amd-%E5%92%8C-commonjs-%E7%9A%84%E4%BA%86%E8%A7%A3)
   - [埋点的实现思路](#%E5%9F%8B%E7%82%B9%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%80%9D%E8%B7%AF)
   - [文件上传断点、续传](#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%96%AD%E7%82%B9%E7%BB%AD%E4%BC%A0)
@@ -39,6 +39,7 @@
   - [功能检测（feature detection）、功能推断（feature inference）和使用 UA 字符串之间有什么区别？](#%E5%8A%9F%E8%83%BD%E6%A3%80%E6%B5%8Bfeature-detection%E5%8A%9F%E8%83%BD%E6%8E%A8%E6%96%ADfeature-inference%E5%92%8C%E4%BD%BF%E7%94%A8-ua-%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B9%8B%E9%97%B4%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB)
   - [单页应用有那些优缺点](#%E5%8D%95%E9%A1%B5%E5%BA%94%E7%94%A8%E6%9C%89%E9%82%A3%E4%BA%9B%E4%BC%98%E7%BC%BA%E7%82%B9)
   - [请说明 JSONP 的工作原理，它为什么不是真正的 Ajax？](#%E8%AF%B7%E8%AF%B4%E6%98%8E-jsonp-%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%AE%83%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E6%98%AF%E7%9C%9F%E6%AD%A3%E7%9A%84-ajax)
+  - [jsonp安全问题如何解决](#jsonp%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3)
   - ["attribute" 和 "property" 之间有什么区别？](#attribute-%E5%92%8C-property-%E4%B9%8B%E9%97%B4%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB)
   - [document 中的load事件和DOMContentLoaded事件之间的区别是什么？](#document-%E4%B8%AD%E7%9A%84load%E4%BA%8B%E4%BB%B6%E5%92%8Cdomcontentloaded%E4%BA%8B%E4%BB%B6%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88)
   - [什么是"use strict"; ？使用它有什么优缺点？](#%E4%BB%80%E4%B9%88%E6%98%AFuse-strict-%E4%BD%BF%E7%94%A8%E5%AE%83%E6%9C%89%E4%BB%80%E4%B9%88%E4%BC%98%E7%BC%BA%E7%82%B9)
@@ -330,9 +331,13 @@
 
 
 ## HTML的盒子模型有哪些构成，盒子模型有哪几种，默认的是哪一种    
-
-content-box
-
+包含了元素内容（content）、内边距（padding）、边框（border）、外边距（margin）几个要素.   
+box-sizing : content-box|border-box|inherit;      
+(1) content-box ,默认值，可以使设置的宽度和高度值应用到元素的内容框。盒子的width只包含内容。    
+即总宽度=margin+border+padding+width      
+(2) border-box , 设置的width值其实是除margin外的border+padding+element的总宽度。盒子的width包含border+padding+内容
+即总宽度=margin+width     
+(3) inherit , 规定应从父元素继承 box-sizing 属性的值    
 ## 浮动元素有没有什么特征     
 
 特征：
@@ -568,8 +573,20 @@ JSONP 通过script标签发送跨域请求，通常使用callback查询参数，
 printData({ name: "Yang Shun" }); 
 客户端必须在其全局范围内具有printData函数，并且在收到来自跨域的响应时，该函数将由客户端执行。
 JSONP 可能具有一些安全隐患。由于 JSONP 是纯 JavaScript 实现，它可以完成 JavaScript 所能做的一切，因此需要信任 JSONP 数据的提供者。
-现如今，跨来源资源共享（CORS） 是推荐的主流方式，JSONP 已被视为一种比较 hack 的方式。
+现如今，跨来源资源共享（CORS） 是推荐的主流方式，JSONP 已被视为一种比较 hack 的方式。 
 
+## jsonp安全问题如何解决    
+1. jsonp劫持    
+![jsonp漏洞利用过程](https://pic2.zhimg.com/80/v2-2fbdfa8901b75da5e0eb637b2c2ddf41_720w.jpg)    
+2. 利用JSONP绕过token防护进行csrf攻击   
+
+**防护方案**    
+1、严格安全的实现 CSRF 方式调用 JSON 文件：限制 Referer 、部署一次性 Token 等。   
+2、严格安装 JSON 格式标准输出 Content-Type 及编码（ Content-Type : application/json; charset=utf-8 ）。   
+3、严格过滤 callback 函数名及 JSON 里数据的输出。   
+4、严格限制对 JSONP 输出 callback 函数名的长度(如防御上面 flash 输出的方法)。   
+5、其他一些比较“猥琐”的方法：如在 Callback 输出之前加入其他字符(如：/**/、回车换行)这样不影响 JSON 文件加载，又能一定程度预防其他文件格式的输出。还比如 Gmail 早起使用 AJAX 的方式获取 JSON ，听过在输出 JSON 之前加入 while(1) ;这样的代码来防止 JS 远程调用。  
+ 
 ## "attribute" 和 "property" 之间有什么区别？
 
 “Attribute” 是在 HTML 中定义的，
