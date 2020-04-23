@@ -80,6 +80,7 @@
   - [什么是Cookie 隔离](#%E4%BB%80%E4%B9%88%E6%98%AFcookie-%E9%9A%94%E7%A6%BB)
   - [Chrome 打开一个页面需要启动多少进程？分别有哪些进程？](#chrome-%E6%89%93%E5%BC%80%E4%B8%80%E4%B8%AA%E9%A1%B5%E9%9D%A2%E9%9C%80%E8%A6%81%E5%90%AF%E5%8A%A8%E5%A4%9A%E5%B0%91%E8%BF%9B%E7%A8%8B%E5%88%86%E5%88%AB%E6%9C%89%E5%93%AA%E4%BA%9B%E8%BF%9B%E7%A8%8B)
   - [promise 和 callback 有什么区别](#promise-%E5%92%8C-callback-%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB)
+  - [async/await 实现原理](#asyncawait-%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86)
   - [介绍暂时性死区](#%E4%BB%8B%E7%BB%8D%E6%9A%82%E6%97%B6%E6%80%A7%E6%AD%BB%E5%8C%BA)
   - [介绍一下PM2](#%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8Bpm2)
   - [使用过git merge和git rebase吗？它们之间有什么区别？](#%E4%BD%BF%E7%94%A8%E8%BF%87git-merge%E5%92%8Cgit-rebase%E5%90%97%E5%AE%83%E4%BB%AC%E4%B9%8B%E9%97%B4%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB)
@@ -88,7 +89,10 @@
   - [说出space-between和space-around的区别](#%E8%AF%B4%E5%87%BAspace-between%E5%92%8Cspace-around%E7%9A%84%E5%8C%BA%E5%88%AB)
   - [你所知道的前端性能优化方案](#%E4%BD%A0%E6%89%80%E7%9F%A5%E9%81%93%E7%9A%84%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88)
   - [GET和POST的区别](#get%E5%92%8Cpost%E7%9A%84%E5%8C%BA%E5%88%AB)
+  - [GET 和 POST 在安全性上有什么区别？GET 在哪些情况下会有安全性问题？](#get-%E5%92%8C-post-%E5%9C%A8%E5%AE%89%E5%85%A8%E6%80%A7%E4%B8%8A%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%ABget-%E5%9C%A8%E5%93%AA%E4%BA%9B%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E6%9C%89%E5%AE%89%E5%85%A8%E6%80%A7%E9%97%AE%E9%A2%98)
   - [CSS3中transition和animation的属性分别有哪些](#css3%E4%B8%ADtransition%E5%92%8Canimation%E7%9A%84%E5%B1%9E%E6%80%A7%E5%88%86%E5%88%AB%E6%9C%89%E5%93%AA%E4%BA%9B)
+  - [CSS 中的 vertical-align 有哪些值？它在什么情况下才能生效？](#css-%E4%B8%AD%E7%9A%84-vertical-align-%E6%9C%89%E5%93%AA%E4%BA%9B%E5%80%BC%E5%AE%83%E5%9C%A8%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E6%89%8D%E8%83%BD%E7%94%9F%E6%95%88)
+  - [CSS 中的 background 的 background-image 属性可以和 background-color 属性一起生效么？ackground-color 属性可以覆盖 background-image 属性吗？](#css-%E4%B8%AD%E7%9A%84-background-%E7%9A%84-background-image-%E5%B1%9E%E6%80%A7%E5%8F%AF%E4%BB%A5%E5%92%8C-background-color-%E5%B1%9E%E6%80%A7%E4%B8%80%E8%B5%B7%E7%94%9F%E6%95%88%E4%B9%88ackground-color-%E5%B1%9E%E6%80%A7%E5%8F%AF%E4%BB%A5%E8%A6%86%E7%9B%96-background-image-%E5%B1%9E%E6%80%A7%E5%90%97)
   - [选择器优先级](#%E9%80%89%E6%8B%A9%E5%99%A8%E4%BC%98%E5%85%88%E7%BA%A7)
   - [跨标签页的通讯方式有哪些](#%E8%B7%A8%E6%A0%87%E7%AD%BE%E9%A1%B5%E7%9A%84%E9%80%9A%E8%AE%AF%E6%96%B9%E5%BC%8F%E6%9C%89%E5%93%AA%E4%BA%9B)
   - [介绍下 npm 模块安装机制，为什么输入 npm install 就可以自动安装对应的模块？](#%E4%BB%8B%E7%BB%8D%E4%B8%8B-npm-%E6%A8%A1%E5%9D%97%E5%AE%89%E8%A3%85%E6%9C%BA%E5%88%B6%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BE%93%E5%85%A5-npm-install-%E5%B0%B1%E5%8F%AF%E4%BB%A5%E8%87%AA%E5%8A%A8%E5%AE%89%E8%A3%85%E5%AF%B9%E5%BA%94%E7%9A%84%E6%A8%A1%E5%9D%97)
@@ -639,6 +643,20 @@ overflow的值不是visible。
 在 BFC 中，每个盒的左外边缘都与其包含的块的左边缘相接。
 两个相邻的块级盒在垂直方向上的边距会发生合并（collapse）。更多内容请参考边距合并（margin collapsing）。
 
+**BFC的约束规则**
+
+内部的盒会在垂直方向一个接一个排列（可以看作BFC中有一个的常规流）
+处于同一个BFC中的元素相互影响，可能会发生外边距重叠
+每个元素的margin box的左边，与容器块border box的左边相接触(对于从左往右的格式化，否则相反)，即使存在浮动也是如此
+BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素，反之亦然
+计算BFC的高度时，考虑BFC所包含的所有元素，连浮动元素也参与计算
+浮动盒区域不叠加到BFC上
+
+**BFC可以解决的问题**
+垂直外边距重叠问题
+去除浮动
+自适用两列布局（float + overflow）
+
 ## 有什么不同的方式可以隐藏内容（使其仅适用于屏幕阅读器）
 
 visibility: hidden：元素仍然在页面流中，并占用空间。        
@@ -945,7 +963,8 @@ Promise是异步编程的一种解决方案，比传统的解决方案——回�
 Promise可以用来避免异步操作函数里的嵌套回调问题，因为解决异步最直接的方法是回调嵌套，将后一个的操作放在前一个操作的异步回调里，但如果操作多了，就会有很多层的嵌套。     
 使用 Promise 对象，可以十分方便的摆脱层层嵌套的异步操作回调函数，而以同步操作的流程书写代码   
 Promise对象的错误具有“冒泡”性质，会一直向后传递，直到被捕获为止。即错误总会被下一个catch语句捕获    
-
+## async/await 实现原理   
+async/await其实是Generator和自动执行器的语法糖      
 ## 介绍暂时性死区 
 
 在代码块内，使用let命令声明变量之前，该变量都是不可用的。   
@@ -1012,6 +1031,9 @@ space-between在左右两侧没有边距，而space-around在左右两侧会留�
 (8) GET请求的安全性较差，数据被暴露在浏览器的URL中，所以不能用来传递敏感信息，POST请求的安全性较好，数据不会暴露在URL中；   
 (9) GET请求具有幂等性(多次请求不会对资源造成影响)，POST请求不幂等；   
 (10) GET请求一般不具有请求体，请求中一般不包含100-continue 协议，所以只会发一次请求，而POST请求在发送数据到服务端之前允许双方"握手"，客户端先发送Expect:100-continue消息，询问服务端是否愿意接收数据，接收到服务端正确的100-continue应答后才会将请求体发送给服务端，服务端再响应200返回数据。   
+## GET 和 POST 在安全性上有什么区别？GET 在哪些情况下会有安全性问题？   
+GET 方法中不对数据进行修改，不传送一些保密的信息，而这些需要由 POST 来传输，所以说 GET 不存在安全问题，而需要注意的是 POST 传输的安全问题。   
+
 
 ## CSS3中transition和animation的属性分别有哪些    
 
@@ -1028,6 +1050,18 @@ animation 关键帧动画：
 (5) animation-iteration-count：动画次数 
 (6) animation-direction: 方向 
 (7) animation-fill-mode: 禁止模式 
+
+## CSS 中的 vertical-align 有哪些值？它在什么情况下才能生效？ 
+vertical-align属性值：    
+线类：baseline、top、middle、bottom   
+文本类：text-top、text-bottom   
+上标下标类：sub、super    
+数值百分比类：20px、2em、20%等（对于基线往上或往下偏移）      
+vertical-align生效前提：      
+内联元素span、strong、em、img、button、input等    
+display值为inline、inline-block、inline-table或table-cell的元素   
+需要注意浮动和绝对定位会让元素块状化，因此此元素绝对不会生效    
+## CSS 中的 background 的 background-image 属性可以和 background-color 属性一起生效么？ackground-color 属性可以覆盖 background-image 属性吗？      
 
 ## 选择器优先级   
 
