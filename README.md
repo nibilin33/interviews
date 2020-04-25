@@ -149,6 +149,14 @@
   - [在前端开发中，如何获取浏览器的唯一标识](#%E5%9C%A8%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E4%B8%AD%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E5%94%AF%E4%B8%80%E6%A0%87%E8%AF%86)
   - [http 缓存的优先级](#http-%E7%BC%93%E5%AD%98%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7)
   - [Node 面试题](#node-%E9%9D%A2%E8%AF%95%E9%A2%98)
+    - [Node.js 在执行require(id)是怎样找到一个模块的？](#nodejs-%E5%9C%A8%E6%89%A7%E8%A1%8Crequireid%E6%98%AF%E6%80%8E%E6%A0%B7%E6%89%BE%E5%88%B0%E4%B8%80%E4%B8%AA%E6%A8%A1%E5%9D%97%E7%9A%84)
+    - [能否使用require('.json')的方式加载大量json文件？](#%E8%83%BD%E5%90%A6%E4%BD%BF%E7%94%A8requirejson%E7%9A%84%E6%96%B9%E5%BC%8F%E5%8A%A0%E8%BD%BD%E5%A4%A7%E9%87%8Fjson%E6%96%87%E4%BB%B6)
+    - [Node.js 的异步IO是如何进行的？](#nodejs-%E7%9A%84%E5%BC%82%E6%AD%A5io%E6%98%AF%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E7%9A%84)
+    - [Node的子进程有什么原理?](#node%E7%9A%84%E5%AD%90%E8%BF%9B%E7%A8%8B%E6%9C%89%E4%BB%80%E4%B9%88%E5%8E%9F%E7%90%86)
+    - [Node cluster是什么原理？](#node-cluster%E6%98%AF%E4%BB%80%E4%B9%88%E5%8E%9F%E7%90%86)
+    - [如何保证session的安全？](#%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81session%E7%9A%84%E5%AE%89%E5%85%A8)
+    - [如何实现父进程退出时子进程跟着退出？](#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E7%88%B6%E8%BF%9B%E7%A8%8B%E9%80%80%E5%87%BA%E6%97%B6%E5%AD%90%E8%BF%9B%E7%A8%8B%E8%B7%9F%E7%9D%80%E9%80%80%E5%87%BA)
+    - [实现一个能自动重启的http服务集群](#%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E8%83%BD%E8%87%AA%E5%8A%A8%E9%87%8D%E5%90%AF%E7%9A%84http%E6%9C%8D%E5%8A%A1%E9%9B%86%E7%BE%A4)
     - [Node.js的加载机制](#nodejs%E7%9A%84%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6)
     - [require与import的区别](#require%E4%B8%8Eimport%E7%9A%84%E5%8C%BA%E5%88%AB)
     - [严格路由和不严格路由有什么区别](#%E4%B8%A5%E6%A0%BC%E8%B7%AF%E7%94%B1%E5%92%8C%E4%B8%8D%E4%B8%A5%E6%A0%BC%E8%B7%AF%E7%94%B1%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB)
@@ -1527,7 +1535,16 @@ Expires: Wed, 11 May 2018 07:20:00 GMT
 catche-control是http1.1提出的概念，优先级高于expires，描述的是一个相对时间  
 
 ## Node 面试题
-
+### Node.js 在执行require(id)是怎样找到一个模块的？ 
+### 能否使用require('.json')的方式加载大量json文件？
+require 一个模块是同步调用的，会带来性能上的开销，虽然require成功后会 
+缓存起来，大量数据驻留内存中，会导致GC频繁和内存泄漏。    
+### Node.js 的异步IO是如何进行的？    
+### Node的子进程有什么原理?   
+### Node cluster是什么原理？    
+### 如何保证session的安全？   
+### 如何实现父进程退出时子进程跟着退出？    
+### 实现一个能自动重启的http服务集群       
 ### Node.js的加载机制   
 require 和 module.exports
 nodejs认为一个js文件就是一个模块，每个模块都有一个全局对象module，同时module对象中有一个对象exports。   
