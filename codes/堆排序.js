@@ -1,3 +1,7 @@
+// 1. 把无序数组构建成二叉堆。
+
+// 2. 循环删除堆顶元素，移到集合尾部，调节堆产生新的堆顶。
+
 const arr = [1,3,2,6,5,7,8,9,10,0];
 function adownAjust(arr,parentIndex,len) {
     let temp = arr[parentIndex];
