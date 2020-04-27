@@ -262,7 +262,8 @@
 准备面试过程看过的题目🙉    
 再看一遍还是会想叹息。       
 ## webpack打包之后的代码报错了，怎么找到报错代码在哪  
-
+配置：devtool:'inline-source-map' 
+控制台会定位到错误文件    
 ## HTML的盒子模型有哪些构成，盒子模型有哪几种，默认的是哪一种    
 包含了元素内容（content）、内边距（padding）、边框（border）、外边距（margin）几个要素.   
 box-sizing : content-box|border-box|inherit;      
