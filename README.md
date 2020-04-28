@@ -3,6 +3,17 @@
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
 - [Interviews](#interviews)
+  - [网络相关问题](#%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98)
+    - [在浏览器中，一个页面从输入URL到加载完成，都有哪些步骤](#%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E4%B8%80%E4%B8%AA%E9%A1%B5%E9%9D%A2%E4%BB%8E%E8%BE%93%E5%85%A5url%E5%88%B0%E5%8A%A0%E8%BD%BD%E5%AE%8C%E6%88%90%E9%83%BD%E6%9C%89%E5%93%AA%E4%BA%9B%E6%AD%A5%E9%AA%A4)
+    - [HTTP1.1 有哪些不足](#http11-%E6%9C%89%E5%93%AA%E4%BA%9B%E4%B8%8D%E8%B6%B3)
+    - [简述 HTTP1.0/1.1/2.0 的区别](#%E7%AE%80%E8%BF%B0-http101120-%E7%9A%84%E5%8C%BA%E5%88%AB)
+    - [HTTP状态码206是干什么的](#http%E7%8A%B6%E6%80%81%E7%A0%81206%E6%98%AF%E5%B9%B2%E4%BB%80%E4%B9%88%E7%9A%84)
+    - [介绍SSL和TLS](#%E4%BB%8B%E7%BB%8Dssl%E5%92%8Ctls)
+    - [http 301和302](#http-301%E5%92%8C302)
+    - [GET和POST的区别](#get%E5%92%8Cpost%E7%9A%84%E5%8C%BA%E5%88%AB)
+    - [GET 和 POST 在安全性上有什么区别？GET 在哪些情况下会有安全性问题？](#get-%E5%92%8C-post-%E5%9C%A8%E5%AE%89%E5%85%A8%E6%80%A7%E4%B8%8A%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%ABget-%E5%9C%A8%E5%93%AA%E4%BA%9B%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E6%9C%89%E5%AE%89%E5%85%A8%E6%80%A7%E9%97%AE%E9%A2%98)
+    - [http 缓存的优先级](#http-%E7%BC%93%E5%AD%98%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7)
+    - [UDP 和 TCP 的区别](#udp-%E5%92%8C-tcp-%E7%9A%84%E5%8C%BA%E5%88%AB)
   - [webpack打包之后的代码报错了，怎么找到报错代码在哪](#webpack%E6%89%93%E5%8C%85%E4%B9%8B%E5%90%8E%E7%9A%84%E4%BB%A3%E7%A0%81%E6%8A%A5%E9%94%99%E4%BA%86%E6%80%8E%E4%B9%88%E6%89%BE%E5%88%B0%E6%8A%A5%E9%94%99%E4%BB%A3%E7%A0%81%E5%9C%A8%E5%93%AA)
   - [什么是SourceMap](#%E4%BB%80%E4%B9%88%E6%98%AFsourcemap)
   - [HTML的盒子模型有哪些构成，盒子模型有哪几种，默认的是哪一种](#html%E7%9A%84%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B%E6%9C%89%E5%93%AA%E4%BA%9B%E6%9E%84%E6%88%90%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B%E6%9C%89%E5%93%AA%E5%87%A0%E7%A7%8D%E9%BB%98%E8%AE%A4%E7%9A%84%E6%98%AF%E5%93%AA%E4%B8%80%E7%A7%8D)
@@ -44,8 +55,6 @@
   - [使用 CSS 预处理的优缺点分别是什么](#%E4%BD%BF%E7%94%A8-css-%E9%A2%84%E5%A4%84%E7%90%86%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9%E5%88%86%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88)
   - [什么情况下，用translate()而不用绝对定位？什么时候，情况相反](#%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E7%94%A8translate%E8%80%8C%E4%B8%8D%E7%94%A8%E7%BB%9D%E5%AF%B9%E5%AE%9A%E4%BD%8D%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E6%83%85%E5%86%B5%E7%9B%B8%E5%8F%8D)
   - [请简述JavaScript中的this](#%E8%AF%B7%E7%AE%80%E8%BF%B0javascript%E4%B8%AD%E7%9A%84this)
-  - [在浏览器中，一个页面从输入URL到加载完成，都有哪些步骤](#%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E4%B8%80%E4%B8%AA%E9%A1%B5%E9%9D%A2%E4%BB%8E%E8%BE%93%E5%85%A5url%E5%88%B0%E5%8A%A0%E8%BD%BD%E5%AE%8C%E6%88%90%E9%83%BD%E6%9C%89%E5%93%AA%E4%BA%9B%E6%AD%A5%E9%AA%A4)
-  - [HTTP1.1 有哪些不足](#http11-%E6%9C%89%E5%93%AA%E4%BA%9B%E4%B8%8D%E8%B6%B3)
   - [用new 运算符创建对象时，具体的创建过程有哪几步](#%E7%94%A8new-%E8%BF%90%E7%AE%97%E7%AC%A6%E5%88%9B%E5%BB%BA%E5%AF%B9%E8%B1%A1%E6%97%B6%E5%85%B7%E4%BD%93%E7%9A%84%E5%88%9B%E5%BB%BA%E8%BF%87%E7%A8%8B%E6%9C%89%E5%93%AA%E5%87%A0%E6%AD%A5)
   - [isPrototypeOf方法与instanceof 运算符有哪些区别](#isprototypeof%E6%96%B9%E6%B3%95%E4%B8%8Einstanceof-%E8%BF%90%E7%AE%97%E7%AC%A6%E6%9C%89%E5%93%AA%E4%BA%9B%E5%8C%BA%E5%88%AB)
   - [请介绍一下节流函数和防抖函数，简单实现节流函数和防抖函数](#%E8%AF%B7%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8B%E8%8A%82%E6%B5%81%E5%87%BD%E6%95%B0%E5%92%8C%E9%98%B2%E6%8A%96%E5%87%BD%E6%95%B0%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0%E8%8A%82%E6%B5%81%E5%87%BD%E6%95%B0%E5%92%8C%E9%98%B2%E6%8A%96%E5%87%BD%E6%95%B0)
@@ -82,8 +91,6 @@
   - [git pull和git fetch之间有什么区别](#git-pull%E5%92%8Cgit-fetch%E4%B9%8B%E9%97%B4%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB)
   - [说出space-between和space-around的区别](#%E8%AF%B4%E5%87%BAspace-between%E5%92%8Cspace-around%E7%9A%84%E5%8C%BA%E5%88%AB)
   - [你所知道的前端性能优化方案](#%E4%BD%A0%E6%89%80%E7%9F%A5%E9%81%93%E7%9A%84%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88)
-  - [GET和POST的区别](#get%E5%92%8Cpost%E7%9A%84%E5%8C%BA%E5%88%AB)
-  - [GET 和 POST 在安全性上有什么区别？GET 在哪些情况下会有安全性问题？](#get-%E5%92%8C-post-%E5%9C%A8%E5%AE%89%E5%85%A8%E6%80%A7%E4%B8%8A%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%ABget-%E5%9C%A8%E5%93%AA%E4%BA%9B%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E6%9C%89%E5%AE%89%E5%85%A8%E6%80%A7%E9%97%AE%E9%A2%98)
   - [CSS3中transition和animation的属性分别有哪些](#css3%E4%B8%ADtransition%E5%92%8Canimation%E7%9A%84%E5%B1%9E%E6%80%A7%E5%88%86%E5%88%AB%E6%9C%89%E5%93%AA%E4%BA%9B)
   - [CSS 中的 vertical-align 有哪些值？它在什么情况下才能生效？](#css-%E4%B8%AD%E7%9A%84-vertical-align-%E6%9C%89%E5%93%AA%E4%BA%9B%E5%80%BC%E5%AE%83%E5%9C%A8%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E6%89%8D%E8%83%BD%E7%94%9F%E6%95%88)
   - [CSS 中的 background 的 background-image 属性可以和 background-color 属性一起生效么？ackground-color 属性可以覆盖 background-image 属性吗？](#css-%E4%B8%AD%E7%9A%84-background-%E7%9A%84-background-image-%E5%B1%9E%E6%80%A7%E5%8F%AF%E4%BB%A5%E5%92%8C-background-color-%E5%B1%9E%E6%80%A7%E4%B8%80%E8%B5%B7%E7%94%9F%E6%95%88%E4%B9%88ackground-color-%E5%B1%9E%E6%80%A7%E5%8F%AF%E4%BB%A5%E8%A6%86%E7%9B%96-background-image-%E5%B1%9E%E6%80%A7%E5%90%97)
@@ -116,14 +123,11 @@
   - [讲讲MVVM，说说与MVC有什么区别](#%E8%AE%B2%E8%AE%B2mvvm%E8%AF%B4%E8%AF%B4%E4%B8%8Emvc%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB)
   - [说说z-index有什么需要注意的地方](#%E8%AF%B4%E8%AF%B4z-index%E6%9C%89%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E5%9C%B0%E6%96%B9)
   - [说说DOM事件流](#%E8%AF%B4%E8%AF%B4dom%E4%BA%8B%E4%BB%B6%E6%B5%81)
-  - [HTTP状态码206是干什么的](#http%E7%8A%B6%E6%80%81%E7%A0%81206%E6%98%AF%E5%B9%B2%E4%BB%80%E4%B9%88%E7%9A%84)
   - [Vue的数据为什么频繁变化但只会更新一次](#vue%E7%9A%84%E6%95%B0%E6%8D%AE%E4%B8%BA%E4%BB%80%E4%B9%88%E9%A2%91%E7%B9%81%E5%8F%98%E5%8C%96%E4%BD%86%E5%8F%AA%E4%BC%9A%E6%9B%B4%E6%96%B0%E4%B8%80%E6%AC%A1)
   - [判断两个变量是否一样](#%E5%88%A4%E6%96%AD%E4%B8%A4%E4%B8%AA%E5%8F%98%E9%87%8F%E6%98%AF%E5%90%A6%E4%B8%80%E6%A0%B7)
   - [Vue模板编译的过程](#vue%E6%A8%A1%E6%9D%BF%E7%BC%96%E8%AF%91%E7%9A%84%E8%BF%87%E7%A8%8B)
   - [居中为什么要使用transform（为什么不使用marginLeft/Top）](#%E5%B1%85%E4%B8%AD%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8transform%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E4%BD%BF%E7%94%A8marginlefttop)
   - [src和 href 的区别](#src%E5%92%8C-href-%E7%9A%84%E5%8C%BA%E5%88%AB)
-  - [介绍SSL和TLS](#%E4%BB%8B%E7%BB%8Dssl%E5%92%8Ctls)
-  - [http 301和302](#http-301%E5%92%8C302)
   - [delete 数组的 item，数组的 length 是否会 -1](#delete-%E6%95%B0%E7%BB%84%E7%9A%84-item%E6%95%B0%E7%BB%84%E7%9A%84-length-%E6%98%AF%E5%90%A6%E4%BC%9A--1)
   - [给出 ['1', '3', '10'].map(parseInt) 执行结果](#%E7%BB%99%E5%87%BA-1-3-10mapparseint-%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%9C)
   - [HTTP劫持、DNS劫持与XSS](#http%E5%8A%AB%E6%8C%81dns%E5%8A%AB%E6%8C%81%E4%B8%8Exss)
@@ -141,7 +145,6 @@
   - [可以对图片开启 gzip 压缩吗，为什么](#%E5%8F%AF%E4%BB%A5%E5%AF%B9%E5%9B%BE%E7%89%87%E5%BC%80%E5%90%AF-gzip-%E5%8E%8B%E7%BC%A9%E5%90%97%E4%B8%BA%E4%BB%80%E4%B9%88)
   - [js 代码压缩的原理是什么](#js-%E4%BB%A3%E7%A0%81%E5%8E%8B%E7%BC%A9%E7%9A%84%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88)
   - [在前端开发中，如何获取浏览器的唯一标识](#%E5%9C%A8%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E4%B8%AD%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E5%94%AF%E4%B8%80%E6%A0%87%E8%AF%86)
-  - [http 缓存的优先级](#http-%E7%BC%93%E5%AD%98%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7)
   - [Node 面试题](#node-%E9%9D%A2%E8%AF%95%E9%A2%98)
     - [Node.js 在执行require(id)是怎样找到一个模块的？](#nodejs-%E5%9C%A8%E6%89%A7%E8%A1%8Crequireid%E6%98%AF%E6%80%8E%E6%A0%B7%E6%89%BE%E5%88%B0%E4%B8%80%E4%B8%AA%E6%A8%A1%E5%9D%97%E7%9A%84)
     - [能否使用require('.json')的方式加载大量json文件？](#%E8%83%BD%E5%90%A6%E4%BD%BF%E7%94%A8requirejson%E7%9A%84%E6%96%B9%E5%BC%8F%E5%8A%A0%E8%BD%BD%E5%A4%A7%E9%87%8Fjson%E6%96%87%E4%BB%B6)
@@ -261,7 +264,76 @@
 
 # Interviews    
 准备面试过程看过的题目🙉    
-再看一遍还是会想叹息。       
+再看一遍还是会想叹息。     
+## 网络相关问题 
+### 在浏览器中，一个页面从输入URL到加载完成，都有哪些步骤    
+
+01. 域名解析
+02. 建立TCP连接，浏览器与服务器经过3次握手后建立连接   
+03. 浏览器发起HTTP气球，获取资源/*-
+04. 服务器响应HTTP气球
+05. 浏览器渲染   
+
+### HTTP1.1 有哪些不足   
+
+01. 出现队首阻塞问题   
+02. 响应不分轻重缓急，只会先来后到   
+03. 并行需要建立多个TCP
+04. 只能被动等待客户端发起请求
+05. HTTP是无状态的，每次请求和响应都会携带大量冗余信息  
+### 简述 HTTP1.0/1.1/2.0 的区别   
+HTTP 2.0 是 2015 年开发出来的标准，它主要做的改变如下:
+头部压缩，由于 HTTP 1.1 经常会出现 User-Agent、Cookie、Accept、Server、Range 等字段可能会占用几百甚至几千字节，而 Body 却经常只有几十字节，所以导致头部偏重。HTTP 2.0 使用 HPACK 算法进行压缩。   
+二进制格式，HTTP 2.0 使用了更加靠近 TCP/IP 的二进制格式，而抛弃了 ASCII 码，提升了解析效率    
+强化安全，由于安全已经成为重中之重，所以 HTTP2.0 一般都跑在 HTTPS 上。    
+多路复用，即每一个请求都是是用作连接共享。一个请求对应一个id，这样一个连接上可以有多个请求。    
+
+### HTTP状态码206是干什么的    
+206 部分请求成功，断点续传   
+### 介绍SSL和TLS   
+
+SSL：（Secure Socket Layer，安全套接字层），位于可靠的面向连接的网络层协议和应用层协议之间的一种协议层。SSL通过互相认证、使用数字签名确保完整性、使用加密确保私密性，以实现客户端和服务器之间的安全通讯。该协议由两层组成：SSL记录协议和SSL握手协议。   
+TLS：（Transport Layer Security，传输层安全协议），用于两个应用程序之间提供保密性和数据完整性。该协议由两层组成：TLS记录协议和TLS握手协议。   
+
+### http 301和302
+301 redirect: 301 代表永久性转移(Permanently Moved)   
+302 redirect: 302 代表暂时性转移(Temporarily Moved )  
+### GET和POST的区别    
+
+(1) GET请求在浏览器回退和刷新时是无害的，而POST请求会告知用户数据会被重新提交；   
+(2) GET请求可以收藏为书签，POST请求不可以收藏为书签；   
+(3) GET请求可以被缓存，POST请求不可以被缓存，除非在响应头中包含合适的Cache-Control/Expires字段，但是不建议缓存POST请求，其不满足幂等性，每次调用都会对服务器资源造成影响；    
+(4) GET请求一般不具有请求体，因此只能进行url编码，而POST请求支持多种编码方式。    
+(5) GET请求的参数可以被保留在浏览器的历史中，POST请求不会被保留；   
+(6) GET请求因为是向URL添加数据，不同的浏览器厂商，代理服务器，web服务器都可能会有自己的长度限制，而POST请求无长度限制；   
+(7) GET请求只允许ASCII字符，POST请求无限制，支持二进制数据；    
+(8) GET请求的安全性较差，数据被暴露在浏览器的URL中，所以不能用来传递敏感信息，POST请求的安全性较好，数据不会暴露在URL中；   
+(9) GET请求具有幂等性(多次请求不会对资源造成影响)，POST请求不幂等；   
+(10) GET请求一般不具有请求体，请求中一般不包含100-continue 协议，所以只会发一次请求，而POST请求在发送数据到服务端之前允许双方"握手"，客户端先发送Expect:100-continue消息，询问服务端是否愿意接收数据，接收到服务端正确的100-continue应答后才会将请求体发送给服务端，服务端再响应200返回数据。  
+get 请求在发送过程中会产生一个 TCP 数据包；post 在发送过程中会产生两个 TCP 数据包。对于 get 方式的请求，浏览器会把 http header 和 data 一并发送出去，服务器响应 200（返回数据）；而对于 post，浏览器先发送 header，服务器响应 100 continue，浏览器再发送 data，服务器响应 200 ok（返回数据）。 
+### GET 和 POST 在安全性上有什么区别？GET 在哪些情况下会有安全性问题？   
+GET 方法中不对数据进行修改，不传送一些保密的信息，而这些需要由 POST 来传输，所以说 GET 不存在安全问题，而需要注意的是 POST 传输的安全问题。     
+### http 缓存的优先级      
+
+强缓存>协商缓存
+1、Expires
+Expires是一个Http1.0提出的概念，它描述的是一个绝对时间，由服务端返回
+Expires: Wed, 11 May 2018 07:20:00 GMT
+这种方式的弊端在于如果我们修改了客户端的时间可能会意外导致缓存失效。
+2、Cache-Control
+catche-control是http1.1提出的概念，优先级高于expires，描述的是一个相对时间 
+### UDP 和 TCP 的区别   
+UDP(用户数据报协议)的特点主要有:   
+UDP 能够支持容忍数据包丢失的带宽密集型应用程序    
+UDP 具有低延迟的特点    
+UDP 能够发送大量的数据包    
+UDP 能够允许 DNS 查找，DNS 是建立在 UDP 之上的应用层协议。    
+TCP(传输控制协议)的主要特点有:      
+TCP 能够确保连接的建立和数据包的发送    
+TCP 支持错误重传机制    
+TCP 支持拥塞控制，能够在网络拥堵的情况下延迟发送    
+TCP 能够提供错误校验和，甄别有害的数据包  
+![UDP和TCP的区别](https://mmbiz.qpic.cn/mmbiz_png/libYRuvULTdUPX8o1HyXqaaxrG5kPIzyDcUC1xOPDkPMCnPWX4DutTkGW3ooiaoEl8yoyPwcrLlkB8h5wlhMNqmw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)   
 ## webpack打包之后的代码报错了，怎么找到报错代码在哪  
 打开source-map配置：devtool:'inline-source-map' 
 控制台会定位到错误文件      
@@ -633,22 +705,6 @@ translate()是transform的一个值。改变transform或opacity不会触发浏�
 如果符合上述多个规则，则较高的规则（1 号最高，4 号最低）将决定this的值。          
 如果该函数是 ES2015      中的箭头函数，将忽略上面的所有规则，this被设置为它被创建时的上下文。            
 
-## 在浏览器中，一个页面从输入URL到加载完成，都有哪些步骤    
-
-01. 域名解析
-02. 建立TCP连接，浏览器与服务器经过3次握手后建立连接   
-03. 浏览器发起HTTP气球，获取资源/*-
-04. 服务器响应HTTP气球
-05. 浏览器渲染   
-
-## HTTP1.1 有哪些不足   
-
-01. 出现队首阻塞问题   
-02. 响应不分轻重缓急，只会先来后到   
-03. 并行需要建立多个TCP
-04. 只能被动等待客户端发起请求
-05. HTTP是无状态的，每次请求和响应都会携带大量冗余信息 
-
 ## 用new 运算符创建对象时，具体的创建过程有哪几步
 
 01. 一个新对象被创建，它继承自构造函数的原型
@@ -952,22 +1008,6 @@ space-between在左右两侧没有边距，而space-around在左右两侧会留�
 (8) 加速或者减少HTTP请求，使用CDN加载静态资源，合理使用浏览器强缓存和协商缓存，小图片可以使用Base64来代替，合理使用浏览器的预取指令prefetch和预加载指令preload；
 (9) 压缩混淆代码，删除无用代码，代码拆分来减少文件体积；
 (10) 小图片使用雪碧图，图片选择合适的质量、尺寸和格式，避免流量浪费。
-
-## GET和POST的区别    
-
-(1) GET请求在浏览器回退和刷新时是无害的，而POST请求会告知用户数据会被重新提交；   
-(2) GET请求可以收藏为书签，POST请求不可以收藏为书签；   
-(3) GET请求可以被缓存，POST请求不可以被缓存，除非在响应头中包含合适的Cache-Control/Expires字段，但是不建议缓存POST请求，其不满足幂等性，每次调用都会对服务器资源造成影响；    
-(4) GET请求一般不具有请求体，因此只能进行url编码，而POST请求支持多种编码方式。    
-(5) GET请求的参数可以被保留在浏览器的历史中，POST请求不会被保留；   
-(6) GET请求因为是向URL添加数据，不同的浏览器厂商，代理服务器，web服务器都可能会有自己的长度限制，而POST请求无长度限制；   
-(7) GET请求只允许ASCII字符，POST请求无限制，支持二进制数据；    
-(8) GET请求的安全性较差，数据被暴露在浏览器的URL中，所以不能用来传递敏感信息，POST请求的安全性较好，数据不会暴露在URL中；   
-(9) GET请求具有幂等性(多次请求不会对资源造成影响)，POST请求不幂等；   
-(10) GET请求一般不具有请求体，请求中一般不包含100-continue 协议，所以只会发一次请求，而POST请求在发送数据到服务端之前允许双方"握手"，客户端先发送Expect:100-continue消息，询问服务端是否愿意接收数据，接收到服务端正确的100-continue应答后才会将请求体发送给服务端，服务端再响应200返回数据。   
-## GET 和 POST 在安全性上有什么区别？GET 在哪些情况下会有安全性问题？   
-GET 方法中不对数据进行修改，不传送一些保密的信息，而这些需要由 POST 来传输，所以说 GET 不存在安全问题，而需要注意的是 POST 传输的安全问题。   
-
 
 ## CSS3中transition和animation的属性分别有哪些    
 
@@ -1286,11 +1326,7 @@ event.currentTarget返回绑定事件的元素
 relatedTarget 事件属性返回与事件的目标节点相关的节点。
 对于 mouseover 事件来说，该属性是鼠标指针移到目标节点上时所离开的那个节点。
 对于 mouseout 事件来说，该属性是离开目标时，鼠标指针进入的节点。
-对于其他类型的事件来说，这个属性没有用。    
-
-## HTTP状态码206是干什么的    
-
-206 部分请求成功，断点续传    
+对于其他类型的事件来说，这个属性没有用。     
 
 ## Vue的数据为什么频繁变化但只会更新一次    
 
@@ -1333,16 +1369,6 @@ top/left属于布局属性，该属性的变化会导致重排（reflow/relayout
 href标识超文本引用，用在link和a等元素上，href是引用和页面关联，是在当前元素和引用资源之间建立联系。   
 src表示引用资源，表示替换当前元素，用在img，script，iframe上，src是页面内容不可缺少的一部分。   
 src是source的缩写，是指向外部资源的位置，指向的内部会迁入到文档中当前标签所在的位置；在请求src资源时会将其指向的资源下载并应用到当前文档中，例如js脚本，img图片和frame等元素。        
-
-## 介绍SSL和TLS   
-
-SSL：（Secure Socket Layer，安全套接字层），位于可靠的面向连接的网络层协议和应用层协议之间的一种协议层。SSL通过互相认证、使用数字签名确保完整性、使用加密确保私密性，以实现客户端和服务器之间的安全通讯。该协议由两层组成：SSL记录协议和SSL握手协议。   
-TLS：（Transport Layer Security，传输层安全协议），用于两个应用程序之间提供保密性和数据完整性。该协议由两层组成：TLS记录协议和TLS握手协议。   
-
-## http 301和302
-
-301 redirect: 301 代表永久性转移(Permanently Moved)   
-302 redirect: 302 代表暂时性转移(Temporarily Moved )  
 
 ## delete 数组的 item，数组的 length 是否会 -1    
 
@@ -1449,16 +1475,7 @@ uglify 包里有 ast.js 所以它一定是生成了抽象语法树
 浏览器指纹--Canvas指纹
 从根本上来说，每一种浏览器都会使用不同的图像处理引擎，不同的导出选项，不同的压缩等级，所以每一台电脑绘制出的图形都会有些许不同，这些图案可以被用来给用户设备分配特定编号（指纹），也就是说可以用来识别不同用户。 
 canvas to base64   
-
-## http 缓存的优先级      
-
-强缓存>协商缓存
-1、Expires
-Expires是一个Http1.0提出的概念，它描述的是一个绝对时间，由服务端返回
-Expires: Wed, 11 May 2018 07:20:00 GMT
-这种方式的弊端在于如果我们修改了客户端的时间可能会意外导致缓存失效。
-2、Cache-Control
-catche-control是http1.1提出的概念，优先级高于expires，描述的是一个相对时间  
+ 
 
 ## Node 面试题
 ### Node.js 在执行require(id)是怎样找到一个模块的？ 
