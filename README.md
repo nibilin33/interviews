@@ -5,7 +5,7 @@
 - [Interviews](#interviews)
   - [网络相关问题](#%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98)
     - [在浏览器中，一个页面从输入URL到加载完成，都有哪些步骤](#%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E4%B8%80%E4%B8%AA%E9%A1%B5%E9%9D%A2%E4%BB%8E%E8%BE%93%E5%85%A5url%E5%88%B0%E5%8A%A0%E8%BD%BD%E5%AE%8C%E6%88%90%E9%83%BD%E6%9C%89%E5%93%AA%E4%BA%9B%E6%AD%A5%E9%AA%A4)
-  - [http1.1时如何复用Tcp连接](#http11%E6%97%B6%E5%A6%82%E4%BD%95%E5%A4%8D%E7%94%A8tcp%E8%BF%9E%E6%8E%A5)
+    - [http1.1时如何复用Tcp连接](#http11%E6%97%B6%E5%A6%82%E4%BD%95%E5%A4%8D%E7%94%A8tcp%E8%BF%9E%E6%8E%A5)
     - [HTTP1.1 有哪些不足](#http11-%E6%9C%89%E5%93%AA%E4%BA%9B%E4%B8%8D%E8%B6%B3)
     - [简述 HTTP1.0/1.1/2.0 的区别](#%E7%AE%80%E8%BF%B0-http101120-%E7%9A%84%E5%8C%BA%E5%88%AB)
     - [HTTP状态码206是干什么的](#http%E7%8A%B6%E6%80%81%E7%A0%81206%E6%98%AF%E5%B9%B2%E4%BB%80%E4%B9%88%E7%9A%84)
@@ -270,11 +270,11 @@
 
 01. 域名解析
 02. 建立TCP连接，浏览器与服务器经过3次握手后建立连接   
-03. 浏览器发起HTTP气球，获取资源/*-
-04. 服务器响应HTTP气球
+03. 浏览器发起HTTP请求，获取资源/*- 
+04. 服务器响应HTTP请求  
 05. 浏览器渲染   
 
-## http1.1时如何复用Tcp连接      
+### http1.1时如何复用Tcp连接      
 Http/1.1新的请求可以在上次建立的tcp连接之上发送，连接可以复用.  
 在发送http的请求头中设置Connection: keep-alive。
 当前的url与上一次下载的url之间进行对比，如果host相同的话，则用上一次的socket_id。否则关闭上一次的socket，重新连接服务器，获取新的socket。所以，url的文件，需要进行排序，将同一个站点的url放在一起即可。 
