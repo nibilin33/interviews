@@ -17,6 +17,8 @@
     - [UDP 和 TCP 的区别](#udp-%E5%92%8C-tcp-%E7%9A%84%E5%8C%BA%E5%88%AB)
   - [webpack打包之后的代码报错了，怎么找到报错代码在哪](#webpack%E6%89%93%E5%8C%85%E4%B9%8B%E5%90%8E%E7%9A%84%E4%BB%A3%E7%A0%81%E6%8A%A5%E9%94%99%E4%BA%86%E6%80%8E%E4%B9%88%E6%89%BE%E5%88%B0%E6%8A%A5%E9%94%99%E4%BB%A3%E7%A0%81%E5%9C%A8%E5%93%AA)
   - [什么是SourceMap](#%E4%BB%80%E4%B9%88%E6%98%AFsourcemap)
+  - [怎么设计一个组件](#%E6%80%8E%E4%B9%88%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E7%BB%84%E4%BB%B6)
+  - [快速的让一个数组乱序](#%E5%BF%AB%E9%80%9F%E7%9A%84%E8%AE%A9%E4%B8%80%E4%B8%AA%E6%95%B0%E7%BB%84%E4%B9%B1%E5%BA%8F)
   - [HTML的盒子模型有哪些构成，盒子模型有哪几种，默认的是哪一种](#html%E7%9A%84%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B%E6%9C%89%E5%93%AA%E4%BA%9B%E6%9E%84%E6%88%90%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B%E6%9C%89%E5%93%AA%E5%87%A0%E7%A7%8D%E9%BB%98%E8%AE%A4%E7%9A%84%E6%98%AF%E5%93%AA%E4%B8%80%E7%A7%8D)
   - [浮动元素有没有什么特征](#%E6%B5%AE%E5%8A%A8%E5%85%83%E7%B4%A0%E6%9C%89%E6%B2%A1%E6%9C%89%E4%BB%80%E4%B9%88%E7%89%B9%E5%BE%81)
   - [清除浮动的所有方法](#%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8%E7%9A%84%E6%89%80%E6%9C%89%E6%96%B9%E6%B3%95)
@@ -344,7 +346,30 @@ TCP 能够提供错误校验和，甄别有害的数据包
 控制台会定位到错误文件      
 ## 什么是SourceMap      
 Source map就是一个信息文件，里面储存着位置信息。也就是说，转换后的代码的每一个位置，所对应的转换前的位置。
-[SourceMap详解](http://www.ruanyifeng.com/blog/2013/01/javascript_source_map.html)    
+[SourceMap详解](http://www.ruanyifeng.com/blog/2013/01/javascript_source_map.html)   
+## 怎么设计一个组件   
+以下原则尽可能使用，用得越多就组件的复用性就越好。
+适用单一职责原则    
+适用开放封闭原则    
+追求短小精悍    
+避免太多参数    
+缩小信赖范围和向稳定方向信赖    
+适用SPOT法则 (Single Point Of Truth，就是尽量不要重复代码，出自《The Art of Unix Programming》)   
+追求无副作用    
+追求引用透明    
+避免暴露组件内部实现    
+避免直接操作DOM   
+适用好莱坞法则 (好莱坞法则： Don’t call us, we’ll call you, 又称IoC, Inversion of control, 控制反转)    
+入口处检查参数的有效性，出口处检查返回的正确性    
+充分隔离变化的部分    
+组件和数据分享，信赖一致性的数据结构    
+## 快速的让一个数组乱序   
+```js
+var arr = [1,2,3,4,5,6,7,8,9,10];
+    arr.sort(function(){
+        return Math.random() - 0.5;
+    });
+```
 ## HTML的盒子模型有哪些构成，盒子模型有哪几种，默认的是哪一种    
 包含了元素内容（content）、内边距（padding）、边框（border）、外边距（margin）几个要素.   
 box-sizing : content-box|border-box|inherit;      
