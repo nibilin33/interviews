@@ -15,6 +15,10 @@
     - [GET 和 POST 在安全性上有什么区别？GET 在哪些情况下会有安全性问题？](#get-%E5%92%8C-post-%E5%9C%A8%E5%AE%89%E5%85%A8%E6%80%A7%E4%B8%8A%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%ABget-%E5%9C%A8%E5%93%AA%E4%BA%9B%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E6%9C%89%E5%AE%89%E5%85%A8%E6%80%A7%E9%97%AE%E9%A2%98)
     - [http 缓存的优先级](#http-%E7%BC%93%E5%AD%98%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7)
     - [UDP 和 TCP 的区别](#udp-%E5%92%8C-tcp-%E7%9A%84%E5%8C%BA%E5%88%AB)
+  - [继承有哪些方法](#%E7%BB%A7%E6%89%BF%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B9%E6%B3%95)
+  - [如何准确判断一个对象是数组](#%E5%A6%82%E4%BD%95%E5%87%86%E7%A1%AE%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1%E6%98%AF%E6%95%B0%E7%BB%84)
+  - [如何理解作用域链](#%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE)
+  - [浏览器解析渲染页面过程](#%E6%B5%8F%E8%A7%88%E5%99%A8%E8%A7%A3%E6%9E%90%E6%B8%B2%E6%9F%93%E9%A1%B5%E9%9D%A2%E8%BF%87%E7%A8%8B)
   - [webpack打包之后的代码报错了，怎么找到报错代码在哪](#webpack%E6%89%93%E5%8C%85%E4%B9%8B%E5%90%8E%E7%9A%84%E4%BB%A3%E7%A0%81%E6%8A%A5%E9%94%99%E4%BA%86%E6%80%8E%E4%B9%88%E6%89%BE%E5%88%B0%E6%8A%A5%E9%94%99%E4%BB%A3%E7%A0%81%E5%9C%A8%E5%93%AA)
   - [什么是SourceMap](#%E4%BB%80%E4%B9%88%E6%98%AFsourcemap)
   - [怎么设计一个组件](#%E6%80%8E%E4%B9%88%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E7%BB%84%E4%BB%B6)
@@ -40,7 +44,7 @@
   - [事件委托？原理、好处、应用场景。](#%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98%E5%8E%9F%E7%90%86%E5%A5%BD%E5%A4%84%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF)
   - [vue和react的区别。](#vue%E5%92%8Creact%E7%9A%84%E5%8C%BA%E5%88%AB)
   - [VUEX的原理](#vuex%E7%9A%84%E5%8E%9F%E7%90%86)
-  - [闭包](#%E9%97%AD%E5%8C%85)
+  - [什么是闭包](#%E4%BB%80%E4%B9%88%E6%98%AF%E9%97%AD%E5%8C%85)
   - [匿名函数的典型应用场景是什么](#%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0%E7%9A%84%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E6%98%AF%E4%BB%80%E4%B9%88)
   - [宿主对象（hostbjects）和原生对象（native objects）的区别是什么](#%E5%AE%BF%E4%B8%BB%E5%AF%B9%E8%B1%A1hostbjects%E5%92%8C%E5%8E%9F%E7%94%9F%E5%AF%B9%E8%B1%A1native-objects%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88)
   - [call和.apply有什么区别？](#call%E5%92%8Capply%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB)
@@ -341,6 +345,31 @@ TCP 支持错误重传机制
 TCP 支持拥塞控制，能够在网络拥堵的情况下延迟发送    
 TCP 能够提供错误校验和，甄别有害的数据包  
 ![UDP和TCP的区别](https://mmbiz.qpic.cn/mmbiz_png/libYRuvULTdUPX8o1HyXqaaxrG5kPIzyDcUC1xOPDkPMCnPWX4DutTkGW3ooiaoEl8yoyPwcrLlkB8h5wlhMNqmw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)   
+## 继承有哪些方法   
+原型继承    
+构造继承    
+实例继承    
+call/apply继承(组合继承)    
+ES6 使用class extends继承   
+## 如何准确判断一个对象是数组   
+面试官希望的答案：Object.prototype.toString.call([]) 返回 "[object Array]"    
+
+扩展答案    
+
+[].slice (能力判断 )    
+[] instanceof Array(类型判断)   
+[].proto === Array.prototype    
+Array.isArray([]) 存在兼容问题    
+## 如何理解作用域链   
+从当前环境向父级一层一层查找变量的过程称之为作用域链。  
+
+## 浏览器解析渲染页面过程
+解析HTML，生成DOM树   
+解析CSS，生成CSSOM树    
+将DOM树和CSSOM树关联，生成渲染树(Render Tree)   
+布局render树（Layout/reflow），负责各元素尺寸、位置的计算   
+绘制render树（paint），绘制页面像素信息   
+将像素发送给GPU，展示在页面上。(Display)    
 ## webpack打包之后的代码报错了，怎么找到报错代码在哪  
 打开source-map配置：devtool:'inline-source-map' 
 控制台会定位到错误文件      
@@ -532,7 +561,8 @@ Webpack通过Plugin机制让其更加灵活，以适应各种应用场景。 在
 
 vuex 中的 store 本质就是没有 template 的隐藏着的 vue 组件   
 
-## 闭包     
+## 什么是闭包   
+简单理解就是函数中嵌套函数。我们都知道局部变量我们是无法访问的，但是通过闭包可以做到。      
 闭包是函数和声明该函数的词法环境的组合。      
 词法作用域中使用的域，是变量在代码中声明的位置所决定的。闭包是即使被外部函数返回，依然可以访问到外部（封闭）函数作用域的函数。    
 为什么使用闭包？    
