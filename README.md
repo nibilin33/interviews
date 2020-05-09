@@ -132,17 +132,14 @@
   - [Vue模板编译的过程](#vue%E6%A8%A1%E6%9D%BF%E7%BC%96%E8%AF%91%E7%9A%84%E8%BF%87%E7%A8%8B)
   - [居中为什么要使用transform（为什么不使用marginLeft/Top）](#%E5%B1%85%E4%B8%AD%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8transform%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E4%BD%BF%E7%94%A8marginlefttop)
   - [src和 href 的区别](#src%E5%92%8C-href-%E7%9A%84%E5%8C%BA%E5%88%AB)
-  - [delete 数组的 item，数组的 length 是否会 -1](#delete-%E6%95%B0%E7%BB%84%E7%9A%84-item%E6%95%B0%E7%BB%84%E7%9A%84-length-%E6%98%AF%E5%90%A6%E4%BC%9A--1)
   - [给出 ['1', '3', '10'].map(parseInt) 执行结果](#%E7%BB%99%E5%87%BA-1-3-10mapparseint-%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%9C)
   - [HTTP劫持、DNS劫持与XSS](#http%E5%8A%AB%E6%8C%81dns%E5%8A%AB%E6%8C%81%E4%B8%8Exss)
   - [虚拟DOM的优劣如何?](#%E8%99%9A%E6%8B%9Fdom%E7%9A%84%E4%BC%98%E5%8A%A3%E5%A6%82%E4%BD%95)
   - [介绍下 BFC、IFC、GFC 和 FFC](#%E4%BB%8B%E7%BB%8D%E4%B8%8B-bfcifcgfc-%E5%92%8C-ffc)
   - [Promise、Promise.all、Promise.race 分别怎么用？](#promisepromiseallpromiserace-%E5%88%86%E5%88%AB%E6%80%8E%E4%B9%88%E7%94%A8)
-  - [你是如何理解 HTML 语义化的？](#%E4%BD%A0%E6%98%AF%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3-html-%E8%AF%AD%E4%B9%89%E5%8C%96%E7%9A%84)
   - [meta viewport 是做什么用的，怎么写？](#meta-viewport-%E6%98%AF%E5%81%9A%E4%BB%80%E4%B9%88%E7%94%A8%E7%9A%84%E6%80%8E%E4%B9%88%E5%86%99)
   - [flex 怎么用，常用属性有哪些？](#flex-%E6%80%8E%E4%B9%88%E7%94%A8%E5%B8%B8%E7%94%A8%E5%B1%9E%E6%80%A7%E6%9C%89%E5%93%AA%E4%BA%9B)
   - [如何用正则实现 trim()？](#%E5%A6%82%E4%BD%95%E7%94%A8%E6%AD%A3%E5%88%99%E5%AE%9E%E7%8E%B0-trim)
-  - [不用 class 如何实现继承？用 class 又如何实现？](#%E4%B8%8D%E7%94%A8-class-%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E7%BB%A7%E6%89%BF%E7%94%A8-class-%E5%8F%88%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0)
   - [Vue 的父组件和子组件生命周期钩子执行顺序是什么](#vue-%E7%9A%84%E7%88%B6%E7%BB%84%E4%BB%B6%E5%92%8C%E5%AD%90%E7%BB%84%E4%BB%B6%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%92%A9%E5%AD%90%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F%E6%98%AF%E4%BB%80%E4%B9%88)
   - [为什么 var 可以重复声明](#%E4%B8%BA%E4%BB%80%E4%B9%88-var-%E5%8F%AF%E4%BB%A5%E9%87%8D%E5%A4%8D%E5%A3%B0%E6%98%8E)
   - [WeakMap 和 Map 的区别?](#weakmap-%E5%92%8C-map-%E7%9A%84%E5%8C%BA%E5%88%AB)
@@ -1188,19 +1185,19 @@ npm 会开启多进程从每个首层依赖模块开始逐步寻找更深层级�
 
 ## 说说事件循环机制   
 
-JavaScript代码的执行过程中，除了依靠函数调用栈来搞定函数的执行顺序外，还依靠任务队列(task queue)来搞定另外一些代码的执行。整个执行过程，我们称为事件循环过程。一个线程中，事件循环是唯一的，但是任务队列可以拥有多个。任务队列又分为macro-task（宏任务）与micro-task（微任务），在最新标准中，它们被分别称为task与jobs。
-macro-task大概包括：
-script(整体代码)
-setTimeout
-setInterval
-setImmediate
-I/O
-UI render
-micro-task大概包括:
-process.nextTick
-Promise
-Async/Await(实际就是promise)
-MutationObserver(html5新特性)
+JavaScript代码的执行过程中，除了依靠函数调用栈来搞定函数的执行顺序外，还依靠任务队列(task queue)来搞定另外一些代码的执行。整个执行过程，我们称为事件循环过程。一个线程中，事件循环是唯一的，但是任务队列可以拥有多个。任务队列又分为macro-task（宏任务）与micro-task（微任务），在最新标准中，它们被分别称为task与jobs。    
+宏任务大概包括：    
+script(整体代码)    
+setTimeout    
+setInterval   
+setImmediate    
+I/O   
+UI render   
+微任务大概包括:   
+process.nextTick    
+Promise   
+Async/Await(实际就是promise)    
+MutationObserver(html5新特性)   
 
 ## 如何监控网页崩溃?  
 
@@ -1240,12 +1237,13 @@ L7应用层：静态资源压缩、请求合并
 
 ## 消除transition闪屏 
 
-    -webkit-transform-style: preserve-3d;
-    -webkit-backface-visibility: hidden; 属性定义当元素不面向屏幕时是否可见。
+-webkit-transform-style: preserve-3d;   
+-webkit-backface-visibility: hidden;    
+属性定义当元素不面向屏幕时是否可见。
 
 如果在旋转元素不希望看到其背面时，该属性很有用。
 
-    -webkit-perspective: 1000; 
+-webkit-perspective: 1000; 
 
 ## GPU 加速原理   
 
@@ -1289,10 +1287,10 @@ JS引擎则是解析Javascript语言，执行javascript语言来实现网页的�
 
 ## display:none与visibility：hidden的区别 
 
-区别|	display:none|	visibility：hidden的
-是否占据空间|	不占据任何空间，在文档渲染时，该元素如同不存在（但依然存在文档对象模型树中）|	该元素空间依旧存在
-是否渲染|	会触发reflow（回流），进行渲染|	只会触发repaint（重绘），因为没有发现位置变化，不进行渲染
-是否是继承属性|	不是继承属性，元素及其子元素都会消失|	是继承属性，若子元素使用了visibility:visible，则不继承，这个子孙元素又会显现出 
+display:none|	visibility：hidden      
+是否占据空间:不占据任何空间，在文档渲染时，该元素如同不存在（但依然存在文档对象模型树中）|	该元素空间依旧存在    
+是否渲染:会触发reflow（回流），进行渲染|	只会触发repaint（重绘），因为没有发现位置变化，不进行渲染   
+是否是继承属性:	不是继承属性，元素及其子元素都会消失|	是继承属性，若子元素使用了visibility:visible，则不继承，这个子孙元素又会显现出    
 
 ## CSS中link 和@import的区别    
 
@@ -1439,10 +1437,6 @@ href标识超文本引用，用在link和a等元素上，href是引用和页面�
 src表示引用资源，表示替换当前元素，用在img，script，iframe上，src是页面内容不可缺少的一部分。   
 src是source的缩写，是指向外部资源的位置，指向的内部会迁入到文档中当前标签所在的位置；在请求src资源时会将其指向的资源下载并应用到当前文档中，例如js脚本，img图片和frame等元素。        
 
-## delete 数组的 item，数组的 length 是否会 -1    
-
-不会，数组长度不变，数组变成[empty, empty... ]
-
 ## 给出 ['1', '3', '10'].map(parseInt) 执行结果   
 
 ['1', '3', '10'].map((it, index)=>parseInt(it, index))
@@ -1496,7 +1490,8 @@ FFC（Flex formatting contexts）: 自适应格式上下文
 display值为flex或者inline-flex的元素将会生成自适应容器（flex container），可惜这个牛逼的属性只有谷歌和火狐支持，不过在移动端也足够了，至少safari和chrome还是OK的，毕竟这俩在移动端才是王道。Flex Box 由伸缩容器和伸缩项目组成。通过设置元素的 display 属性为 flex 或 inline-flex 可以得到一个伸缩容器。设置为 flex 的容器被渲染为一个块级元素，而设置为 inline-flex 的容器则渲染为一个行内元素。伸缩容器中的每一个子元素都是一个伸缩项目。伸缩项目可以是任意数量的。伸缩容器外和伸缩项目内的一切元素都不受影响。简单地说，Flexbox 定义了伸缩容器内伸缩项目该如何布局。    
 
 ## Promise、Promise.all、Promise.race 分别怎么用？  
-## 你是如何理解 HTML 语义化的？ 
+Promise.all可以将多个实例组装成一个新的实例，成功的时候返回一个成功数组(顺序不会变)，失败的时候则返回最先被reject失败状态的值   
+Promise.race([p1, p2, p3])里面的结果哪个获取的快，就返回哪个结果，不管结果本身是成功还是失败    
 ## meta viewport 是做什么用的，怎么写？ 
 name为viewport表示供移动设备使用.content定义了viewport的属性   
 
@@ -1504,12 +1499,26 @@ name为viewport表示供移动设备使用.content定义了viewport的属性
 < meta name = "viewport"
 content = "width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" >
 ```
-## flex 怎么用，常用属性有哪些？
+## flex 怎么用，常用属性有哪些？  
+容器上属性：    
+flex-direction    
+flex-wrap   
+flex-flow   
+justify-content   
+align-items   
+align-content   
+项目的属性：    
+order   
+flex-grow   
+flex-shrink   
+flex-basis    
+flex    
+align-self    
+[详细](http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html)    
 ## 如何用正则实现 trim()？
 ``` js
 /(^\s*)|(\s*$)/g
 ```
-## 不用 class 如何实现继承？用 class 又如何实现？
 
 ## Vue 的父组件和子组件生命周期钩子执行顺序是什么   
 
