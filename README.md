@@ -152,7 +152,6 @@
     - [Node.js 的异步IO是如何进行的？](#nodejs-%E7%9A%84%E5%BC%82%E6%AD%A5io%E6%98%AF%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E7%9A%84)
     - [Node的子进程有什么原理?](#node%E7%9A%84%E5%AD%90%E8%BF%9B%E7%A8%8B%E6%9C%89%E4%BB%80%E4%B9%88%E5%8E%9F%E7%90%86)
     - [Node cluster是什么原理？](#node-cluster%E6%98%AF%E4%BB%80%E4%B9%88%E5%8E%9F%E7%90%86)
-    - [如何保证session的安全？](#%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81session%E7%9A%84%E5%AE%89%E5%85%A8)
     - [如何实现父进程退出时子进程跟着退出？](#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E7%88%B6%E8%BF%9B%E7%A8%8B%E9%80%80%E5%87%BA%E6%97%B6%E5%AD%90%E8%BF%9B%E7%A8%8B%E8%B7%9F%E7%9D%80%E9%80%80%E5%87%BA)
     - [实现一个能自动重启的http服务集群](#%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E8%83%BD%E8%87%AA%E5%8A%A8%E9%87%8D%E5%90%AF%E7%9A%84http%E6%9C%8D%E5%8A%A1%E9%9B%86%E7%BE%A4)
   - [Node文件查找优先级](#node%E6%96%87%E4%BB%B6%E6%9F%A5%E6%89%BE%E4%BC%98%E5%85%88%E7%BA%A7)
@@ -1556,16 +1555,71 @@ canvas to base64
  
 
 ## Node 面试题
-### Node.js 在执行require(id)是怎样找到一个模块的？ 
+### Node.js 在执行require(id)是怎样找到一个模块的？   
+1. 在当前文件目录的node_modules目录下查找 
+2. 如果没有符合的模块，则去父目录的node_modules 
+3. 一直查找到符合的模块或者根目录   
+会枚举尝试后缀，.js,.json,.node   
+
 ### 能否使用require('.json')的方式加载大量json文件？
 require 一个模块是同步调用的，会带来性能上的开销，虽然require成功后会 
 缓存起来，大量数据驻留内存中，会导致GC频繁和内存泄漏。    
-### Node.js 的异步IO是如何进行的？    
+### Node.js 的异步IO是如何进行的？  
+通过事件循环，请求操作系统监视（epoll,iocp)，然后在队列中放置一个事件通知。   
 ### Node的子进程有什么原理?   
-### Node cluster是什么原理？    
-### 如何保证session的安全？   
+### Node cluster是什么原理？  
+cluster模块是child_process和net模块组合起来的一个功能封装，cluster启动时，会在内部启动TCP服务器（只能启动一个tcp服务），在cluster.fork()子进程时，将这个tcp服务器端socket的文件描述符发送给工作进程，如果进程是通过cluster.fork()复制出来的，那么他的环境变量里就存在NODE_UNIQUE_ID，如果工作进程中存在listen()监听网络端口的调用，它将拿到文件描述符，通过SO_REUSEADDR端口重用，从而实现多个子进程共享端口。对于，普通方式启动的进程，则不存在文件描述符传递共享等事情。 
+[参考](https://www.jianshu.com/p/335a9e101c3f) 
 ### 如何实现父进程退出时子进程跟着退出？    
+在父进程和子进程之间开放一个IPC通道，使得不同的node进程间可以进行消息通信。   
+在子进程中：    
+通过process.on("message")和process.send()的机制来接收和发送消息。
+在父进程中：    
+通过child.on(‘message’)和process.send()的机制来接收和发送消息。   
 ### 实现一个能自动重启的http服务集群   
+思路：有未捕获的异常出现，工作进程就会停止接收新的连接，当所以连接断开后，退出进程，主进程在监听到工作进程的exit后，将立即启动新的进程服务，以此保证整个集群中总是有进程再为用户服务。
+```js
+// master.js
+var fork = require('child_process').fork;
+var cpus = require('os').cpus();
+var server = require('net').createServer();
+server.listen(1337);
+var workers = {};
+var createWorker = function () {
+var worker = fork(__dirname + '/worker.js');
+//退出时重新启动新的进程
+
+worker.on('exit', function () {
+console.log('Worker ' + worker.pid + ' exited.');
+delete workers[worker.pid];
+createWorker();
+});
+// 句柄转发
+worker.send('server', server);
+workers[worker.pid] = worker;
+console.log('Create worker. pid: ' + worker.pid);
+};
+for (var i = 0; i < cpus.length; i++) {
+createWorker();
+}
+// 进程自己退出时，让所有工作进程退出
+process.on('exit', function () {
+  for (var pid in workers) {
+  workers[pid].kill();
+  }
+});
+
+//测试
+$ node master.js
+Create worker. pid: 30504
+Create worker. pid: 30505
+Create worker. pid: 30506
+Create worker. pid: 30507
+
+$ kill 30506  
+
+```
+
 ## Node文件查找优先级
 ![Node文件查找优先级](http://image.zhizuobiao.com/upload/20180515/1526368034080049950.png)       
 ### Node.js的加载机制   
