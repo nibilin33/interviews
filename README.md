@@ -75,7 +75,6 @@
   - [Webpack性能优化你知道哪些](#webpack%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E4%BD%A0%E7%9F%A5%E9%81%93%E5%93%AA%E4%BA%9B)
   - [如何设计一个组件？](#%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E7%BB%84%E4%BB%B6)
   - [code split 怎么做？](#code-split-%E6%80%8E%E4%B9%88%E5%81%9A)
-  - [什么是treeshaking？注意些什么？](#%E4%BB%80%E4%B9%88%E6%98%AFtreeshaking%E6%B3%A8%E6%84%8F%E4%BA%9B%E4%BB%80%E4%B9%88)
   - [一像素问题怎么解决？](#%E4%B8%80%E5%83%8F%E7%B4%A0%E9%97%AE%E9%A2%98%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3)
   - [CSS：区别 px、em、rem](#css%E5%8C%BA%E5%88%AB-pxemrem)
   - [ios滑动不流畅](#ios%E6%BB%91%E5%8A%A8%E4%B8%8D%E6%B5%81%E7%95%85)
@@ -99,7 +98,7 @@
   - [你所知道的前端性能优化方案](#%E4%BD%A0%E6%89%80%E7%9F%A5%E9%81%93%E7%9A%84%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88)
   - [CSS3中transition和animation的属性分别有哪些](#css3%E4%B8%ADtransition%E5%92%8Canimation%E7%9A%84%E5%B1%9E%E6%80%A7%E5%88%86%E5%88%AB%E6%9C%89%E5%93%AA%E4%BA%9B)
   - [CSS 中的 vertical-align 有哪些值？它在什么情况下才能生效？](#css-%E4%B8%AD%E7%9A%84-vertical-align-%E6%9C%89%E5%93%AA%E4%BA%9B%E5%80%BC%E5%AE%83%E5%9C%A8%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%B8%8B%E6%89%8D%E8%83%BD%E7%94%9F%E6%95%88)
-  - [CSS 中的 background 的 background-image 属性可以和 background-color 属性一起生效么？ackground-color 属性可以覆盖 background-image 属性吗？](#css-%E4%B8%AD%E7%9A%84-background-%E7%9A%84-background-image-%E5%B1%9E%E6%80%A7%E5%8F%AF%E4%BB%A5%E5%92%8C-background-color-%E5%B1%9E%E6%80%A7%E4%B8%80%E8%B5%B7%E7%94%9F%E6%95%88%E4%B9%88ackground-color-%E5%B1%9E%E6%80%A7%E5%8F%AF%E4%BB%A5%E8%A6%86%E7%9B%96-background-image-%E5%B1%9E%E6%80%A7%E5%90%97)
+  - [CSS 中的 background 的 background-image 属性可以和 background-color 属性一起生效么？background-color 属性可以覆盖 background-image 属性吗？](#css-%E4%B8%AD%E7%9A%84-background-%E7%9A%84-background-image-%E5%B1%9E%E6%80%A7%E5%8F%AF%E4%BB%A5%E5%92%8C-background-color-%E5%B1%9E%E6%80%A7%E4%B8%80%E8%B5%B7%E7%94%9F%E6%95%88%E4%B9%88background-color-%E5%B1%9E%E6%80%A7%E5%8F%AF%E4%BB%A5%E8%A6%86%E7%9B%96-background-image-%E5%B1%9E%E6%80%A7%E5%90%97)
   - [选择器优先级](#%E9%80%89%E6%8B%A9%E5%99%A8%E4%BC%98%E5%85%88%E7%BA%A7)
   - [跨标签页的通讯方式有哪些](#%E8%B7%A8%E6%A0%87%E7%AD%BE%E9%A1%B5%E7%9A%84%E9%80%9A%E8%AE%AF%E6%96%B9%E5%BC%8F%E6%9C%89%E5%93%AA%E4%BA%9B)
   - [介绍下 npm 模块安装机制，为什么输入 npm install 就可以自动安装对应的模块？](#%E4%BB%8B%E7%BB%8D%E4%B8%8B-npm-%E6%A8%A1%E5%9D%97%E5%AE%89%E8%A3%85%E6%9C%BA%E5%88%B6%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BE%93%E5%85%A5-npm-install-%E5%B0%B1%E5%8F%AF%E4%BB%A5%E8%87%AA%E5%8A%A8%E5%AE%89%E8%A3%85%E5%AF%B9%E5%BA%94%E7%9A%84%E6%A8%A1%E5%9D%97)
@@ -874,28 +873,25 @@ RESTful的缺点
 
 组件聚合原则告诉我们设计组件时要考虑的原则，以及如何根据项目的开发时间和成熟度对这些原则进行权衡。组件耦合考虑的是如何管理组件之间的依赖关系，减小组件之间的耦合，组件依赖要考虑的问题。从组件聚合和组件耦合全面分析，可以设计出"高内聚、低耦合"的组件。
 
-适用单一职责原则
-适用开放封闭原则
-追求短小精悍
-避免太多参数
-缩小信赖范围和向稳定方向信赖  
-追求无副作用
-追求引用透明
-避免暴露组件内部实现
-避免直接操作DOM 
-入口处检查参数的有效性，出口处检查返回的正确性
-充分隔离变化的部分  
-组件和数据分享，信赖一致性的数据结构  
+适用单一职责原则    
+适用开放封闭原则    
+追求短小精悍    
+避免太多参数    
+缩小信赖范围和向稳定方向信赖      
+追求无副作用    
+追求引用透明    
+避免暴露组件内部实现    
+避免直接操作DOM     
+入口处检查参数的有效性，出口处检查返回的正确性    
+充分隔离变化的部分      
+组件和数据分享，信赖一致性的数据结构      
 
 ## code split 怎么做？   
 
 主要有 2 种方式：
 分离业务代码和第三方库（ vendor ）  
 按需加载（利用 import() 语法）  
-
-## 什么是treeshaking？注意些什么？   
-
-Tree-shaking的本质是消除无用的js代码    
+ 
 
 ## 一像素问题怎么解决？   
 
@@ -1065,7 +1061,7 @@ space-between在左右两侧没有边距，而space-around在左右两侧会留�
 
 ## 你所知道的前端性能优化方案   
 
-这个其实方案还是比较多的，可以从DOM层面，CSS样式层面和JS逻辑层面分别入手，大概给出以下几种：
+这个其实方案还是比较多的，可以从DOM层面，CSS样式层面和JS逻辑层面分别入手，大概给出以下几种：    
 (1) 减少DOM的访问次数，可以将DOM缓存到变量中；    
 (2) 减少重绘和回流，任何会导致重绘和回流的操作都应减少执行，可将多次操作合并为一次；    
 (3) 尽量采用事件委托的方式进行事件绑定，避免大量绑定导致内存占用过多；    
@@ -1073,8 +1069,8 @@ space-between在左右两侧没有边距，而space-around在左右两侧会留�
 (5) 动画尽量使用CSS3动画属性来实现，开启GPU硬件加速；   
 (6) 图片在加载前提前指定宽高或者脱离文档流，可避免加载后的重新计算导致的页面回流；    
 (7) css文件在head标签中引入，js文件在body标签中引入，优化关键渲染路径；     
-(8) 加速或者减少HTTP请求，使用CDN加载静态资源，合理使用浏览器强缓存和协商缓存，小图片可以使用Base64来代替，合理使用浏览器的预取指令prefetch和预加载指令preload；
-(9) 压缩混淆代码，删除无用代码，代码拆分来减少文件体积；
+(8) 加速或者减少HTTP请求，使用CDN加载静态资源，合理使用浏览器强缓存和协商缓存，小图片可以使用Base64来代替，合理使用浏览器的预取指令prefetch和预加载指令preload；    
+(9) 压缩混淆代码，删除无用代码，代码拆分来减少文件体积；    
 (10) 小图片使用雪碧图，图片选择合适的质量、尺寸和格式，避免流量浪费。
 
 ## CSS3中transition和animation的属性分别有哪些    
@@ -1084,13 +1080,13 @@ transition 过渡动画：
 (2) transition-duration: 间隔时间       
 (3) transition-timing-function: 动画曲线       
 (4) transition-delay: 延迟    
-animation 关键帧动画：
-(1) animation-name：动画名称
-(2) animation-duration: 间隔时间  
-(3) animation-timing-function: 动画曲线 
-(4) animation-delay: 延迟 
-(5) animation-iteration-count：动画次数 
-(6) animation-direction: 方向 
+animation 关键帧动画：    
+(1) animation-name：动画名称    
+(2) animation-duration: 间隔时间      
+(3) animation-timing-function: 动画曲线     
+(4) animation-delay: 延迟     
+(5) animation-iteration-count：动画次数     
+(6) animation-direction: 方向     
 (7) animation-fill-mode: 禁止模式 
 
 ## CSS 中的 vertical-align 有哪些值？它在什么情况下才能生效？ 
@@ -1103,7 +1099,15 @@ vertical-align生效前提：
 内联元素span、strong、em、img、button、input等    
 display值为inline、inline-block、inline-table或table-cell的元素   
 需要注意浮动和绝对定位会让元素块状化，因此此元素绝对不会生效    
-## CSS 中的 background 的 background-image 属性可以和 background-color 属性一起生效么？ackground-color 属性可以覆盖 background-image 属性吗？      
+## CSS 中的 background 的 background-image 属性可以和 background-color 属性一起生效么？background-color 属性可以覆盖 background-image 属性吗？      
+background-image 不会和background-color 一起生效，color 不能覆盖image属性。   
+<div style="background:url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1589011064065&di=841d81104632b3414d9e62d6b112e5c6&imgtype=0&src=http%3A%2F%2Fcdn.duitang.com%2Fuploads%2Fitem%2F201411%2F07%2F20141107220003_if5ja.thumb.700_0.jpeg);background-image:url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1589010899377&di=a9d5479b679ed998e34f4ee2b88e49f5&imgtype=0&src=http%3A%2F%2Fpic76.nipic.com%2Ffile%2F20150828%2F20512789_152524036000_2.png);
+background-size:contain;
+background-repeat:no-repeat;
+background-color:pink;">
+ddd
+</div>
+
 
 ## 选择器优先级   
 
