@@ -48,7 +48,6 @@
   - [匿名函数的典型应用场景是什么](#%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0%E7%9A%84%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E6%98%AF%E4%BB%80%E4%B9%88)
   - [宿主对象（hostbjects）和原生对象（native objects）的区别是什么](#%E5%AE%BF%E4%B8%BB%E5%AF%B9%E8%B1%A1hostbjects%E5%92%8C%E5%8E%9F%E7%94%9F%E5%AF%B9%E8%B1%A1native-objects%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88)
   - [call和.apply有什么区别？](#call%E5%92%8Capply%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB)
-  - [功能检测（feature detection）、功能推断（feature inference）和使用 UA 字符串之间有什么区别？](#%E5%8A%9F%E8%83%BD%E6%A3%80%E6%B5%8Bfeature-detection%E5%8A%9F%E8%83%BD%E6%8E%A8%E6%96%ADfeature-inference%E5%92%8C%E4%BD%BF%E7%94%A8-ua-%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B9%8B%E9%97%B4%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB)
   - [单页应用有那些优缺点](#%E5%8D%95%E9%A1%B5%E5%BA%94%E7%94%A8%E6%9C%89%E9%82%A3%E4%BA%9B%E4%BC%98%E7%BC%BA%E7%82%B9)
   - [请说明 JSONP 的工作原理，它为什么不是真正的 Ajax？](#%E8%AF%B7%E8%AF%B4%E6%98%8E-jsonp-%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%AE%83%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E6%98%AF%E7%9C%9F%E6%AD%A3%E7%9A%84-ajax)
   - [jsonp安全问题如何解决](#jsonp%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3)
@@ -610,7 +609,7 @@ function add(a, b) {
 console.log(add.call(null, 1, 2)); // 3
 console.log(add.apply(null, [1, 2])); // 3
 
-## 功能检测（feature detection）、功能推断（feature inference）和使用 UA 字符串之间有什么区别？
+<!-- ## 功能检测（feature detection）、功能推断（feature inference）和使用 UA 字符串之间有什么区别？
 
 功能检测包括确定浏览器是否支持某段代码，以及是否运行不同的代码（取决于它是否执行），以便浏览器始终能够正常运行代码功能，而不会在某些浏览器中出现崩溃和错误。例如：
 if ("geolocation" in navigator) {
@@ -620,7 +619,7 @@ if ("geolocation" in navigator) {
 }
 Modernizr是处理功能检测的优秀工具。
 功能推断与功能检测一样，会对功能可用性进行检查，但是在判断通过后，还会使用其他功能，因为它假设其他功能也可用.
-UA 字符串这是一个浏览器报告的字符串，它允许网络协议对等方（network protocol peers）识别请求用户代理的应用类型、操作系统、应用供应商和应用版本。它可以通过navigator.userAgent访问。
+UA 字符串这是一个浏览器报告的字符串，它允许网络协议对等方（network protocol peers）识别请求用户代理的应用类型、操作系统、应用供应商和应用版本。它可以通过navigator.userAgent访问。 -->
 
 ## 单页应用有那些优缺点
 
