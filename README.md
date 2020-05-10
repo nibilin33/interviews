@@ -15,6 +15,7 @@
     - [GET 和 POST 在安全性上有什么区别？GET 在哪些情况下会有安全性问题？](#get-%E5%92%8C-post-%E5%9C%A8%E5%AE%89%E5%85%A8%E6%80%A7%E4%B8%8A%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%ABget-%E5%9C%A8%E5%93%AA%E4%BA%9B%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E6%9C%89%E5%AE%89%E5%85%A8%E6%80%A7%E9%97%AE%E9%A2%98)
     - [http 缓存的优先级](#http-%E7%BC%93%E5%AD%98%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7)
     - [UDP 和 TCP 的区别](#udp-%E5%92%8C-tcp-%E7%9A%84%E5%8C%BA%E5%88%AB)
+  - [Promise中的ajax 可以try catch 到么？](#promise%E4%B8%AD%E7%9A%84ajax-%E5%8F%AF%E4%BB%A5try-catch-%E5%88%B0%E4%B9%88)
   - [继承有哪些方法](#%E7%BB%A7%E6%89%BF%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B9%E6%B3%95)
   - [如何准确判断一个对象是数组](#%E5%A6%82%E4%BD%95%E5%87%86%E7%A1%AE%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1%E6%98%AF%E6%95%B0%E7%BB%84)
   - [如何理解作用域链](#%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE)
@@ -347,6 +348,8 @@ TCP 支持错误重传机制
 TCP 支持拥塞控制，能够在网络拥堵的情况下延迟发送    
 TCP 能够提供错误校验和，甄别有害的数据包  
 ![UDP和TCP的区别](https://mmbiz.qpic.cn/mmbiz_png/libYRuvULTdUPX8o1HyXqaaxrG5kPIzyDcUC1xOPDkPMCnPWX4DutTkGW3ooiaoEl8yoyPwcrLlkB8h5wlhMNqmw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)   
+## Promise中的ajax 可以try catch 到么？  
+try..catch..虽然能捕获错误，但是不能捕获异步的异常    
 ## 继承有哪些方法   
 原型继承    
 构造继承    
@@ -1654,7 +1657,9 @@ all 执行完整匹配, use 只匹配前缀 ，
 all是路由中指代所有的请求方式，use是中间件。  
 ### 如何捕捉next(err)传递的错误   
 express中内置了一个错误处理程序。如果请求内的同步代码抛出异常或调用next(err)，那么 Express 会将当前请求视为处于错误状态，并跳过所有剩余的非错误处理路由和中间件函数，最后被内置的错误处理程序处理。
-### 路由function内部的错误是在哪个环节捕捉的
+### 路由function内部的错误是在哪个环节捕捉的  
+路由中间件，通过app.verb添加，结构是处理函数挂载到layer上，layer推送到route上，route的dispatch函数又挂载到一个新的layer，这个layer再推送到Router的stack中。   
+如果有错误，调用layer.handle_error    
 ### Node.js为什么处理异步IO快?          
 利用事件队列，不用等待IO完成，在非阻塞IO返回之前，node主线程可以用来处理其他事物，此时性能提升非常明显。    
 ### Node中的错误怎么捕获？          
@@ -1723,7 +1728,6 @@ const tryCatch = msg => (target, name, descriptor) => {
 }
 ```
 
-Promise中的ajax 可以try catch 到么？  
 
 ### Node 的Cluster模式是什么？   
 
@@ -1741,7 +1745,8 @@ Round-robin调度策略主要是master主线程负责接收所有的连接并派
 拥有资源：进程是拥有资源的一个独立单位，线程不拥有系统资源，但可以访问隶属于进程的资源    
 
 ### Node中如何创建一个进程？
-require('child_process')    
+require('child_process')   
+
 ### Node的多个进程如何通信？   
 使用共享内存，信号量。这种方式可以通过 child_process 模块实现。   
 使用套接。这种方式可以使用 net，http，websocket 模块实现，还可以使用 socket.io 来实现（推荐）。   
@@ -1833,11 +1838,11 @@ WXML仅能在微信小程序开发者工具中预览，而HTML可以在浏览器
 组件封装不同， WXML对组件进行了重新封装，
 小程序运行在JSCore内，没有DOM树和window对象，小程序中无法使用window对象和document对象。       
 ## 请谈谈WXSS和CSS的异同？
-都是用来描述页面的样子；
-WXSS 具有 CSS 大部分的特性，也做了一些扩充和修改；
-WXSS新增了尺寸单位，WXSS 在底层支持新的尺寸单位 rpx；
+都是用来描述页面的样子；    
+WXSS 具有 CSS 大部分的特性，也做了一些扩充和修改；    
+WXSS新增了尺寸单位，WXSS 在底层支持新的尺寸单位 rpx；   
 WXSS 仅支持部分 CSS 选择器；
-WXSS 提供全局样式与局部样式
+WXSS 提供全局样式与局部样式;    
 ## 你是怎么封装微信小程序的数据请求的？          
 在根目录下创建utils目录及api.js文件和apiConfig.js文件；
 在apiConfig.js 封装基础的get, post 和 put， upload等请求方法，设置请求体，带上token和异常处理等；
@@ -1901,7 +1906,8 @@ onLoad:function(){
 }
 ```
 ## 小程序关联微信公众号如何确定用户的唯一性？       
-使用wx.getUserInfo方法       withCredentials为true时，可获取encryptedData，里面有union_id.后端需要进行对称解密。     
+使用wx.getUserInfo方法       
+withCredentials为true时，可获取encryptedData，里面有union_id.后端需要进行对称解密。     
 
 ## 使用webview直接加载要注意哪些事项？      
 必须要在小程序后台使用管理员添加业务域名；      
@@ -1913,7 +1919,7 @@ h5的支付不可以是微信公众号的appid，必须是小程序的appid，�
 小程序不可以直接渲染文章内容这类型的html文本，显示需借助插件        
 注：插件渲染会导致页面加载变慢，建议在后台对文章内容的html进行过滤，后台直接处理批量替换p标签div标签为view标签。然后其他的标签让插件来做。
 ## 微信小程序如何实现下拉刷新？
-用view代替scroll-view，设置onPullDo     wnRefresh函数实现
+用view代替scroll-view，设置onPullDownRefresh函数实现
 
 ## webview中的页面怎么跳转回小程序？      
 ```js   
