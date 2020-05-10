@@ -402,15 +402,22 @@ GraphicsContext 绘图上下文的责任就是向屏幕进行像素绘制(这个
 一般一个元素开启硬件加速后会变成合成层,可以独立于普通文档流中,改动后可以避免整个页面重绘,提升性能。
 
 注意不能滥用 GPU 加速,一定要分析其实际性能表现。因为 GPU 加速创建渲染层是有代价的,每创建一个新的渲染层,就意味着新的内存分配和更复杂的层的管理。并且在移动端 GPU 和 CPU 的带宽有限制,创建的渲染层过多时,合成也会消耗跟多的时间,随之而来的就是耗电更多,内存占用更多。过多的渲染层来带的开销而对页面渲染性能产生的影响,甚至远远超过了它在性能改善上带来的好处。
+
+
 ## Promise中的ajax 可以try catch 到么？  
 try..catch..虽然能捕获错误，但是不能捕获异步的异常  
+
+
 ## 使用import时，Webpack对node_modules里的依赖会做什么   
 在遇到导入语句时， Webpack 会做以下两件事：   
 1. 根据导入语句去寻找对应的要导入的文件。例如 require ('react ’）导入语句对应的文件是.／node modules/react/react.js, require('./utils.js')对应的文件是./util.js.    
 2. 根据找到的要导入的文件的后缀，使用配置中的 Loader 去处理文件 例如使
 开发的 JavaScript 文件需要使用 babel-loader 处理.  
+
+
 ## Http报文的请求会有几个部分       
 一个HTTP请求报文由请求行（request line）、请求头部（header）、空行和请求数据4个部分组成.       
+
 ## 介绍AST（Abstract Syntax Tree）抽象语法树       
 抽象语法树（abstract syntax tree或者缩写为AST），或者语法树（syntax tree），是源代码的抽象语法结构的树状表现形式，这里特指编程语言的源代码。
 常见的几种用途：    
