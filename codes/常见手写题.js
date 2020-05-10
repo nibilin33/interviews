@@ -331,9 +331,18 @@ function getAbsoluteUrl(url){
 }
 /* 21.isNative
 下面的函数 isNative 用来检查一个函数是由浏览器原生提供的，
-还有由第三方创建的。 */
-function isNative(){
-  
+还有由第三方创建的。 
+原生的function 返回 { [native code] }
+非原生的object 返回 [object Object]
+*/
+function isNative(value){
+  if(typeof value == 'function') {
+    return Function.prototype.toString.call(value).indexOf('[native')>-1;
+  }
+  if(typeof value == 'object') {
+    return Object.prototype.toString.call(value).index('Object]')<0;
+  }
+  return false;
 }
 /* 22.insertRule
 我们可以通过一个选择器获得一个 NodeList（比如通过 document.querySelectorAll），并给每个元素赋予样式，
