@@ -287,18 +287,54 @@ function New(fn) {
 下面实现了一个轮训函数。
 这里的实现逻辑是：除非 fn 的调用返回真，否则每隔 interval ms 就再调用一次 fn，直到结果为真为止，然后返回结果；
 如果调用时间过长，或调用出错，就报错返回。 */
+function poll(fn, timeout, interval=100) {
+  let time = Number(new Date().valueOf()+(timeout||2000));
+  const checkFn = (resolve,reject)=>{
+    let result = fn();
+    if(result) {
+      resolve();
+      return;
+    }
+    if(new Date().valueOf()>time) {
+      reject();
+    }else{
+      setTimeout(()=>{
+        checkFn(resolve,reject);
+      },interval);
+    }
+  }
+  return new Promise(checkFn);
+}
 /* 19.once
 有时候，我们希望某个函数只调用一次，就像使用 onload 事件一样。
 下面的代码提供这个功能： */
+function once(fn){
+  let result = null;
+  return function(){
+    if(fn){
+      result = fn.apply(this,arguments);
+      fn = null;
+    }
+    return result;
+  }
+}
 /* 20.getAbsoluteUrl
 由给定的一个字符串获取绝对 URL 并不像我们想象的那么容易。
 浏览器提供了一个 URL 构造函数，
 但是如果不能提供所需的参数（有时确实提供不了），
 使用它就会出现问题。
-这里有一个获得绝对 URL 和字符串输入的小技巧: */
+这里有一个获得绝对 URL 和字符串输入的小技巧:就是读取链接元素的 href 属性时，得到总是绝对路径。 */
+function getAbsoluteUrl(url){
+  let a = document.createElement('a');
+  a.href = url;
+  return a.href;
+}
 /* 21.isNative
 下面的函数 isNative 用来检查一个函数是由浏览器原生提供的，
 还有由第三方创建的。 */
+function isNative(){
+  
+}
 /* 22.insertRule
 我们可以通过一个选择器获得一个 NodeList（比如通过 document.querySelectorAll），并给每个元素赋予样式，
 但更有效率的方式是直接设置选择器样式 */
