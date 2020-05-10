@@ -15,7 +15,43 @@
     - [GET 和 POST 在安全性上有什么区别？GET 在哪些情况下会有安全性问题？](#get-%E5%92%8C-post-%E5%9C%A8%E5%AE%89%E5%85%A8%E6%80%A7%E4%B8%8A%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%ABget-%E5%9C%A8%E5%93%AA%E4%BA%9B%E6%83%85%E5%86%B5%E4%B8%8B%E4%BC%9A%E6%9C%89%E5%AE%89%E5%85%A8%E6%80%A7%E9%97%AE%E9%A2%98)
     - [http 缓存的优先级](#http-%E7%BC%93%E5%AD%98%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7)
     - [UDP 和 TCP 的区别](#udp-%E5%92%8C-tcp-%E7%9A%84%E5%8C%BA%E5%88%AB)
+  - [requireJS的核心原理是什么？（如何动态加载的？如何避免多次加载的？如何 缓存的？）](#requirejs%E7%9A%84%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88%E5%A6%82%E4%BD%95%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BD%E7%9A%84%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E5%A4%9A%E6%AC%A1%E5%8A%A0%E8%BD%BD%E7%9A%84%E5%A6%82%E4%BD%95-%E7%BC%93%E5%AD%98%E7%9A%84)
+  - [浏览器是怎么对HTML5的离线储存资源进行管理和加载的呢？](#%E6%B5%8F%E8%A7%88%E5%99%A8%E6%98%AF%E6%80%8E%E4%B9%88%E5%AF%B9html5%E7%9A%84%E7%A6%BB%E7%BA%BF%E5%82%A8%E5%AD%98%E8%B5%84%E6%BA%90%E8%BF%9B%E8%A1%8C%E7%AE%A1%E7%90%86%E5%92%8C%E5%8A%A0%E8%BD%BD%E7%9A%84%E5%91%A2)
+  - [什么是渲染层合并 (Composite) ?](#%E4%BB%80%E4%B9%88%E6%98%AF%E6%B8%B2%E6%9F%93%E5%B1%82%E5%90%88%E5%B9%B6-composite-)
   - [Promise中的ajax 可以try catch 到么？](#promise%E4%B8%AD%E7%9A%84ajax-%E5%8F%AF%E4%BB%A5try-catch-%E5%88%B0%E4%B9%88)
+  - [使用import时，Webpack对node_modules里的依赖会做什么](#%E4%BD%BF%E7%94%A8import%E6%97%B6webpack%E5%AF%B9node_modules%E9%87%8C%E7%9A%84%E4%BE%9D%E8%B5%96%E4%BC%9A%E5%81%9A%E4%BB%80%E4%B9%88)
+  - [Http报文的请求会有几个部分](#http%E6%8A%A5%E6%96%87%E7%9A%84%E8%AF%B7%E6%B1%82%E4%BC%9A%E6%9C%89%E5%87%A0%E4%B8%AA%E9%83%A8%E5%88%86)
+  - [介绍AST（Abstract Syntax Tree）抽象语法树](#%E4%BB%8B%E7%BB%8Dastabstract-syntax-tree%E6%8A%BD%E8%B1%A1%E8%AF%AD%E6%B3%95%E6%A0%91)
+  - [ES6中的Map和原生的对象有什么区别](#es6%E4%B8%AD%E7%9A%84map%E5%92%8C%E5%8E%9F%E7%94%9F%E7%9A%84%E5%AF%B9%E8%B1%A1%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB)
+  - [JS里垃圾回收机制是什么，常用的是哪种，怎么处理的](#js%E9%87%8C%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6%E6%98%AF%E4%BB%80%E4%B9%88%E5%B8%B8%E7%94%A8%E7%9A%84%E6%98%AF%E5%93%AA%E7%A7%8D%E6%80%8E%E4%B9%88%E5%A4%84%E7%90%86%E7%9A%84)
+  - [小程序里面开页面最多是多少](#%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%87%8C%E9%9D%A2%E5%BC%80%E9%A1%B5%E9%9D%A2%E6%9C%80%E5%A4%9A%E6%98%AF%E5%A4%9A%E5%B0%91)
+  - [Webpack如何配Sass，需要配哪些Loader](#webpack%E5%A6%82%E4%BD%95%E9%85%8Dsass%E9%9C%80%E8%A6%81%E9%85%8D%E5%93%AA%E4%BA%9Bloader)
+  - [配CSS需要哪些Loader](#%E9%85%8Dcss%E9%9C%80%E8%A6%81%E5%93%AA%E4%BA%9Bloader)
+  - [Div垂直水平居中（Flex、绝对定位）](#div%E5%9E%82%E7%9B%B4%E6%B0%B4%E5%B9%B3%E5%B1%85%E4%B8%ADflex%E7%BB%9D%E5%AF%B9%E5%AE%9A%E4%BD%8D)
+  - [上下固定，中间滚动布局如何实现](#%E4%B8%8A%E4%B8%8B%E5%9B%BA%E5%AE%9A%E4%B8%AD%E9%97%B4%E6%BB%9A%E5%8A%A8%E5%B8%83%E5%B1%80%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0)
+  - [盒子模型，以及标准情况和IE下的区别](#%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B%E4%BB%A5%E5%8F%8A%E6%A0%87%E5%87%86%E6%83%85%E5%86%B5%E5%92%8Cie%E4%B8%8B%E7%9A%84%E5%8C%BA%E5%88%AB)
+  - [如何实现new](#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0new)
+  - [Prototype和Proto区别](#prototype%E5%92%8Cproto%E5%8C%BA%E5%88%AB)
+  - [em和px的区别](#em%E5%92%8Cpx%E7%9A%84%E5%8C%BA%E5%88%AB)
+  - [如何去除url中的#号](#%E5%A6%82%E4%BD%95%E5%8E%BB%E9%99%A4url%E4%B8%AD%E7%9A%84%E5%8F%B7)
+  - [Webpack和Gulp的优缺点](#webpack%E5%92%8Cgulp%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9)
+  - [base64为什么能提升性能，缺点](#base64%E4%B8%BA%E4%BB%80%E4%B9%88%E8%83%BD%E6%8F%90%E5%8D%87%E6%80%A7%E8%83%BD%E7%BC%BA%E7%82%B9)
+  - [数据类型分别存在哪里](#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%88%86%E5%88%AB%E5%AD%98%E5%9C%A8%E5%93%AA%E9%87%8C)
+  - [垃圾回收时栈和堆的区别](#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%97%B6%E6%A0%88%E5%92%8C%E5%A0%86%E7%9A%84%E5%8C%BA%E5%88%AB)
+  - [打包时Hash码是怎么生成的](#%E6%89%93%E5%8C%85%E6%97%B6hash%E7%A0%81%E6%98%AF%E6%80%8E%E4%B9%88%E7%94%9F%E6%88%90%E7%9A%84)
+  - [webpack中hash、chunkhash和contenthash三者的区别?](#webpack%E4%B8%ADhashchunkhash%E5%92%8Ccontenthash%E4%B8%89%E8%80%85%E7%9A%84%E5%8C%BA%E5%88%AB)
+  - [formData和原生的Ajax有什么区别](#formdata%E5%92%8C%E5%8E%9F%E7%94%9F%E7%9A%84ajax%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB)
+  - [SEO优化中用相对路径还是用绝对路径](#seo%E4%BC%98%E5%8C%96%E4%B8%AD%E7%94%A8%E7%9B%B8%E5%AF%B9%E8%B7%AF%E5%BE%84%E8%BF%98%E6%98%AF%E7%94%A8%E7%BB%9D%E5%AF%B9%E8%B7%AF%E5%BE%84)
+  - [Npm2和Npm3+有什么区别](#npm2%E5%92%8Cnpm3%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB)
+  - [Doctype作用？严格模式与混杂模式如何区分？它们有何意义？](#doctype%E4%BD%9C%E7%94%A8%E4%B8%A5%E6%A0%BC%E6%A8%A1%E5%BC%8F%E4%B8%8E%E6%B7%B7%E6%9D%82%E6%A8%A1%E5%BC%8F%E5%A6%82%E4%BD%95%E5%8C%BA%E5%88%86%E5%AE%83%E4%BB%AC%E6%9C%89%E4%BD%95%E6%84%8F%E4%B9%89)
+  - [页面导入样式时，使用link和@import有什么区别？](#%E9%A1%B5%E9%9D%A2%E5%AF%BC%E5%85%A5%E6%A0%B7%E5%BC%8F%E6%97%B6%E4%BD%BF%E7%94%A8link%E5%92%8Cimport%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB)
+  - [如何区分HTML和HTML5？](#%E5%A6%82%E4%BD%95%E5%8C%BA%E5%88%86html%E5%92%8Chtml5)
+  - [HTML5的离线储存怎么使用，工作原理能不能解释一下？](#html5%E7%9A%84%E7%A6%BB%E7%BA%BF%E5%82%A8%E5%AD%98%E6%80%8E%E4%B9%88%E4%BD%BF%E7%94%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E8%83%BD%E4%B8%8D%E8%83%BD%E8%A7%A3%E9%87%8A%E4%B8%80%E4%B8%8B)
+  - [用纯CSS创建一个三角形的原理是什么？](#%E7%94%A8%E7%BA%AFcss%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E4%B8%89%E8%A7%92%E5%BD%A2%E7%9A%84%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88)
+  - [请指出以下代码的区别：function Person(){}、var person = Person()、var person = new Person()？](#%E8%AF%B7%E6%8C%87%E5%87%BA%E4%BB%A5%E4%B8%8B%E4%BB%A3%E7%A0%81%E7%9A%84%E5%8C%BA%E5%88%ABfunction-personvar-person--personvar-person--new-person)
+  - [请解释变量声明提升 (hoisting)。](#%E8%AF%B7%E8%A7%A3%E9%87%8A%E5%8F%98%E9%87%8F%E5%A3%B0%E6%98%8E%E6%8F%90%E5%8D%87-hoisting)
+  - [面试中查考的Web安全问题](#%E9%9D%A2%E8%AF%95%E4%B8%AD%E6%9F%A5%E8%80%83%E7%9A%84web%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98)
+  - [什么是 CRP,即关键渲染路径(Critical Rendering Path)? 如何优化 ?](#%E4%BB%80%E4%B9%88%E6%98%AF-crp%E5%8D%B3%E5%85%B3%E9%94%AE%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84critical-rendering-path-%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96-)
   - [继承有哪些方法](#%E7%BB%A7%E6%89%BF%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B9%E6%B3%95)
   - [如何准确判断一个对象是数组](#%E5%A6%82%E4%BD%95%E5%87%86%E7%A1%AE%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1%E6%98%AF%E6%95%B0%E7%BB%84)
   - [如何理解作用域链](#%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE)
@@ -27,6 +63,7 @@
   - [HTML的盒子模型有哪些构成，盒子模型有哪几种，默认的是哪一种](#html%E7%9A%84%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B%E6%9C%89%E5%93%AA%E4%BA%9B%E6%9E%84%E6%88%90%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B%E6%9C%89%E5%93%AA%E5%87%A0%E7%A7%8D%E9%BB%98%E8%AE%A4%E7%9A%84%E6%98%AF%E5%93%AA%E4%B8%80%E7%A7%8D)
   - [浮动元素有没有什么特征](#%E6%B5%AE%E5%8A%A8%E5%85%83%E7%B4%A0%E6%9C%89%E6%B2%A1%E6%9C%89%E4%BB%80%E4%B9%88%E7%89%B9%E5%BE%81)
   - [清除浮动的所有方法](#%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8%E7%9A%84%E6%89%80%E6%9C%89%E6%96%B9%E6%B3%95)
+  - [zoom:1的清除浮动原理?](#zoom1%E7%9A%84%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8%E5%8E%9F%E7%90%86)
   - [cookie有哪些特征](#cookie%E6%9C%89%E5%93%AA%E4%BA%9B%E7%89%B9%E5%BE%81)
   - [cookie的其他解决方案](#cookie%E7%9A%84%E5%85%B6%E4%BB%96%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88)
     - [Cookie 和 Session 的区别](#cookie-%E5%92%8C-session-%E7%9A%84%E5%8C%BA%E5%88%AB)
@@ -218,10 +255,8 @@
   - [为什么 JS 阻塞页面加载 ?](#%E4%B8%BA%E4%BB%80%E4%B9%88-js-%E9%98%BB%E5%A1%9E%E9%A1%B5%E9%9D%A2%E5%8A%A0%E8%BD%BD-)
   - [css 加载会造成阻塞吗 ？](#css-%E5%8A%A0%E8%BD%BD%E4%BC%9A%E9%80%A0%E6%88%90%E9%98%BB%E5%A1%9E%E5%90%97-)
   - [DOMContentLoaded 与 load 的区别 ?](#domcontentloaded-%E4%B8%8E-load-%E7%9A%84%E5%8C%BA%E5%88%AB-)
-  - [什么是 CRP,即关键渲染路径(Critical Rendering Path)? 如何优化 ?](#%E4%BB%80%E4%B9%88%E6%98%AF-crp%E5%8D%B3%E5%85%B3%E9%94%AE%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84critical-rendering-path-%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96-)
   - [defer 和 async 的区别 ?](#defer-%E5%92%8C-async-%E7%9A%84%E5%8C%BA%E5%88%AB-)
   - [谈谈浏览器的回流与重绘](#%E8%B0%88%E8%B0%88%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E5%9B%9E%E6%B5%81%E4%B8%8E%E9%87%8D%E7%BB%98)
-  - [什么是渲染层合并 (Composite) ?](#%E4%BB%80%E4%B9%88%E6%98%AF%E6%B8%B2%E6%9F%93%E5%B1%82%E5%90%88%E5%B9%B6-composite-)
   - [dns解析的具体过程](#dns%E8%A7%A3%E6%9E%90%E7%9A%84%E5%85%B7%E4%BD%93%E8%BF%87%E7%A8%8B)
   - [new String('a') 和 'a' 是一样的么?](#new-stringa-%E5%92%8C-a-%E6%98%AF%E4%B8%80%E6%A0%B7%E7%9A%84%E4%B9%88)
   - [JSBridge原理是什么？如何设计一个JSBridge？](#jsbridge%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AAjsbridge)
@@ -232,38 +267,6 @@
   - [介绍Service Worker](#%E4%BB%8B%E7%BB%8Dservice-worker)
   - [介绍CSS3中Position:sticky](#%E4%BB%8B%E7%BB%8Dcss3%E4%B8%ADpositionsticky)
   - [a标签默认事件禁掉之后做了什么才实现了跳转](#a%E6%A0%87%E7%AD%BE%E9%BB%98%E8%AE%A4%E4%BA%8B%E4%BB%B6%E7%A6%81%E6%8E%89%E4%B9%8B%E5%90%8E%E5%81%9A%E4%BA%86%E4%BB%80%E4%B9%88%E6%89%8D%E5%AE%9E%E7%8E%B0%E4%BA%86%E8%B7%B3%E8%BD%AC)
-  - [使用import时，Webpack对node_modules里的依赖会做什么](#%E4%BD%BF%E7%94%A8import%E6%97%B6webpack%E5%AF%B9node_modules%E9%87%8C%E7%9A%84%E4%BE%9D%E8%B5%96%E4%BC%9A%E5%81%9A%E4%BB%80%E4%B9%88)
-  - [Http报文的请求会有几个部分](#http%E6%8A%A5%E6%96%87%E7%9A%84%E8%AF%B7%E6%B1%82%E4%BC%9A%E6%9C%89%E5%87%A0%E4%B8%AA%E9%83%A8%E5%88%86)
-  - [介绍AST（Abstract Syntax Tree）抽象语法树](#%E4%BB%8B%E7%BB%8Dastabstract-syntax-tree%E6%8A%BD%E8%B1%A1%E8%AF%AD%E6%B3%95%E6%A0%91)
-  - [ES6中的Map和原生的对象有什么区别](#es6%E4%B8%AD%E7%9A%84map%E5%92%8C%E5%8E%9F%E7%94%9F%E7%9A%84%E5%AF%B9%E8%B1%A1%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB)
-  - [JS里垃圾回收机制是什么，常用的是哪种，怎么处理的](#js%E9%87%8C%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6%E6%98%AF%E4%BB%80%E4%B9%88%E5%B8%B8%E7%94%A8%E7%9A%84%E6%98%AF%E5%93%AA%E7%A7%8D%E6%80%8E%E4%B9%88%E5%A4%84%E7%90%86%E7%9A%84)
-  - [小程序里面开页面最多是多少](#%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%87%8C%E9%9D%A2%E5%BC%80%E9%A1%B5%E9%9D%A2%E6%9C%80%E5%A4%9A%E6%98%AF%E5%A4%9A%E5%B0%91)
-  - [Webpack如何配Sass，需要配哪些Loader](#webpack%E5%A6%82%E4%BD%95%E9%85%8Dsass%E9%9C%80%E8%A6%81%E9%85%8D%E5%93%AA%E4%BA%9Bloader)
-  - [配CSS需要哪些Loader](#%E9%85%8Dcss%E9%9C%80%E8%A6%81%E5%93%AA%E4%BA%9Bloader)
-  - [Div垂直水平居中（Flex、绝对定位）](#div%E5%9E%82%E7%9B%B4%E6%B0%B4%E5%B9%B3%E5%B1%85%E4%B8%ADflex%E7%BB%9D%E5%AF%B9%E5%AE%9A%E4%BD%8D)
-  - [上下固定，中间滚动布局如何实现](#%E4%B8%8A%E4%B8%8B%E5%9B%BA%E5%AE%9A%E4%B8%AD%E9%97%B4%E6%BB%9A%E5%8A%A8%E5%B8%83%E5%B1%80%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0)
-  - [盒子模型，以及标准情况和IE下的区别](#%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B%E4%BB%A5%E5%8F%8A%E6%A0%87%E5%87%86%E6%83%85%E5%86%B5%E5%92%8Cie%E4%B8%8B%E7%9A%84%E5%8C%BA%E5%88%AB)
-  - [如何实现new](#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0new)
-  - [Prototype和Proto区别](#prototype%E5%92%8Cproto%E5%8C%BA%E5%88%AB)
-  - [em和px的区别](#em%E5%92%8Cpx%E7%9A%84%E5%8C%BA%E5%88%AB)
-  - [如何去除url中的#号](#%E5%A6%82%E4%BD%95%E5%8E%BB%E9%99%A4url%E4%B8%AD%E7%9A%84%E5%8F%B7)
-  - [Webpack和Gulp的优缺点](#webpack%E5%92%8Cgulp%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9)
-  - [base64为什么能提升性能，缺点](#base64%E4%B8%BA%E4%BB%80%E4%B9%88%E8%83%BD%E6%8F%90%E5%8D%87%E6%80%A7%E8%83%BD%E7%BC%BA%E7%82%B9)
-  - [数据类型分别存在哪里](#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%88%86%E5%88%AB%E5%AD%98%E5%9C%A8%E5%93%AA%E9%87%8C)
-  - [垃圾回收时栈和堆的区别](#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%97%B6%E6%A0%88%E5%92%8C%E5%A0%86%E7%9A%84%E5%8C%BA%E5%88%AB)
-  - [打包时Hash码是怎么生成的](#%E6%89%93%E5%8C%85%E6%97%B6hash%E7%A0%81%E6%98%AF%E6%80%8E%E4%B9%88%E7%94%9F%E6%88%90%E7%9A%84)
-  - [webpack中hash、chunkhash和contenthash三者的区别?](#webpack%E4%B8%ADhashchunkhash%E5%92%8Ccontenthash%E4%B8%89%E8%80%85%E7%9A%84%E5%8C%BA%E5%88%AB)
-  - [formData和原生的Ajax有什么区别](#formdata%E5%92%8C%E5%8E%9F%E7%94%9F%E7%9A%84ajax%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB)
-  - [SEO优化中用相对路径还是用绝对路径](#seo%E4%BC%98%E5%8C%96%E4%B8%AD%E7%94%A8%E7%9B%B8%E5%AF%B9%E8%B7%AF%E5%BE%84%E8%BF%98%E6%98%AF%E7%94%A8%E7%BB%9D%E5%AF%B9%E8%B7%AF%E5%BE%84)
-  - [Npm2和Npm3+有什么区别](#npm2%E5%92%8Cnpm3%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB)
-  - [Doctype作用？严格模式与混杂模式如何区分？它们有何意义？](#doctype%E4%BD%9C%E7%94%A8%E4%B8%A5%E6%A0%BC%E6%A8%A1%E5%BC%8F%E4%B8%8E%E6%B7%B7%E6%9D%82%E6%A8%A1%E5%BC%8F%E5%A6%82%E4%BD%95%E5%8C%BA%E5%88%86%E5%AE%83%E4%BB%AC%E6%9C%89%E4%BD%95%E6%84%8F%E4%B9%89)
-  - [页面导入样式时，使用link和@import有什么区别？](#%E9%A1%B5%E9%9D%A2%E5%AF%BC%E5%85%A5%E6%A0%B7%E5%BC%8F%E6%97%B6%E4%BD%BF%E7%94%A8link%E5%92%8Cimport%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB)
-  - [如何区分HTML和HTML5？](#%E5%A6%82%E4%BD%95%E5%8C%BA%E5%88%86html%E5%92%8Chtml5)
-  - [HTML5的离线储存怎么使用，工作原理能不能解释一下？](#html5%E7%9A%84%E7%A6%BB%E7%BA%BF%E5%82%A8%E5%AD%98%E6%80%8E%E4%B9%88%E4%BD%BF%E7%94%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E8%83%BD%E4%B8%8D%E8%83%BD%E8%A7%A3%E9%87%8A%E4%B8%80%E4%B8%8B)
-  - [用纯CSS创建一个三角形的原理是什么？](#%E7%94%A8%E7%BA%AFcss%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E4%B8%89%E8%A7%92%E5%BD%A2%E7%9A%84%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88)
-  - [请指出以下代码的区别：function Person(){}、var person = Person()、var person = new Person()？](#%E8%AF%B7%E6%8C%87%E5%87%BA%E4%BB%A5%E4%B8%8B%E4%BB%A3%E7%A0%81%E7%9A%84%E5%8C%BA%E5%88%ABfunction-personvar-person--personvar-person--new-person)
-  - [请解释变量声明提升 (hoisting)。](#%E8%AF%B7%E8%A7%A3%E9%87%8A%E5%8F%98%E9%87%8F%E5%A3%B0%E6%98%8E%E6%8F%90%E5%8D%87-hoisting)
-  - [面试中查考的Web安全问题](#%E9%9D%A2%E8%AF%95%E4%B8%AD%E6%9F%A5%E8%80%83%E7%9A%84web%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -348,8 +351,321 @@ TCP 支持错误重传机制
 TCP 支持拥塞控制，能够在网络拥堵的情况下延迟发送    
 TCP 能够提供错误校验和，甄别有害的数据包  
 ![UDP和TCP的区别](https://mmbiz.qpic.cn/mmbiz_png/libYRuvULTdUPX8o1HyXqaaxrG5kPIzyDcUC1xOPDkPMCnPWX4DutTkGW3ooiaoEl8yoyPwcrLlkB8h5wlhMNqmw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)   
+
+
+
+## requireJS的核心原理是什么？（如何动态加载的？如何避免多次加载的？如何 缓存的？）   
+require函数实现用一句话概括：   
+依次加载require的模块，然后监测script的onload事件，判断所有模块加载成功，执行require的callback， 如果只带一个参数且不是数组，就是加载成功后return 模块。    
+
+require作为主函数来引入我们的“模块”，require会从自身的的存储中去查找对应的defined模块   
+核心是 js 的加载模块，通过正则匹配模块以及模块的依赖关系，保证文件加载的先后顺序，根据文件的路径对加载过的文件做了缓存    
+使用回调函数来解决模块加载的问题。    
+requireJS是使用创建script元素，通过指定script元素的src属性来实现加载模块的    
+## 浏览器是怎么对HTML5的离线储存资源进行管理和加载的呢？    
+  在线的情况下，浏览器发现html头部有manifest属性，它会请求manifest文件，如果是第一次访问app，那么浏览器就会根据manifest文件的内容下载相应的资源并且进行离线存储。   
+  如果已经访问过app并且资源已经离线存储了，那么浏览器就会使用离线的资源加载页面，然后浏览器会对比新的manifest文件与旧的manifest文件，如果文件没有发生改变，就不做任何操作，如果文件改变了，那么就会重新下载文件中的资源并进行离线存储。   
+  离线的情况下，浏览器就直接使用离线存储的资源。    
+
+## 什么是渲染层合并 (Composite) ?
+渲染层合并,对于页面中 DOM 元素的绘制(Paint)是在多个层上进行的。
+
+在每个层上完成绘制过程之后,浏览器会将绘制的位图发送给 GPU 绘制到屏幕上,将所有层按照合理的顺序合并成一个图层,然后在屏幕上呈现。
+
+对于有位置重叠的元素的页面,这个过程尤其重要,因为一旦图层的合并顺序出错,将会导致元素显示异常。
+
+composite
+
+RenderLayers 渲染层,这是负责对应 DOM 子树。
+
+GraphicsLayers 图形层,这是负责对应 RenderLayers 子树。
+
+RenderObjects 保持了树结构,一个 RenderObjects 知道如何绘制一个 node 的内容, 他通过向一个绘图上下文（GraphicsContext）发出必要的绘制调用来绘制 nodes。
+
+每个 GraphicsLayer 都有一个 GraphicsContext,GraphicsContext 会负责输出该层的位图,位图是存储在共享内存中,作为纹理上传到 GPU 中,最后由 GPU 将多个位图进行合成,然后 draw 到屏幕上,此时,我们的页面也就展现到了屏幕上。
+
+GraphicsContext 绘图上下文的责任就是向屏幕进行像素绘制(这个过程是先把像素级的数据写入位图中,然后再显示到显示器),在 chrome 里,绘图上下文是包裹了的 Skia（chrome 自己的 2d 图形绘制库）
+
+某些特殊的渲染层会被认为是合成层（Compositing Layers）,合成层拥有单独的 GraphicsLayer,而其他不是合成层的渲染层,则和其第一个拥有 GraphicsLayer 父层公用一个。
+
+合成层的优点
+一旦 renderLayer 提升为了合成层就会有自己的绘图上下文,并且会开启硬件加速,有利于性能提升。
+
+合成层的位图,会交由 GPU 合成,比 CPU 处理要快 (提升到合成层后合成层的位图会交 GPU 处理,但请注意,仅仅只是合成的处理（把绘图上下文的位图输出进行组合）需要用到 GPU,生成合成层的位图处理（绘图上下文的工作）是需要 CPU。)
+
+当需要 repaint 时,只需要 repaint 本身,不会影响到其他的层 (当需要 repaint 的时候可以只 repaint 本身,不影响其他层,但是 paint 之前还有 style, layout,那就意味着即使合成层只是 repaint 了自己,但 style 和 layout 本身就很占用时间。)
+
+对于 transform 和 opacity 效果,不会触发 layout 和 paint (仅仅是 transform 和 opacity 不会引发 layout 和 paint,其他的属性不确定。)
+
+一般一个元素开启硬件加速后会变成合成层,可以独立于普通文档流中,改动后可以避免整个页面重绘,提升性能。
+
+注意不能滥用 GPU 加速,一定要分析其实际性能表现。因为 GPU 加速创建渲染层是有代价的,每创建一个新的渲染层,就意味着新的内存分配和更复杂的层的管理。并且在移动端 GPU 和 CPU 的带宽有限制,创建的渲染层过多时,合成也会消耗跟多的时间,随之而来的就是耗电更多,内存占用更多。过多的渲染层来带的开销而对页面渲染性能产生的影响,甚至远远超过了它在性能改善上带来的好处。
 ## Promise中的ajax 可以try catch 到么？  
-try..catch..虽然能捕获错误，但是不能捕获异步的异常    
+try..catch..虽然能捕获错误，但是不能捕获异步的异常  
+## 使用import时，Webpack对node_modules里的依赖会做什么   
+在遇到导入语句时， Webpack 会做以下两件事：   
+1. 根据导入语句去寻找对应的要导入的文件。例如 require ('react ’）导入语句对应的文件是.／node modules/react/react.js, require('./utils.js')对应的文件是./util.js.    
+2. 根据找到的要导入的文件的后缀，使用配置中的 Loader 去处理文件 例如使
+开发的 JavaScript 文件需要使用 babel-loader 处理.  
+## Http报文的请求会有几个部分       
+一个HTTP请求报文由请求行（request line）、请求头部（header）、空行和请求数据4个部分组成.       
+## 介绍AST（Abstract Syntax Tree）抽象语法树       
+抽象语法树（abstract syntax tree或者缩写为AST），或者语法树（syntax tree），是源代码的抽象语法结构的树状表现形式，这里特指编程语言的源代码。
+常见的几种用途：    
+代码语法的检查、代码风格的检查、代码的格式化、代码的高亮、代码错误提示、代码自动补全等等      
+如JSLint、JSHint对代码错误或风格的检查，发现一些潜在的错误    
+IDE的错误提示、格式化、高亮、自动补全等等   
+代码混淆压缩    
+UglifyJS2等   
+优化变更代码，改变代码结构使达到想要的结构    
+代码打包工具webpack、rollup等等   
+CommonJS、AMD、CMD、UMD等代码规范之间的转化     
+CoffeeScript、TypeScript、JSX等转化为原生Javascript   
+
+## ES6中的Map和原生的对象有什么区别   
+Object的键的类型是字符串; 
+Map的键的类型是 可以是任意类型; 
+Object获取键值使用Object.keys(返回数组); 
+Map获取键值使用 map变量.keys() (返回迭代器)。         
+## JS里垃圾回收机制是什么，常用的是哪种，怎么处理的   
+原理：垃圾收集器会定期（周期性）找出那些不在继续使用的变量，然后释放其内存。
+常用的标记清除法：垃圾回收器在运行时候会给存储在内存中中的所有变量都加上标记。然后它会去掉环境中的变量以及被环境中的变量引用的变量的标记（闭包）。  
+引用计数法:跟踪记录每个值被引用的次数.    
+
+## 小程序里面开页面最多是多少     
+在微信小程序中打开的页面不能超过10个，达到10个页面后，就不能再打开新的页面。           
+## Webpack如何配Sass，需要配哪些Loader      
+style-loader,css-loader,sass-loader       
+## 配CSS需要哪些Loader    
+style-loader,css-loader        
+## Div垂直水平居中（Flex、绝对定位）   
+``` html
+<div style="display: flex;align-items:center;justify-content:center;border:1px solid red;height:200px;">
+<div style=" width: 50px;height: 40px;border: 1px solid #00C1B3;"></div>
+</div>  
+
+```
+      
+## 上下固定，中间滚动布局如何实现     
+```html
+<div style="height:200px; display: flex;flex-direction: column;">
+<div style="height:20px;background:pink;">22</div> 
+<div style="background:orange;flex:1;">33</div>
+<div style="height:20px;background:pink;">222</div>
+</div>
+```      
+## 盒子模型，以及标准情况和IE下的区别    
+IE 盒子模型的范围也包括 margin、border、padding、content，和标准 W3C 盒子模型不同的是：IE 盒子模型的 content 部分包含了 border 和 pading。  
+## 如何实现new  
+它创建了一个全新的对象。    
+它会被执行[[Prototype]]（也就是__proto__）链接。 res.__proto__ = func.prototype;    
+它使this指向新创建的对象。    
+通过new创建的每个对象将最终被[[Prototype]]链接到这个函数的prototype对象上。 apply
+如果函数没有返回对象类型Object(包含Functoin, Array, Date, RegExg, Error)，
+那么new表达式中的函数调用将返回该对象引用。
+```js
+function New(fn) {
+  let res={};
+  res.__proto__ = fn.prototype;
+  fn.apply(res,arguments[1]);
+  return res;
+}    
+```    
+## Prototype和Proto区别   
+__proto__可以理解为"构造器的原型"    
+``` 
+__proto__===constructor.prototype
+```   
+## em和px的区别    
+px像素(Pixel)。相对长度单位。像素px是相对于显示器屏幕分辨率而言的。   
+em是相对长度单位。相对于当前对象内文本的字体尺寸。如当前对行内文本的字体尺寸未被人为设置，则相对于浏览器的默认字体尺寸。      
+## 如何去除url中的#号       
+使用history模式.     
+URL中#号(井号)的作用：  
+1. 页面定位符
+比如：http://www.httpwatch.com/features.htm#print ，此URL表示在页面features.htm中print的位置。浏览器读取这个URL后，会自动将print位置滚动至可视区域。    
+在页面上添加锚点的方法为：<a name=”print”></a>或使用<div id=”print” >。
+2. #号后面的数据不会发送到HTTP请求中。  
+3. 位于#号后面的字符都是位置标识符。  
+4. 改变#号后面的参数不会触发页面的重新加载但是会留下一个历史记录。  
+参考[URL的井号](http://www.ruanyifeng.com/blog/2011/03/url_hash.html)   
+## Webpack和Gulp的优缺点      
+gulp是一个自动化构建工具，主要用来设定程序自动处理静态资源的工作。  
+webpack是一个模块打包器。webpack 的主要目标是将 JavaScript 文件打包在一起,打包后的文件用于在浏览器中使用.   
+各自侧重点不一样。    
+## base64为什么能提升性能，缺点     
+它仅适用于非常小的图像。 Base64编码文件比原始文件大。其优势在于不必打开另一个连接并向服务器发送图像的HTTP请求。 然而，与之同时付出的代价则是 CSS 文件体积的增大。
+而 CSS 文件体积的增大意味着什么呢？意味着 CRP 的阻塞。
+CRP（Critical Rendering Path，关键渲染路径）：当浏览器从服务器接收到一个HTML页面的请求时，到屏幕上渲染出来要经过很多个步骤。浏览器完成这一系列的运行，或者说渲染出来我们常常称之为"关键渲染路径"。  
+图片不会导致关键渲染路径的阻塞，而转化为 Base64 的图片大大增加了 CSS 文件的体积，CSS 文件的体积直接影响渲染，导致用户会长时间注视空白屏幕。
+
+## 数据类型分别存在哪里
+var a = {name: "前端开发"}; var b = a; a = null那么b输出什么
+var a = {b: 1}存放在哪里
+var a = {b: {c: 1}}存放在哪里
+## 垃圾回收时栈和堆的区别   
+在栈中变量用完之后自动释放，v8堆内存分为新生代和老生代内存    
+## 打包时Hash码是怎么生成的   
+hash 字段是根据每次编译compilation的内容计算所得，也可以理解为项目总体文件的hash值。    
+## webpack中hash、chunkhash和contenthash三者的区别? 
+hash:是跟整个项目的构建相关，只要项目里有文件更改，整个项目构建的hash值都会更改，并且全部文件都共用相同的hash值.     
+chunkhash:根据不同的入口文件(Entry)进行依赖文件解析、构建对应的chunk，生成对应的哈希值。我们在生产环境里把一些公共库和程序入口文件区分开，单独打包构建，接着我们采用chunkhash的方式生成哈希值，那么只要我们不改动公共库的代码，就可以保证其哈希值不会受影响.   
+contenthash:在使用chunkhash的例子中，如果index.css被index.js引用了，那么就会共用相同的chunkhash值。但是这样子有个问题，如果index.js更改了代码，css文件就算内容没有任何改变，由于是该模块发生了改变，导致css文件会重复构建。这个时候，我们可以使用extra-text-webpack-plugin里的contenthash值，保证即使css文件所处的模块里就算其他文件内容改变，只要css文件内容不变，那么不会重复构建。   
+## formData和原生的Ajax有什么区别 
+form data 不用设置request header 类型   
+## SEO优化中用相对路径还是用绝对路径    
+(1)在绝对路径下，你的文章内容被转载或采集且对方比较懒，没有除去你加的链接，就会给你的网站增加一些外链。   
+
+(2)如果你的网站没有做301，并且你把带www和不带www的域名都解析到一个站点，可能会产生网址规范化问题。使用绝对路径，可以告诉搜索引擎你使用的是哪个版本的URL，防止搜索引擎自动选择你不想让它收录的URL版本。    
+
+(3)在绝对路径下，如果你的网页移动位置，不会影响站内链接，因为是固定的链接。   
+
+(4)绝对路径不利于测试，有规模的网站一般会有线下测试，如果网站内的链接不是动态参数，就会造成很多死链接，没办法进行测试。   
+
+(5)如果网页中链接过多，绝对路径会加大网页的体积。   
+
+(6)相对路径地址是模糊的，不具备独立性。采用绝对地址，可以有效地防止你的竞争对手镜像你的网站。     
+
+以上优缺点的对比判断出的结论是在SEO优化中相对来说绝对路径更好一些。   
+ 
+## Npm2和Npm3+有什么区别
+npm3 和 npm2 对于依赖的处理不一样了。   
+npm2所有项目依赖是嵌套关系，而npm3为了改进嵌套过多、套路过深的情况，会将所有依赖放在第二层依赖中（所有依赖只嵌套一次，彼此平行，也就是平铺的结构）    
+## Doctype作用？严格模式与混杂模式如何区分？它们有何意义？  
+声明位于位于HTML文档中的第一行，处于html标签之前。    
+告知浏览器的解析器用什么文档标准解析这个文档。DOCTYPE不存在或格式不正确会导致文档以兼容模式呈现。   
+HTML5 不基于 SGML，因此不需要对DTD进行引用，但是需要doctype来规范浏览器的行为（让浏览器按照它们应该的方式来运行）；   
+严格模式：严格模式的排版和JS运作模式是以该浏览器支持的最高标准运行。    
+混杂模式：混杂模式的页面以宽松的向后兼容的方式显示；模拟老的浏览器的行为以防止站点无法工作。    
+怪异模式：怪异模式则是使用浏览器自己的方式来解析执行代码。    
+## 页面导入样式时，使用link和@import有什么区别？  
+1. link是XHTML标签，除了加载CSS外，还能用于定义RSS, 定义rel连接属性等作用；而@import是CSS提供的，只能用于加载CSS;   
+2. link引用CSS时，在页面载入时同时加载；@import需要页面网页完全载入以后加载。   
+3. link是XHTML标签，无兼容问题；@import是在CSS2.1提出的，低版本(IE5及以下)的浏览器不支持。    
+4. link支持使用Javascript控制DOM去改变样式；而@import不支持。
+
+## 如何区分HTML和HTML5？  
+最明显的在文档类型声明上    
+html:
+```html
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "&nbsp;&nbsp;<html xmlns="/>　
+````
+HTML5:
+```html
+<!DOCTYPE html>
+```
+## HTML5的离线储存怎么使用，工作原理能不能解释一下？    
+原理：HTML5的离线存储是基于一个新建的.appcache文件的缓存机制(不是存储技术)，    
+通过这个文件上的解析清单离线存储资源，    
+这些资源就会像cookie一样被存储了下来。之后当网络在处于离线状态下时，浏览器会通过被离线存储的数据进行页面展示。    
+
+如何使用：    
+1、页面头部像下面一样加入一个manifest的属性;    
+2、在cache.manifest文件的编写离线存储的资源;        
+CACHE MANIFEST
+#v0.11
+CACHE:
+js/app.js
+css/style.css
+NETWORK:
+resourse/logo.png
+FALLBACK:
+/ /offline.html
+3、在离线状态时，操作window.applicationCache进行需求实现。    
+## 用纯CSS创建一个三角形的原理是什么？    
+把上、左、右三条边隐藏掉（颜色设为 transparent）    
+```css
+  #demo {
+    width: 0;
+    height: 0;
+    border-width: 20px;
+    border-style: solid;
+    border-color: transparent transparent red transparent;
+  }
+```
+## 请指出以下代码的区别：function Person(){}、var person = Person()、var person = new Person()？
+## 请解释变量声明提升 (hoisting)。  
+js引擎会在正式执行代码之前进行一次"预编译"，预编译简单理解就是在内存中开辟一些空间，    
+存放一些变量和函数。    
+具体步骤如下：        
+（1）页面创建GO全局对象（Global Object）对象（window对象）。    
+（2）加载第一个脚本文件。   
+（3）脚本加载完毕后，进行语法分析。   
+（4）开始预编译   
+查找函数声明，作为GO属性，值赋予函数体（函数声明优先）    
+查找变量声明，作为GO属性，值赋予undefined   
+（5）解释执行代码（直到执行函数b，该部分也被叫做词法分析）    
+创建AO活动对象（Active Object）   
+查找形参和变量声明，值赋予undefined   
+实参值赋给形参    
+查找函数声明，值赋给函数体    
+解释执行函数中的代码    
+（6）第一个脚本文件执行完毕，加载第二个脚本文件   
+（7）第二个文件加载完毕后，进行语法分析   
+（8）开始预编译   
+重复编译步骤        
+与解析机制使得变量提升（Hoisting），从字面上理解就是变量和函数的声明会移动到函数或者全局代码的开头位置。    
+## 面试中查考的Web安全问题
+参考[Web项目开发中常见安全问题及防范](https://www.cnblogs.com/aiandbigdata/p/10057659.html)   
+SQL 注入    
+XSS：跨站脚本攻击  
+XSS是注入恶意的javascript代码，然后由受害者浏览器执行。这是对应用程序用户的攻击，而不是系统本身。   
+针对XSS的常见防御措施是什么？在代码符号不合适的情况下进行输入验证，但对输出进行清除更为重要。     
+CSRF: 跨站请求伪造    
+如何防御CSRF？一种缓解措施是使用Cookie的双重提交，其中将令牌分配给Cookie并作为请求参数包括在内，并且任何不匹配都表示请求不是来自用户的，因为请求将始终以正确的Cookie发送，但是攻击者无法生成Cookie用作请求参数。另一种方法是生成随机令牌，并将其作为参数包含在每个请求中。令牌已由服务器验证，因此攻击者不应将其包括在恶意CSRF攻击中。在有效的情况下，如果受保护的站点链接到外部URL，则可以在多个点公开令牌，包括在浏览器历史记录，HTTP日志文件，记录HTTP请求第一行的网络设备和引荐来源标头中。     
+中间人攻击    
+DDoS    
+点击劫持      
+
+## 什么是 CRP,即关键渲染路径(Critical Rendering Path)? 如何优化 ?
+关键渲染路径是浏览器将 HTML CSS JavaScript 转换为在屏幕上呈现的像素内容所经历的一系列步骤。也就是我们上面说的浏览器渲染流程。
+
+为尽快完成首次渲染,我们需要最大限度减小以下三种可变因素:
+
+关键资源的数量: 可能阻止网页首次渲染的资源。
+
+关键路径长度: 获取所有关键资源所需的往返次数或总时间。
+
+关键字节: 实现网页首次渲染所需的总字节数,等同于所有关键资源传送文件大小的总和。
+
+1. 优化 DOM
+删除不必要的代码和注释包括空格,尽量做到最小化文件。
+
+可以利用 GZIP 压缩文件。
+
+结合 HTTP 缓存文件。
+
+2. 优化 CSSOM
+缩小、压缩以及缓存同样重要,对于 CSSOM 我们前面重点提过了它会阻止页面呈现,因此我们可以从这方面考虑去优化。
+
+减少关键 CSS 元素数量
+
+当我们声明样式表时,请密切关注媒体查询的类型,它们极大地影响了 CRP 的性能 。
+
+3. 优化 JavaScript
+当浏览器遇到 script 标记时,会阻止解析器继续操作,直到 CSSOM 构建完毕,JavaScript 才会运行并继续完成 DOM 构建过程。
+
+async: 当我们在 script 标记添加 async 属性以后,浏览器遇到这个 script 标记时会继续解析 DOM,同时脚本也不会被 CSSOM 阻止,即不会阻止 CRP。
+
+defer: 与 async 的区别在于,脚本需要等到文档解析后（ DOMContentLoaded 事件前）执行,而 async 允许脚本在文档解析时位于后台运行（两者下载的过程不会阻塞 DOM,但执行会）。
+
+当我们的脚本不会修改 DOM 或 CSSOM 时,推荐使用 async 。
+
+预加载 —— preload & prefetch 。
+
+DNS 预解析 —— dns-prefetch 。
+
+总结
+分析并用 关键资源数 关键字节数 关键路径长度 来描述我们的 CRP 。
+
+最小化关键资源数: 消除它们（内联）、推迟它们的下载（defer）或者使它们异步解析（async）等等 。
+
+优化关键字节数（缩小、压缩）来减少下载时间 。
+
+优化加载剩余关键资源的顺序: 让关键资源（CSS）尽早下载以减少 CRP 长度 。
+
+前端性能优化之关键路径渲染优化
+
 ## 继承有哪些方法   
 原型继承    
 构造继承    
@@ -435,6 +751,16 @@ float造成的影响：
 
 1. clear:both
 2. overflow:hidden  
+3. zoom:1   
+
+## zoom:1的清除浮动原理?    
+清除浮动，触发hasLayout；   
+Zoom属性是IE浏览器的专有属性，它可以设置或检索对象的缩放比例。解决ie下比较奇葩的bug。   
+如外边距（margin）的重叠，浮动清除，触发ie的haslayout属性等。   
+当设置了zoom的值之后，所设置的元素就会就会扩大或者缩小，高度宽度就会重新计算了，这里一旦改变zoom值时其实也会发生重新渲染，运用这个原理，也就解决了ie下子元素浮动时候父元素不随着自动扩大的问题。    
+Zoom属是IE浏览器的专有属性，火狐和老版本的webkit核心的浏览器都不支持这个属性。然而，zoom现在已经被逐步标准化，出现在 CSS 3.0 规范草案中。   
+目前非ie由于不支持这个属性，它们又是通过什么属性来实现元素的缩放呢？    
+可以通过css3里面的动画属性scale进行缩放。   
 
 ## cookie有哪些特征           
 
@@ -704,7 +1030,9 @@ let和const是块级作用域，意味着它们只能在最近的一组花括号
 场景二是在if或者是for循环中声明的变量会泄漏成为全局变量。   
 
 ## 请阐述块格式化上下文（Block Formatting Context）及其工作原理。    
-
+（W3C CSS 2.1 规范中的一个概念,它是一个独立容器，决定了元素如何对其内容进行定位,以及与其他元素的关系和相互作用。）      
+一个页面是由很多个 Box 组成的,元素的类型和 display 属性,决定了这个 Box 的类型。      
+不同类型的 Box,会参与不同的 Formatting Context（决定如何渲染文档的容器）,因此Box内的元素会以不同的方式渲染,也就是说BFC内部的元素和外部的元素不会互相影响。      
 块格式上下文（BFC）是 Web 页面的可视化 CSS 渲染的部分，是块级盒布局发生的区域，也是浮动元素与其他元素交互的区域。
 一个 HTML 盒（Box）满足以下任意一条，会创建块格式化上下文：
 float的值不是none.
@@ -2113,54 +2441,7 @@ DOM 解析和 CSS 解析是两个并行的进程,所以 CSS 加载不会阻塞 D
 
 DOMContentLoaded -> load。
 
-## 什么是 CRP,即关键渲染路径(Critical Rendering Path)? 如何优化 ?
-关键渲染路径是浏览器将 HTML CSS JavaScript 转换为在屏幕上呈现的像素内容所经历的一系列步骤。也就是我们上面说的浏览器渲染流程。
 
-为尽快完成首次渲染,我们需要最大限度减小以下三种可变因素:
-
-关键资源的数量: 可能阻止网页首次渲染的资源。
-
-关键路径长度: 获取所有关键资源所需的往返次数或总时间。
-
-关键字节: 实现网页首次渲染所需的总字节数,等同于所有关键资源传送文件大小的总和。
-
-1. 优化 DOM
-删除不必要的代码和注释包括空格,尽量做到最小化文件。
-
-可以利用 GZIP 压缩文件。
-
-结合 HTTP 缓存文件。
-
-2. 优化 CSSOM
-缩小、压缩以及缓存同样重要,对于 CSSOM 我们前面重点提过了它会阻止页面呈现,因此我们可以从这方面考虑去优化。
-
-减少关键 CSS 元素数量
-
-当我们声明样式表时,请密切关注媒体查询的类型,它们极大地影响了 CRP 的性能 。
-
-3. 优化 JavaScript
-当浏览器遇到 script 标记时,会阻止解析器继续操作,直到 CSSOM 构建完毕,JavaScript 才会运行并继续完成 DOM 构建过程。
-
-async: 当我们在 script 标记添加 async 属性以后,浏览器遇到这个 script 标记时会继续解析 DOM,同时脚本也不会被 CSSOM 阻止,即不会阻止 CRP。
-
-defer: 与 async 的区别在于,脚本需要等到文档解析后（ DOMContentLoaded 事件前）执行,而 async 允许脚本在文档解析时位于后台运行（两者下载的过程不会阻塞 DOM,但执行会）。
-
-当我们的脚本不会修改 DOM 或 CSSOM 时,推荐使用 async 。
-
-预加载 —— preload & prefetch 。
-
-DNS 预解析 —— dns-prefetch 。
-
-总结
-分析并用 关键资源数 关键字节数 关键路径长度 来描述我们的 CRP 。
-
-最小化关键资源数: 消除它们（内联）、推迟它们的下载（defer）或者使它们异步解析（async）等等 。
-
-优化关键字节数（缩小、压缩）来减少下载时间 。
-
-优化加载剩余关键资源的顺序: 让关键资源（CSS）尽早下载以减少 CRP 长度 。
-
-前端性能优化之关键路径渲染优化
 
 ## defer 和 async 的区别 ?
 当浏览器碰到 script 脚本的时候 :
@@ -2284,40 +2565,6 @@ Javascript
 
 对具有复杂动画的元素使用绝对定位,使它脱离文档流,否则会引起父元素及后续元素频繁回流。
 
-## 什么是渲染层合并 (Composite) ?
-渲染层合并,对于页面中 DOM 元素的绘制(Paint)是在多个层上进行的。
-
-在每个层上完成绘制过程之后,浏览器会将绘制的位图发送给 GPU 绘制到屏幕上,将所有层按照合理的顺序合并成一个图层,然后在屏幕上呈现。
-
-对于有位置重叠的元素的页面,这个过程尤其重要,因为一旦图层的合并顺序出错,将会导致元素显示异常。
-
-composite
-
-RenderLayers 渲染层,这是负责对应 DOM 子树。
-
-GraphicsLayers 图形层,这是负责对应 RenderLayers 子树。
-
-RenderObjects 保持了树结构,一个 RenderObjects 知道如何绘制一个 node 的内容, 他通过向一个绘图上下文（GraphicsContext）发出必要的绘制调用来绘制 nodes。
-
-每个 GraphicsLayer 都有一个 GraphicsContext,GraphicsContext 会负责输出该层的位图,位图是存储在共享内存中,作为纹理上传到 GPU 中,最后由 GPU 将多个位图进行合成,然后 draw 到屏幕上,此时,我们的页面也就展现到了屏幕上。
-
-GraphicsContext 绘图上下文的责任就是向屏幕进行像素绘制(这个过程是先把像素级的数据写入位图中,然后再显示到显示器),在 chrome 里,绘图上下文是包裹了的 Skia（chrome 自己的 2d 图形绘制库）
-
-某些特殊的渲染层会被认为是合成层（Compositing Layers）,合成层拥有单独的 GraphicsLayer,而其他不是合成层的渲染层,则和其第一个拥有 GraphicsLayer 父层公用一个。
-
-合成层的优点
-一旦 renderLayer 提升为了合成层就会有自己的绘图上下文,并且会开启硬件加速,有利于性能提升。
-
-合成层的位图,会交由 GPU 合成,比 CPU 处理要快 (提升到合成层后合成层的位图会交 GPU 处理,但请注意,仅仅只是合成的处理（把绘图上下文的位图输出进行组合）需要用到 GPU,生成合成层的位图处理（绘图上下文的工作）是需要 CPU。)
-
-当需要 repaint 时,只需要 repaint 本身,不会影响到其他的层 (当需要 repaint 的时候可以只 repaint 本身,不影响其他层,但是 paint 之前还有 style, layout,那就意味着即使合成层只是 repaint 了自己,但 style 和 layout 本身就很占用时间。)
-
-对于 transform 和 opacity 效果,不会触发 layout 和 paint (仅仅是 transform 和 opacity 不会引发 layout 和 paint,其他的属性不确定。)
-
-一般一个元素开启硬件加速后会变成合成层,可以独立于普通文档流中,改动后可以避免整个页面重绘,提升性能。
-
-注意不能滥用 GPU 加速,一定要分析其实际性能表现。因为 GPU 加速创建渲染层是有代价的,每创建一个新的渲染层,就意味着新的内存分配和更复杂的层的管理。并且在移动端 GPU 和 CPU 的带宽有限制,创建的渲染层过多时,合成也会消耗跟多的时间,随之而来的就是耗电更多,内存占用更多。过多的渲染层来带的开销而对页面渲染性能产生的影响,甚至远远超过了它在性能改善上带来的好处。
-
 ## dns解析的具体过程    
 DNS是应用层协议，，包括不限于HTTP和SMTP以及FTP，用于将用户提供的主机名解析为ip地址。    
 具体过程如下：  
@@ -2396,209 +2643,5 @@ Service Worker 在 Web Worker 的基础上加上了持久离线缓存能力.
 元素固定的相对偏移是相对于离它最近的具有滚动框的祖先元素，如果祖先元素都不可以滚动，那么是相对于viewport来计算元素的偏移量.                
 ## a标签默认事件禁掉之后做了什么才实现了跳转     
 click 事件，通过js来做跳转            
-## 使用import时，Webpack对node_modules里的依赖会做什么   
-在遇到导入语句时， Webpack 会做以下两件事：   
-1. 根据导入语句去寻找对应的要导入的文件。例如 require ('react ’）导入语句对应的文件是.／node modules/react/react.js, require('./utils.js')对应的文件是./util.js.    
-2. 根据找到的要导入的文件的后缀，使用配置中的 Loader 去处理文件 例如使
-开发的 JavaScript 文件需要使用 babel-loader 处理.  
-## Http报文的请求会有几个部分       
-一个HTTP请求报文由请求行（request line）、请求头部（header）、空行和请求数据4个部分组成.       
-## 介绍AST（Abstract Syntax Tree）抽象语法树       
-抽象语法树（abstract syntax tree或者缩写为AST），或者语法树（syntax tree），是源代码的抽象语法结构的树状表现形式，这里特指编程语言的源代码。
-常见的几种用途：    
-代码语法的检查、代码风格的检查、代码的格式化、代码的高亮、代码错误提示、代码自动补全等等      
-如JSLint、JSHint对代码错误或风格的检查，发现一些潜在的错误    
-IDE的错误提示、格式化、高亮、自动补全等等   
-代码混淆压缩    
-UglifyJS2等   
-优化变更代码，改变代码结构使达到想要的结构    
-代码打包工具webpack、rollup等等   
-CommonJS、AMD、CMD、UMD等代码规范之间的转化     
-CoffeeScript、TypeScript、JSX等转化为原生Javascript   
-
-## ES6中的Map和原生的对象有什么区别   
-Object的键的类型是字符串; 
-Map的键的类型是 可以是任意类型; 
-Object获取键值使用Object.keys(返回数组); 
-Map获取键值使用 map变量.keys() (返回迭代器)。         
-## JS里垃圾回收机制是什么，常用的是哪种，怎么处理的   
-原理：垃圾收集器会定期（周期性）找出那些不在继续使用的变量，然后释放其内存。
-常用的标记清除法：垃圾回收器在运行时候会给存储在内存中中的所有变量都加上标记。然后它会去掉环境中的变量以及被环境中的变量引用的变量的标记（闭包）。  
-引用计数法:跟踪记录每个值被引用的次数.    
-
-## 小程序里面开页面最多是多少     
-在微信小程序中打开的页面不能超过10个，达到10个页面后，就不能再打开新的页面。           
-## Webpack如何配Sass，需要配哪些Loader      
-style-loader,css-loader,sass-loader       
-## 配CSS需要哪些Loader    
-style-loader,css-loader        
-## Div垂直水平居中（Flex、绝对定位）   
-``` html
-<div style="display: flex;align-items:center;justify-content:center;border:1px solid red;height:200px;">
-<div style=" width: 50px;height: 40px;border: 1px solid #00C1B3;"></div>
-</div>  
-
-```
-      
-## 上下固定，中间滚动布局如何实现     
-```html
-<div style="height:200px; display: flex;flex-direction: column;">
-<div style="height:20px;background:pink;">22</div> 
-<div style="background:orange;flex:1;">33</div>
-<div style="height:20px;background:pink;">222</div>
-</div>
-```      
-## 盒子模型，以及标准情况和IE下的区别    
-IE 盒子模型的范围也包括 margin、border、padding、content，和标准 W3C 盒子模型不同的是：IE 盒子模型的 content 部分包含了 border 和 pading。  
-## 如何实现new  
-它创建了一个全新的对象。    
-它会被执行[[Prototype]]（也就是__proto__）链接。 res.__proto__ = func.prototype;    
-它使this指向新创建的对象。    
-通过new创建的每个对象将最终被[[Prototype]]链接到这个函数的prototype对象上。 apply
-如果函数没有返回对象类型Object(包含Functoin, Array, Date, RegExg, Error)，
-那么new表达式中的函数调用将返回该对象引用。
-```js
-function New(fn) {
-  let res={};
-  res.__proto__ = fn.prototype;
-  fn.apply(res,arguments[1]);
-  return res;
-}    
-```    
-## Prototype和Proto区别   
-__proto__可以理解为"构造器的原型"    
-``` 
-__proto__===constructor.prototype
-```   
-## em和px的区别    
-px像素(Pixel)。相对长度单位。像素px是相对于显示器屏幕分辨率而言的。   
-em是相对长度单位。相对于当前对象内文本的字体尺寸。如当前对行内文本的字体尺寸未被人为设置，则相对于浏览器的默认字体尺寸。      
-## 如何去除url中的#号       
-使用history模式.     
-URL中#号(井号)的作用：  
-1. 页面定位符
-比如：http://www.httpwatch.com/features.htm#print ，此URL表示在页面features.htm中print的位置。浏览器读取这个URL后，会自动将print位置滚动至可视区域。    
-在页面上添加锚点的方法为：<a name=”print”></a>或使用<div id=”print” >。
-2. #号后面的数据不会发送到HTTP请求中。  
-3. 位于#号后面的字符都是位置标识符。  
-4. 改变#号后面的参数不会触发页面的重新加载但是会留下一个历史记录。  
-参考[URL的井号](http://www.ruanyifeng.com/blog/2011/03/url_hash.html)   
-## Webpack和Gulp的优缺点      
-gulp是一个自动化构建工具，主要用来设定程序自动处理静态资源的工作。  
-webpack是一个模块打包器。webpack 的主要目标是将 JavaScript 文件打包在一起,打包后的文件用于在浏览器中使用.   
-各自侧重点不一样。    
-## base64为什么能提升性能，缺点     
-它仅适用于非常小的图像。 Base64编码文件比原始文件大。其优势在于不必打开另一个连接并向服务器发送图像的HTTP请求。 然而，与之同时付出的代价则是 CSS 文件体积的增大。
-而 CSS 文件体积的增大意味着什么呢？意味着 CRP 的阻塞。
-CRP（Critical Rendering Path，关键渲染路径）：当浏览器从服务器接收到一个HTML页面的请求时，到屏幕上渲染出来要经过很多个步骤。浏览器完成这一系列的运行，或者说渲染出来我们常常称之为"关键渲染路径"。  
-图片不会导致关键渲染路径的阻塞，而转化为 Base64 的图片大大增加了 CSS 文件的体积，CSS 文件的体积直接影响渲染，导致用户会长时间注视空白屏幕。
-
-## 数据类型分别存在哪里
-var a = {name: "前端开发"}; var b = a; a = null那么b输出什么
-var a = {b: 1}存放在哪里
-var a = {b: {c: 1}}存放在哪里
-## 垃圾回收时栈和堆的区别   
-在栈中变量用完之后自动释放，v8堆内存分为新生代和老生代内存    
-## 打包时Hash码是怎么生成的   
-hash 字段是根据每次编译compilation的内容计算所得，也可以理解为项目总体文件的hash值。    
-## webpack中hash、chunkhash和contenthash三者的区别? 
-hash:是跟整个项目的构建相关，只要项目里有文件更改，整个项目构建的hash值都会更改，并且全部文件都共用相同的hash值.     
-chunkhash:根据不同的入口文件(Entry)进行依赖文件解析、构建对应的chunk，生成对应的哈希值。我们在生产环境里把一些公共库和程序入口文件区分开，单独打包构建，接着我们采用chunkhash的方式生成哈希值，那么只要我们不改动公共库的代码，就可以保证其哈希值不会受影响.   
-contenthash:在使用chunkhash的例子中，如果index.css被index.js引用了，那么就会共用相同的chunkhash值。但是这样子有个问题，如果index.js更改了代码，css文件就算内容没有任何改变，由于是该模块发生了改变，导致css文件会重复构建。这个时候，我们可以使用extra-text-webpack-plugin里的contenthash值，保证即使css文件所处的模块里就算其他文件内容改变，只要css文件内容不变，那么不会重复构建。   
-## formData和原生的Ajax有什么区别 
-form data 不用设置request header 类型   
-## SEO优化中用相对路径还是用绝对路径    
-(1)在绝对路径下，你的文章内容被转载或采集且对方比较懒，没有除去你加的链接，就会给你的网站增加一些外链。   
-
-(2)如果你的网站没有做301，并且你把带www和不带www的域名都解析到一个站点，可能会产生网址规范化问题。使用绝对路径，可以告诉搜索引擎你使用的是哪个版本的URL，防止搜索引擎自动选择你不想让它收录的URL版本。    
-
-(3)在绝对路径下，如果你的网页移动位置，不会影响站内链接，因为是固定的链接。   
-
-(4)绝对路径不利于测试，有规模的网站一般会有线下测试，如果网站内的链接不是动态参数，就会造成很多死链接，没办法进行测试。   
-
-(5)如果网页中链接过多，绝对路径会加大网页的体积。   
-
-(6)相对路径地址是模糊的，不具备独立性。采用绝对地址，可以有效地防止你的竞争对手镜像你的网站。     
-
-以上优缺点的对比判断出的结论是在SEO优化中相对来说绝对路径更好一些。   
- 
-## Npm2和Npm3+有什么区别
-npm3 和 npm2 对于依赖的处理不一样了。   
-npm2所有项目依赖是嵌套关系，而npm3为了改进嵌套过多、套路过深的情况，会将所有依赖放在第二层依赖中（所有依赖只嵌套一次，彼此平行，也就是平铺的结构）    
-## Doctype作用？严格模式与混杂模式如何区分？它们有何意义？  
-声明位于位于HTML文档中的第一行，处于html标签之前。    
-告知浏览器的解析器用什么文档标准解析这个文档。DOCTYPE不存在或格式不正确会导致文档以兼容模式呈现。   
-HTML5 不基于 SGML，因此不需要对DTD进行引用，但是需要doctype来规范浏览器的行为（让浏览器按照它们应该的方式来运行）；   
-严格模式：严格模式的排版和JS运作模式是以该浏览器支持的最高标准运行。    
-混杂模式：混杂模式的页面以宽松的向后兼容的方式显示；模拟老的浏览器的行为以防止站点无法工作。    
-怪异模式：怪异模式则是使用浏览器自己的方式来解析执行代码。    
-## 页面导入样式时，使用link和@import有什么区别？  
-1. link是XHTML标签，除了加载CSS外，还能用于定义RSS, 定义rel连接属性等作用；而@import是CSS提供的，只能用于加载CSS;   
-2. link引用CSS时，在页面载入时同时加载；@import需要页面网页完全载入以后加载。   
-3. link是XHTML标签，无兼容问题；@import是在CSS2.1提出的，低版本(IE5及以下)的浏览器不支持。    
-4. link支持使用Javascript控制DOM去改变样式；而@import不支持。
-
-## 如何区分HTML和HTML5？  
-最明显的在文档类型声明上    
-html:
-```html
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "&nbsp;&nbsp;<html xmlns="/>　
-````
-HTML5:
-```
-<!DOCTYPE html>
-```
-## HTML5的离线储存怎么使用，工作原理能不能解释一下？    
-原理：HTML5的离线存储是基于一个新建的.appcache文件的缓存机制(不是存储技术)，    
-通过这个文件上的解析清单离线存储资源，    
-这些资源就会像cookie一样被存储了下来。之后当网络在处于离线状态下时，浏览器会通过被离线存储的数据进行页面展示。    
-
-如何使用：    
-1、页面头部像下面一样加入一个manifest的属性;    
-2、在cache.manifest文件的编写离线存储的资源;        
-CACHE MANIFEST
-#v0.11
-CACHE:
-js/app.js
-css/style.css
-NETWORK:
-resourse/logo.png
-FALLBACK:
-/ /offline.html
-3、在离线状态时，操作window.applicationCache进行需求实现。    
-## 用纯CSS创建一个三角形的原理是什么？
-## 请指出以下代码的区别：function Person(){}、var person = Person()、var person = new Person()？
-## 请解释变量声明提升 (hoisting)。  
-js引擎会在正式执行代码之前进行一次"预编译"，预编译简单理解就是在内存中开辟一些空间，    
-存放一些变量和函数。    
-具体步骤如下：        
-（1）页面创建GO全局对象（Global Object）对象（window对象）。    
-（2）加载第一个脚本文件。   
-（3）脚本加载完毕后，进行语法分析。   
-（4）开始预编译   
-查找函数声明，作为GO属性，值赋予函数体（函数声明优先）    
-查找变量声明，作为GO属性，值赋予undefined   
-（5）解释执行代码（直到执行函数b，该部分也被叫做词法分析）    
-创建AO活动对象（Active Object）   
-查找形参和变量声明，值赋予undefined   
-实参值赋给形参    
-查找函数声明，值赋给函数体    
-解释执行函数中的代码    
-（6）第一个脚本文件执行完毕，加载第二个脚本文件   
-（7）第二个文件加载完毕后，进行语法分析   
-（8）开始预编译   
-重复编译步骤        
-与解析机制使得变量提升（Hoisting），从字面上理解就是变量和函数的声明会移动到函数或者全局代码的开头位置。    
-## 面试中查考的Web安全问题
-参考[Web项目开发中常见安全问题及防范](https://www.cnblogs.com/aiandbigdata/p/10057659.html)   
-SQL 注入    
-XSS：跨站脚本攻击  
-XSS是注入恶意的javascript代码，然后由受害者浏览器执行。这是对应用程序用户的攻击，而不是系统本身。   
-针对XSS的常见防御措施是什么？在代码符号不合适的情况下进行输入验证，但对输出进行清除更为重要。     
-CSRF: 跨站请求伪造    
-如何防御CSRF？一种缓解措施是使用Cookie的双重提交，其中将令牌分配给Cookie并作为请求参数包括在内，并且任何不匹配都表示请求不是来自用户的，因为请求将始终以正确的Cookie发送，但是攻击者无法生成Cookie用作请求参数。另一种方法是生成随机令牌，并将其作为参数包含在每个请求中。令牌已由服务器验证，因此攻击者不应将其包括在恶意CSRF攻击中。在有效的情况下，如果受保护的站点链接到外部URL，则可以在多个点公开令牌，包括在浏览器历史记录，HTTP日志文件，记录HTTP请求第一行的网络设备和引荐来源标头中。     
-中间人攻击    
-DDoS    
-点击劫持
 
 
