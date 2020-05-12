@@ -347,6 +347,7 @@ function isNative(value){
 /* 22.insertRule
 我们可以通过一个选择器获得一个 NodeList（比如通过 document.querySelectorAll），并给每个元素赋予样式，
 但更有效率的方式是直接设置选择器样式 */
+
 /* 23.matchesSelector
 我们经常有验证输入数据的需求。要保证输入的是个真值，
 或者保证表单里的输入数据是有效的等一些情况。
