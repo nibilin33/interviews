@@ -38,7 +38,6 @@
   - [base64为什么能提升性能，缺点](#base64%E4%B8%BA%E4%BB%80%E4%B9%88%E8%83%BD%E6%8F%90%E5%8D%87%E6%80%A7%E8%83%BD%E7%BC%BA%E7%82%B9)
   - [数据类型分别存在哪里](#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%88%86%E5%88%AB%E5%AD%98%E5%9C%A8%E5%93%AA%E9%87%8C)
   - [垃圾回收时栈和堆的区别](#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%97%B6%E6%A0%88%E5%92%8C%E5%A0%86%E7%9A%84%E5%8C%BA%E5%88%AB)
-  - [打包时Hash码是怎么生成的](#%E6%89%93%E5%8C%85%E6%97%B6hash%E7%A0%81%E6%98%AF%E6%80%8E%E4%B9%88%E7%94%9F%E6%88%90%E7%9A%84)
   - [webpack中hash、chunkhash和contenthash三者的区别?](#webpack%E4%B8%ADhashchunkhash%E5%92%8Ccontenthash%E4%B8%89%E8%80%85%E7%9A%84%E5%8C%BA%E5%88%AB)
   - [formData和原生的Ajax有什么区别](#formdata%E5%92%8C%E5%8E%9F%E7%94%9F%E7%9A%84ajax%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB)
   - [SEO优化中用相对路径还是用绝对路径](#seo%E4%BC%98%E5%8C%96%E4%B8%AD%E7%94%A8%E7%9B%B8%E5%AF%B9%E8%B7%AF%E5%BE%84%E8%BF%98%E6%98%AF%E7%94%A8%E7%BB%9D%E5%AF%B9%E8%B7%AF%E5%BE%84)
@@ -54,12 +53,10 @@
   - [什么是 CRP,即关键渲染路径(Critical Rendering Path)? 如何优化 ?](#%E4%BB%80%E4%B9%88%E6%98%AF-crp%E5%8D%B3%E5%85%B3%E9%94%AE%E6%B8%B2%E6%9F%93%E8%B7%AF%E5%BE%84critical-rendering-path-%E5%A6%82%E4%BD%95%E4%BC%98%E5%8C%96-)
   - [继承有哪些方法](#%E7%BB%A7%E6%89%BF%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B9%E6%B3%95)
   - [如何准确判断一个对象是数组](#%E5%A6%82%E4%BD%95%E5%87%86%E7%A1%AE%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1%E6%98%AF%E6%95%B0%E7%BB%84)
-  - [如何理解作用域链](#%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE)
   - [浏览器解析渲染页面过程](#%E6%B5%8F%E8%A7%88%E5%99%A8%E8%A7%A3%E6%9E%90%E6%B8%B2%E6%9F%93%E9%A1%B5%E9%9D%A2%E8%BF%87%E7%A8%8B)
   - [webpack打包之后的代码报错了，怎么找到报错代码在哪](#webpack%E6%89%93%E5%8C%85%E4%B9%8B%E5%90%8E%E7%9A%84%E4%BB%A3%E7%A0%81%E6%8A%A5%E9%94%99%E4%BA%86%E6%80%8E%E4%B9%88%E6%89%BE%E5%88%B0%E6%8A%A5%E9%94%99%E4%BB%A3%E7%A0%81%E5%9C%A8%E5%93%AA)
   - [什么是SourceMap](#%E4%BB%80%E4%B9%88%E6%98%AFsourcemap)
   - [怎么设计一个组件](#%E6%80%8E%E4%B9%88%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E7%BB%84%E4%BB%B6)
-  - [快速的让一个数组乱序](#%E5%BF%AB%E9%80%9F%E7%9A%84%E8%AE%A9%E4%B8%80%E4%B8%AA%E6%95%B0%E7%BB%84%E4%B9%B1%E5%BA%8F)
   - [HTML的盒子模型有哪些构成，盒子模型有哪几种，默认的是哪一种](#html%E7%9A%84%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B%E6%9C%89%E5%93%AA%E4%BA%9B%E6%9E%84%E6%88%90%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B%E6%9C%89%E5%93%AA%E5%87%A0%E7%A7%8D%E9%BB%98%E8%AE%A4%E7%9A%84%E6%98%AF%E5%93%AA%E4%B8%80%E7%A7%8D)
   - [浮动元素有没有什么特征](#%E6%B5%AE%E5%8A%A8%E5%85%83%E7%B4%A0%E6%9C%89%E6%B2%A1%E6%9C%89%E4%BB%80%E4%B9%88%E7%89%B9%E5%BE%81)
   - [清除浮动的所有方法](#%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8%E7%9A%84%E6%89%80%E6%9C%89%E6%96%B9%E6%B3%95)
@@ -70,7 +67,7 @@
     - [什么是 JWT](#%E4%BB%80%E4%B9%88%E6%98%AF-jwt)
     - [Token 和 JWT 的区别](#token-%E5%92%8C-jwt-%E7%9A%84%E5%8C%BA%E5%88%AB)
   - [localstorage存数据的格式是什么](#localstorage%E5%AD%98%E6%95%B0%E6%8D%AE%E7%9A%84%E6%A0%BC%E5%BC%8F%E6%98%AF%E4%BB%80%E4%B9%88)
-  - [箭头函数](#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0)
+  - [箭头函数的优点](#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E7%9A%84%E4%BC%98%E7%82%B9)
   - [如果一个页面要做性能优化，从哪方面考察，从哪些地方优化](#%E5%A6%82%E6%9E%9C%E4%B8%80%E4%B8%AA%E9%A1%B5%E9%9D%A2%E8%A6%81%E5%81%9A%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E4%BB%8E%E5%93%AA%E6%96%B9%E9%9D%A2%E8%80%83%E5%AF%9F%E4%BB%8E%E5%93%AA%E4%BA%9B%E5%9C%B0%E6%96%B9%E4%BC%98%E5%8C%96)
   - [请解释原型继承（prototype inheritance）的工作原理](#%E8%AF%B7%E8%A7%A3%E9%87%8A%E5%8E%9F%E5%9E%8B%E7%BB%A7%E6%89%BFprototype-inheritance%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86)
   - [说说你对 AMD 和 CommonJS 的了解](#%E8%AF%B4%E8%AF%B4%E4%BD%A0%E5%AF%B9-amd-%E5%92%8C-commonjs-%E7%9A%84%E4%BA%86%E8%A7%A3)
@@ -1083,8 +1080,7 @@ alert(b.x); // --> {n: 2}
 
 ## 垃圾回收时栈和堆的区别   
 在栈中变量用完之后自动释放，v8堆内存分为新生代和老生代内存    
-## 打包时Hash码是怎么生成的   
-hash 字段是根据每次编译compilation的内容计算所得，也可以理解为项目总体文件的hash值。    
+    
 ## webpack中hash、chunkhash和contenthash三者的区别? 
 hash:是跟整个项目的构建相关，只要项目里有文件更改，整个项目构建的hash值都会更改，并且全部文件都共用相同的hash值.     
 chunkhash:根据不同的入口文件(Entry)进行依赖文件解析、构建对应的chunk，生成对应的哈希值。我们在生产环境里把一些公共库和程序入口文件区分开，单独打包构建，接着我们采用chunkhash的方式生成哈希值，那么只要我们不改动公共库的代码，就可以保证其哈希值不会受影响.   
@@ -1162,9 +1158,14 @@ FALLBACK:
   }
 ```
 ## 请指出以下代码的区别：function Person(){}、var person = Person()、var person = new Person()？
+```js
+var person = Person()// 执行Person方法，返回的结果保存在变量person中   
+var person = new Person()
+// 创建Person对象，并把对象的引用保存在变量person中   
+``` 
+
 ## 请解释变量声明提升 (hoisting)。  
-js引擎会在正式执行代码之前进行一次"预编译"，预编译简单理解就是在内存中开辟一些空间，    
-存放一些变量和函数。    
+js引擎会在正式执行代码之前进行一次"预编译"，预编译简单理解就是在内存中开辟一些空间，存放一些变量和函数。    
 具体步骤如下：        
 （1）页面创建GO全局对象（Global Object）对象（window对象）。    
 （2）加载第一个脚本文件。   
@@ -1186,14 +1187,11 @@ js引擎会在正式执行代码之前进行一次"预编译"，预编译简单�
 ## 面试中查考的Web安全问题
 参考[Web项目开发中常见安全问题及防范](https://www.cnblogs.com/aiandbigdata/p/10057659.html)   
 SQL 注入    
-XSS：跨站脚本攻击  
+XSS：跨站脚本攻击,本质是HTML注入，用户输入的数据被当成Html代码执行了。 
 XSS是注入恶意的javascript代码，然后由受害者浏览器执行。这是对应用程序用户的攻击，而不是系统本身。   
 针对XSS的常见防御措施是什么？在代码符号不合适的情况下进行输入验证，但对输出进行清除更为重要。     
 CSRF: 跨站请求伪造    
-如何防御CSRF？一种缓解措施是使用Cookie的双重提交，其中将令牌分配给Cookie并作为请求参数包括在内，并且任何不匹配都表示请求不是来自用户的，因为请求将始终以正确的Cookie发送，但是攻击者无法生成Cookie用作请求参数。另一种方法是生成随机令牌，并将其作为参数包含在每个请求中。令牌已由服务器验证，因此攻击者不应将其包括在恶意CSRF攻击中。在有效的情况下，如果受保护的站点链接到外部URL，则可以在多个点公开令牌，包括在浏览器历史记录，HTTP日志文件，记录HTTP请求第一行的网络设备和引荐来源标头中。     
-中间人攻击    
-DDoS    
-点击劫持      
+![跨站请求伪造](https://img2018.cnblogs.com/blog/1551453/201812/1551453-20181203114456471-1276211081.png)      
 
 ## 什么是 CRP,即关键渲染路径(Critical Rendering Path)? 如何优化 ?
 关键渲染路径是浏览器将 HTML CSS JavaScript 转换为在屏幕上呈现的像素内容所经历的一系列步骤。也就是我们上面说的浏览器渲染流程。
@@ -1259,8 +1257,6 @@ ES6 使用class extends继承
 [] instanceof Array(类型判断)   
 [].proto === Array.prototype    
 Array.isArray([]) 存在兼容问题    
-## 如何理解作用域链   
-从当前环境向父级一层一层查找变量的过程称之为作用域链。  
 
 ## 浏览器解析渲染页面过程
 解析HTML，生成DOM树   
@@ -1269,9 +1265,11 @@ Array.isArray([]) 存在兼容问题
 布局render树（Layout/reflow），负责各元素尺寸、位置的计算   
 绘制render树（paint），绘制页面像素信息   
 将像素发送给GPU，展示在页面上。(Display)    
+
 ## webpack打包之后的代码报错了，怎么找到报错代码在哪  
 打开source-map配置：devtool:'inline-source-map' 
-控制台会定位到错误文件      
+控制台会定位到错误文件     
+
 ## 什么是SourceMap      
 Source map就是一个信息文件，里面储存着位置信息。也就是说，转换后的代码的每一个位置，所对应的转换前的位置。
 [SourceMap详解](http://www.ruanyifeng.com/blog/2013/01/javascript_source_map.html)   
@@ -1279,10 +1277,10 @@ Source map就是一个信息文件，里面储存着位置信息。也就是说�
 以下原则尽可能使用，用得越多就组件的复用性就越好。      
 适用单一职责原则    
 适用开放封闭原则    
-追求短小精悍    
-避免太多参数    
-缩小信赖范围和向稳定方向信赖    
-适用SPOT法则 (Single Point Of Truth，就是尽量不要重复代码，出自《The Art of Unix Programming》)   
+追求短小精悍       
+避免太多参数        
+缩小信赖范围和向稳定方向信赖        
+适用SPOT法则 (Single Point Of Truth，就是尽量不要重复代码，出自《The Art of Unix Programming》)       
 追求无副作用    
 追求引用透明    
 避免暴露组件内部实现    
@@ -1291,13 +1289,7 @@ Source map就是一个信息文件，里面储存着位置信息。也就是说�
 入口处检查参数的有效性，出口处检查返回的正确性    
 充分隔离变化的部分    
 组件和数据分享，信赖一致性的数据结构    
-## 快速的让一个数组乱序   
-```js
-var arr = [1,2,3,4,5,6,7,8,9,10];
-    arr.sort(function(){
-        return Math.random() - 0.5;
-    });
-```
+
 ## HTML的盒子模型有哪些构成，盒子模型有哪几种，默认的是哪一种    
 包含了元素内容（content）、内边距（padding）、边框（border）、外边距（margin）几个要素.   
 box-sizing : content-box|border-box|inherit;      
@@ -1356,7 +1348,7 @@ CSRF(跨站请求伪造)攻击，这个也好解决，很多框架都屏蔽这�
 ## cookie的其他解决方案           
 
 session 是另一种记录服务器和客户端会话状态的机制    
-session 是基于 cookie 实现的，session 存储在服务器端，sessionId 会被存储到客户端的cookie 中   
+session 是基于 cookie 实现的，session 存储在服务器端，sessionId 会被存储到客户端的cookie 中       
 
 ### Cookie 和 Session 的区别    
 
@@ -1374,12 +1366,12 @@ JWT 是为了在网络应用环境间传递声明而执行的一种基于 JSON �
 
 ### Token 和 JWT 的区别   
 
-Token：服务端验证客户端发送过来的 Token 时，还需要查询数据库获取用户信息，然后验证 Token 是否有效。     
+Token：服务端验证客户端发送过来的 Token 时，还需要查询数据库获取用户信息，然后验证 Token 是否有效。        
 JWT：将 Token 和 Payload 加密后存储于客户端，服务端只需要使用密钥解密进行校验（校验也是 JWT 自己实现的）即可，不需要查询或者减少查询数据库，因为 JWT 自包含了用户信息和加密的数据。     
 
-session面临的问题：     
-负载均衡多服务器的情况，不好确认当前用户是否登录，因为多服务器不共享seesion。这个问题也可以将session存在一个服务器中来解决，但是就不能完全达到负载均衡的效果。        
-每个客户端只需存储自己的session          id，但是服务端却需要存储所有用户session      id，对服务器也是一个压力        
+session面临的问题：        
+负载均衡多服务器的情况，不好确认当前用户是否登录，因为多服务器不共享seesion。这个问题也可以将session存在一个服务器中来解决，但是就不能完全达到负载均衡的效果。           
+每个客户端只需存储自己的sessionid，但是服务端却需要存储所有用户sessionid，对服务器也是一个压力            
 token的意思是“令牌”，是用户身份的验证方式，最简单的token组成：sign(签名，经过加密后的数据)，相当于上文提到的session id。token可以放在header、url中，在每次网络访问都携带，一般是写请求头header中。相比于cookie，你可以认为只是存储的地方参数不同而已。token相比于cookie就是有cookie的功能，没有cookie的限制。比如其他客户端不会限制header的cookie。token是cookie很好替代品。      
 
 解决方案        
@@ -1391,11 +1383,11 @@ token的意思是“令牌”，是用户身份的验证方式，最简单的tok
 localStorage存储数据的格式都是以字符串的形式来存储的           
       
 
-## 箭头函数      
+## 箭头函数的优点         
 
-引入箭头函数有两个方面的作用：更简短的函数并且不绑定this        
+引入箭头函数有两个方面的作用：更简短的函数并且不绑定this。            
 
-箭头函数完全修复了this的指向，this总是指向词法作用域，也就是外层调用者obj.
+箭头函数完全修复了this的指向，this总是指向词法作用域，也就是外层调用者obj。   
 
 ## 如果一个页面要做性能优化，从哪方面考察，从哪些地方优化     
  

@@ -355,3 +355,9 @@ function isNative(value){
 但是，我们又是怎样验证一个 DOM 元素是否是有效的呢？
 下面提供的 matchesSelector 函数就是来解决这些问题的
 ——验证某个元素是否与给定的选择器相匹配。 */
+
+// 24.快速的让一个数组乱序   
+var arr = [1,2,3,4,5,6,7,8,9,10];
+arr.sort(function(){
+    return Math.random() - 0.5;
+});
