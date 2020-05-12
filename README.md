@@ -925,39 +925,12 @@ requireJS是使用创建script元素，通过指定script元素的src属性来�
   如果已经访问过app并且资源已经离线存储了，那么浏览器就会使用离线的资源加载页面，然后浏览器会对比新的manifest文件与旧的manifest文件，如果文件没有发生改变，就不做任何操作，如果文件改变了，那么就会重新下载文件中的资源并进行离线存储。   
   离线的情况下，浏览器就直接使用离线存储的资源。    
 
-## 什么是渲染层合并 (Composite) ?
-渲染层合并,对于页面中 DOM 元素的绘制(Paint)是在多个层上进行的。
+## 什么是渲染层合并 (Composite) ?     
 
-在每个层上完成绘制过程之后,浏览器会将绘制的位图发送给 GPU 绘制到屏幕上,将所有层按照合理的顺序合并成一个图层,然后在屏幕上呈现。
+对页面中 DOM 元素的绘制是在多个层上进行的。在每个层上完成绘制过程之后，浏览器会将所有层按照合理的顺序合并成一个图层，然后显示在屏幕上。对于有位置重叠的元素的页面，这个过程尤其重要，因为一旦图层的合并顺序出错，将会导致元素显示异常。
 
-对于有位置重叠的元素的页面,这个过程尤其重要,因为一旦图层的合并顺序出错,将会导致元素显示异常。
-
-composite
-
-RenderLayers 渲染层,这是负责对应 DOM 子树。
-
-GraphicsLayers 图形层,这是负责对应 RenderLayers 子树。
-
-RenderObjects 保持了树结构,一个 RenderObjects 知道如何绘制一个 node 的内容, 他通过向一个绘图上下文（GraphicsContext）发出必要的绘制调用来绘制 nodes。
-
-每个 GraphicsLayer 都有一个 GraphicsContext,GraphicsContext 会负责输出该层的位图,位图是存储在共享内存中,作为纹理上传到 GPU 中,最后由 GPU 将多个位图进行合成,然后 draw 到屏幕上,此时,我们的页面也就展现到了屏幕上。
-
-GraphicsContext 绘图上下文的责任就是向屏幕进行像素绘制(这个过程是先把像素级的数据写入位图中,然后再显示到显示器),在 chrome 里,绘图上下文是包裹了的 Skia（chrome 自己的 2d 图形绘制库）
-
-某些特殊的渲染层会被认为是合成层（Compositing Layers）,合成层拥有单独的 GraphicsLayer,而其他不是合成层的渲染层,则和其第一个拥有 GraphicsLayer 父层公用一个。
-
-合成层的优点
-一旦 renderLayer 提升为了合成层就会有自己的绘图上下文,并且会开启硬件加速,有利于性能提升。
-
-合成层的位图,会交由 GPU 合成,比 CPU 处理要快 (提升到合成层后合成层的位图会交 GPU 处理,但请注意,仅仅只是合成的处理（把绘图上下文的位图输出进行组合）需要用到 GPU,生成合成层的位图处理（绘图上下文的工作）是需要 CPU。)
-
-当需要 repaint 时,只需要 repaint 本身,不会影响到其他的层 (当需要 repaint 的时候可以只 repaint 本身,不影响其他层,但是 paint 之前还有 style, layout,那就意味着即使合成层只是 repaint 了自己,但 style 和 layout 本身就很占用时间。)
-
-对于 transform 和 opacity 效果,不会触发 layout 和 paint (仅仅是 transform 和 opacity 不会引发 layout 和 paint,其他的属性不确定。)
-
-一般一个元素开启硬件加速后会变成合成层,可以独立于普通文档流中,改动后可以避免整个页面重绘,提升性能。
-
-注意不能滥用 GPU 加速,一定要分析其实际性能表现。因为 GPU 加速创建渲染层是有代价的,每创建一个新的渲染层,就意味着新的内存分配和更复杂的层的管理。并且在移动端 GPU 和 CPU 的带宽有限制,创建的渲染层过多时,合成也会消耗跟多的时间,随之而来的就是耗电更多,内存占用更多。过多的渲染层来带的开销而对页面渲染性能产生的影响,甚至远远超过了它在性能改善上带来的好处。
+参考[详谈层合成（composite）](https://juejin.im/entry/59dc9aedf265da43200232f9)   
+[浏览器渲染流程&Composite（渲染层合并）简单总结](https://segmentfault.com/a/1190000014520786)   
 
 
 ## Promise中的ajax 可以try catch 到么？  
@@ -1038,13 +1011,13 @@ style-loader,css-loader
 ```      
 ## 盒子模型，以及标准情况和IE下的区别    
 IE 盒子模型的范围也包括 margin、border、padding、content，和标准 W3C 盒子模型不同的是：IE 盒子模型的 content 部分包含了 border 和 pading。  
+
 ## 如何实现new  
-它创建了一个全新的对象。    
-它会被执行[[Prototype]]（也就是__proto__）链接。 res.__proto__ = func.prototype;    
-它使this指向新创建的对象。    
-通过new创建的每个对象将最终被[[Prototype]]链接到这个函数的prototype对象上。 apply
-如果函数没有返回对象类型Object(包含Functoin, Array, Date, RegExg, Error)，
-那么new表达式中的函数调用将返回该对象引用。
+1. 创建一个空对象
+2. 链接到原型 res.__proto__ = func.prototype; 
+3. 绑定this值 apply
+4. 返回新对象
+
 ```js
 function New(fn) {
   let res={};
@@ -1082,9 +1055,32 @@ CRP（Critical Rendering Path，关键渲染路径）：当浏览器从服务器
 图片不会导致关键渲染路径的阻塞，而转化为 Base64 的图片大大增加了 CSS 文件的体积，CSS 文件的体积直接影响渲染，导致用户会长时间注视空白屏幕。
 
 ## 数据类型分别存在哪里
-var a = {name: "前端开发"}; var b = a; a = null那么b输出什么
-var a = {b: 1}存放在哪里
-var a = {b: {c: 1}}存放在哪里
+```js
+var a = {name: "前端开发"}; 
+var b = a; 
+a = null;
+//那么b输出什么:null
+```
+```js
+var a = { name: '前端开发' }
+var b = a;
+a = null;
+
+// 这时b的值是多少:{ name: '前端开发'}  
+// 说明的是null是基本类型，a = null之后只是把a存储在栈内存中地址改变成了基本类型null，并不会影响堆内存中的对象，所以b的值不受影响。   
+```
+
+```js
+var a = {n: 1};
+var b = a;
+a.x = a = {n: 2};
+alert(a.x); // --> undefined
+alert(b.x); // --> {n: 2}
+//从左到右解析各个引用，然后计算最右侧的表达式的值，最后把值从右到左赋给各个引用。
+```
+参考[JavaScript深入之内存空间详细图解](https://segmentfault.com/a/1190000017193192)  
+参考[深入理解连等赋值问题](https://segmentfault.com/a/1190000004224719)     
+
 ## 垃圾回收时栈和堆的区别   
 在栈中变量用完之后自动释放，v8堆内存分为新生代和老生代内存    
 ## 打包时Hash码是怎么生成的   
@@ -2998,6 +2994,7 @@ JS 中能精准表示的最大整数是 Math.pow(2, 53)，十进制即 900719925
 因此如果 JS 执行的时间过长,这样就会造成页面的渲染不连贯,导致页面渲染加载阻塞的感觉。
 
 ## css 加载会造成阻塞吗 ？
+js/css->style(计算样式)->layout（布局）->render（绘制）->composite       
 由上面浏览器渲染流程我们可以看出 :
 
 DOM 解析和 CSS 解析是两个并行的进程,所以 CSS 加载不会阻塞 DOM 的解析。
