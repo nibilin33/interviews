@@ -3,6 +3,7 @@
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
 - [前端面试](#%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95)
+  - [阿里巴巴面筋](#%E9%98%BF%E9%87%8C%E5%B7%B4%E5%B7%B4%E9%9D%A2%E7%AD%8B)
   - [网络相关问题](#%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98)
     - [在浏览器中，一个页面从输入URL到加载完成，都有哪些步骤](#%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E4%B8%80%E4%B8%AA%E9%A1%B5%E9%9D%A2%E4%BB%8E%E8%BE%93%E5%85%A5url%E5%88%B0%E5%8A%A0%E8%BD%BD%E5%AE%8C%E6%88%90%E9%83%BD%E6%9C%89%E5%93%AA%E4%BA%9B%E6%AD%A5%E9%AA%A4)
     - [http1.1时如何复用Tcp连接](#http11%E6%97%B6%E5%A6%82%E4%BD%95%E5%A4%8D%E7%94%A8tcp%E8%BF%9E%E6%8E%A5)
@@ -830,7 +831,8 @@
 # 前端面试        
 时隔3年，准备去面试，期间看的题目。     
 codes目录是做的一些题目，数据结构，算法题，源码功能题。            
-
+## 阿里巴巴面筋   
+[面经](https://nibilin33.github.io/frontend-blog/guide/interview.html#阿里巴巴面筋)   
 ## 网络相关问题 
 ### 在浏览器中，一个页面从输入URL到加载完成，都有哪些步骤    
 
