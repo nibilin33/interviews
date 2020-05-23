@@ -832,7 +832,7 @@
 时隔3年，准备去面试，期间看的题目。     
 codes目录是做的一些题目，数据结构，算法题，源码功能题。            
 ## 阿里巴巴面筋   
-[面经](https://nibilin33.github.io/frontend-blog/guide/interview.html#阿里巴巴面筋)   
+[https://nibilin33.github.io/frontend-blog/guide/interview.html#阿里巴巴面筋](https://nibilin33.github.io/frontend-blog/guide/interview.html#阿里巴巴面筋)    
 ## 网络相关问题 
 ### 在浏览器中，一个页面从输入URL到加载完成，都有哪些步骤    
 
