@@ -830,7 +830,33 @@
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 # 前端面试        
 时隔3年，准备去面试，期间看的题目。     
-codes目录是做的一些题目，数据结构，算法题，源码功能题。            
+codes目录是做的一些题目，数据结构，算法题，源码功能题。     
+## html5和css3
+### 你能描述一下渐进增强和优雅降级之间的不同吗?
+渐进增强 progressive enhancement：针对低版本浏览器进行构建页面，保证最基本的功能，
+然后再针对高级浏览器进行效果、交互等改进和追加功能达到更好的用户体验。        
+优雅降级 graceful degradation：一开始就构建完整的功能，然后再针对低版本浏览器进行兼容。       
+　区别：优雅降级是从复杂的现状开始，并试图减少用户体验的供给，而渐进增强则是从一个非常基础的，能够起作用的版本开始，并不断扩充，以适应未来环境的需要。降级（功能衰减）意味着往回看；而渐进增强则意味着朝前看，同时保证其根基处于安全地带。        
+### HTML5和CSS3的新标签
+HTML5： nav, footer, header, section, hgroup, video, time, canvas, audio...       
+CSS3: RGBA, opacity, text-shadow, box-shadow, border-radius, border-image,      
+border-color, transform...;   
+
+### 为什么利用多个域名来存储网站资源会更有效？
+CDN缓存更方便   
+突破浏览器并发限制    
+节约cookie带宽    
+节约主域名的连接数，优化页面响应速度    
+防止不必要的安全问题    
+
+### 请用CSS实现：一个矩形内容，有投影，有圆角，hover状态慢慢变透明。
+
+### 用css2和css3分别写一下垂直居中和水平居中（水平居中：垂直居中）
+
+### CSS 动画有哪些？    
+
+### 未知宽高元素如何居中？不能用 flex
+
 ## 阿里巴巴面筋   
 [https://nibilin33.github.io/frontend-blog/guide/interview.html#阿里巴巴面经](https://nibilin33.github.io/frontend-blog/guide/interview.html#阿里巴巴面经)     
 ## 网络相关问题 
