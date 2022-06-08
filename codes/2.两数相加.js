@@ -7,9 +7,9 @@
 // @lc code=start
 /**
  * Definition for singly-linked list.
- * function ListNode(val) {
- *     this.val = val;
- *     this.next = null;
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
  * }
  */
 /**
@@ -17,43 +17,33 @@
  * @param {ListNode} l2
  * @return {ListNode}
  */
+// 如果两个数相加大于10，增加一个进位符，当前值为0，下一个相加加上进位符
 var addTwoNumbers = function(l1, l2) {
-    let root = new ListNode(0);
-    let head = root;
-    let cr = 0;
-    while(l1&&l2) {
-        let total = l1.val + l2.val + cr;
-        let node = new ListNode(total%10);
-        if(total>9) {
-            cr = 1;
-        } else { 
-            cr = 0;
-        }
-        head.next = node;
-        head = head.next;
-        l1 = l1.next;
-        l2 = l2.next;
-    }
-    if(l2) {
-        head.next = l2;
-    }else if(l1) {
-        head.next = l1;
-    }
-    while(cr) {
-        if(head.next) {
-            head = head.next;
-            head.val = (head.val+1)%10;
-            if(head.val) {
-                cr = 0;
-            }
+    let inter = 0;
+    let head = null;
+    let move = null;
+    while(l1||l2) {
+        let add = (l1? l1.val:0) + (l2?l2.val:0) + inter;
+        let next = new ListNode();
+        inter = parseInt(add / 10);
+        add = add % 10;
+        next.val = add;
+        l1 = l1 ? l1.next : null;
+        l2 = l2 ? l2.next : null;
+        if(move === null) {
+            move = next;
+            head = move;
         }else{
-            head.next = new ListNode(1);
-            cr = 0;
+            move.next = next;
+            move = move.next;
         }
     }
-    return root.next;
+    if(inter > 0) {
+        let next = new ListNode();
+        next.val = 1;
+        move.next = next;
+    }
+    return head;
 };
-//[1]
-// [9,9]
 // @lc code=end
 

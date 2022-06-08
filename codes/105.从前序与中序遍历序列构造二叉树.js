@@ -7,9 +7,10 @@
 // @lc code=start
 /**
  * Definition for a binary tree node.
- * function TreeNode(val) {
- *     this.val = val;
- *     this.left = this.right = null;
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
  * }
  */
 /**
@@ -17,27 +18,16 @@
  * @param {number[]} inorder
  * @return {TreeNode}
  */
-// var preorder = [3,9,20,15,7];
-// var inorder = [9,3,15,20,7];
-// 前序遍历是根左右，中序是左根右
-// 3是根节点，那在中序的数组中，3的左边就是左树，右边就是右树
-// 而前序root节点的下一位是左树
-// 每个小树都是一样的判断，就递归       
+// 根据前序遍历确定根节点（第一个）i=0
+// 在中序遍历中找到root的index，区分出左右子数
+// 0-index 左子树，index - length,右子树
 var buildTree = function(preorder, inorder) {
-    if(preorder.length===0||preorder.length!=inorder.length) {
-        return null;
-    }
-    let root = new TreeNode(preorder[0]);
-    let index = inorder.indexOf(root.val);
-    root.left = buildTree(preorder.slice(1,index+1),inorder.slice(0,index));
-    root.right = buildTree(preorder.slice(index+1, preorder.length),inorder.slice(index+1,inorder.length));
+    if(!inorder.length) return null
+    let temp = preorder[0], mid = inorder.indexOf(temp)
+    let root = new TreeNode(temp)
+    root.left = buildTree(preorder.slice(1,mid+1),inorder.slice(0,mid))
+    root.right = buildTree(preorder.slice(mid+1),inorder.slice(mid + 1))
     return root;
-    
 };
-// var preorder = [3,9,20,15,7];
-// var inorder = [9,3,15,20,7];
-// let index = inorder.indexOf(preorder[0]);
-// let root = buildTree(preorder,inorder);
-// console.log(root)
 // @lc code=end
 

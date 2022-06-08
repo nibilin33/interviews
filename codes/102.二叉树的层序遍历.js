@@ -7,9 +7,10 @@
 // @lc code=start
 /**
  * Definition for a binary tree node.
- * function TreeNode(val) {
- *     this.val = val;
- *     this.left = this.right = null;
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
  * }
  */
 /**
@@ -20,22 +21,30 @@ var levelOrder = function(root) {
     if(!root) {
         return [];
     }
+    let que = [root];
     let result = [];
-    const levelDeep = (node,depth)=>{
-        if(!node) {
-            return;
+    let visited = [];
+    let level = 0;
+    while(que.length>0) {
+        let node = que.shift();
+        if(typeof result[level] === 'undefined') {
+            result[level] = [];
         }
-        if(typeof result[depth] === 'undefined') {
-            result[depth] = [];
+        result[level].push(node.val);
+        if(node.left) {
+            visited.push(node.left);
         }
-        result[depth].push(node.val);
-        levelDeep(node.left,depth+1);
-        levelDeep(node.right,depth+1);
+        if(node.right) {
+            visited.push(node.right);
+        }
+        if(que.length === 0) {
+            level++;
+            que = que.concat(visited);
+            visited = [];
+        }
     }
-    levelDeep(root,0);
     return result;
-
 };
-//[1,2,3,4,null,null,5]
 // @lc code=end
+// [1,2,3,4,5]
 

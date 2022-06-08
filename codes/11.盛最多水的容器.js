@@ -9,28 +9,20 @@
  * @param {number[]} height
  * @return {number}
  */
+// 找出x*y最大的,双指针,体积由较小的决定
 var maxArea = function(height) {
     let max = 0;
-    if(height.length===2) {
-        return Math.min(...height);
-    }
-    for(let i=0;i<height.length;i++) {
-        let j = height.length - 1;
-        while(i<=j-1) {
-            let cross = 0;
-            if(height[i]<height[j]) {
-                cross = height[i]*(j-i);
-            }else{
-                cross = height[j]*(j-i);
-            }
-            max = max < cross? cross: max;
+    let i=0,j=height.length-1;
+    while(i!=j) {
+        let ht = Math.min(height[i],height[j]);
+        max = Math.max(max,ht*(j-i));
+        if(height[i]<height[j]) {
+            i++;
+        }else{
             j--;
         }
     }
     return max;
-
 };
-// var input = [2,3,10,5,7,8,9];
-// console.log(maxArea(input));
 // @lc code=end
 

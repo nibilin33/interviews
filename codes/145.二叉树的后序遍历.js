@@ -1,7 +1,7 @@
 /*
- * @lc app=leetcode.cn id=104 lang=javascript
+ * @lc app=leetcode.cn id=145 lang=javascript
  *
- * [104] 二叉树的最大深度
+ * [145] 二叉树的后序遍历
  */
 
 // @lc code=start
@@ -15,18 +15,20 @@
  */
 /**
  * @param {TreeNode} root
- * @return {number}
+ * @return {number[]}
  */
-var maxDepth = function(root) {
-    if(root === null) {
-        return 0;
-    }
+var postorderTraversal = function(root) {
+    let result = [];
     function loopTree(node) {
-        return node ? Math.max(loopTree(node.right)+1,loopTree(node.left)+1): 0;
+        if(node === null) {
+            return;
+        }
+        loopTree(node.left);
+        loopTree(node.right);
+        result.push(node.val);
     }
-    let height = loopTree(root);
-    return height;
-
+    loopTree(root);
+    return result;
 };
 // @lc code=end
 
