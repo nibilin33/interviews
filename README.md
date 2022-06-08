@@ -860,6 +860,11 @@ CDN缓存更方便
 ## 阿里巴巴面筋   
 [https://nibilin33.github.io/frontend-blog/guide/interview.html#阿里巴巴面经](https://nibilin33.github.io/frontend-blog/guide/interview.html#阿里巴巴面经)     
 ## 网络相关问题 
+### dns-prefetch 预解析技术
+https://juejin.cn/post/7031815988031160328    
+dns-prefetch(DNS预获取)是前端网络性能优化的一种措施。它根据浏览器定义的规则，提前解析之后可能会用到的域名，
+使解析结果缓存到系统缓存中，缩短DNS解析时间，进而提高网站的访问速度。   
+
 ### 在浏览器中，一个页面从输入URL到加载完成，都有哪些步骤    
 
 　　1、浏览器的地址栏输入URL并按下回车。    
@@ -950,6 +955,17 @@ TCP 支持拥塞控制，能够在网络拥堵的情况下延迟发送
 TCP 能够提供错误校验和，甄别有害的数据包  
 ![UDP和TCP的区别](https://mmbiz.qpic.cn/mmbiz_png/libYRuvULTdUPX8o1HyXqaaxrG5kPIzyDcUC1xOPDkPMCnPWX4DutTkGW3ooiaoEl8yoyPwcrLlkB8h5wlhMNqmw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)   
 
+
+
+## 为什么要用路由，有hash还要history
+
+## prefetch 和 preload
+prefetch是一种利用浏览器的空闲时间加载页面将来可能用到的资源的一种机制； 
+空闲检测api[IdleDetector](https://developer.mozilla.org/en-US/docs/Web/API/IdleDetector)    
+通常可以用于加载非首页的其他页面所需要的资源，以便加快后续页面的首屏速度；    
+preload主要用于预加载当前页面需要的资源；而prefetch主要用于加载将来页面可能需要的资源
+prefetch加载的资源可以获取非当前页面所需要的资源，并且将其放入缓存至少5分钟（无论资源是否可以缓存）；   
+并且，当页面跳转时，未完成的prefetch请求不会被中断；      
 
 ## 线程和进程区别 
 进程是资源分配的最小单位，线程是进程的一个执行单元    
