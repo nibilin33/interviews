@@ -959,7 +959,27 @@ TCP 支持拥塞控制，能够在网络拥堵的情况下延迟发送
 TCP 能够提供错误校验和，甄别有害的数据包  
 ![UDP和TCP的区别](https://mmbiz.qpic.cn/mmbiz_png/libYRuvULTdUPX8o1HyXqaaxrG5kPIzyDcUC1xOPDkPMCnPWX4DutTkGW3ooiaoEl8yoyPwcrLlkB8h5wlhMNqmw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)   
 
+### WebSocket协议的原理
+WebSocket 是一种在单个TCP连接上进行全双工通信的协议         
+相同点： 都是一样基于TCP的，都是可靠性传输协议。都是应用层协议。            
+联系： WebSocket在建立握手时，数据是通过HTTP传输的。但是建立之后，在真正传输时候是不需要HTTP协议,用TCP协议。        
+不同点：        
+1、 WebSocket 是双向通信协议，模拟 Socket 协议，可以双向发送或接受信息，而 HTTP 是单向的；    
+2、 WebSocket 是需要浏览器和服务器握手进行建立连接的，而 http 是浏览器发起向服务器的连接。      
+3、 虽然 HTTP/2 也具备服务器推送功能，但 HTTP/2 只能推送静态资源，无法推送指定的信息。      
 
+### axios和ajax的区别是什么?
+Axios 是一个基于 Promise 的 HTTP 库，可以用在浏览器和 node.js 中。
+
+## WebP 相对于 PNG、JPG 有什么优势？
+WebP 的优势体现在它具有更优的图像数据压缩算法，能带来更小的图片体积，   
+而且拥有肉眼识别无差异的图像质量；同时具备了无损和有损的压缩模式、Alpha 透明以及动画的特性，      
+在 JPEG 和 PNG 上的转化效果都相当优秀、稳定和统一。 
+## 你知道浏览器CSS是如何解析吗？ 
+CSS 选择器时是从右往左解析
+减少要搜索的目标范围
+https://www.fly63.com/article/detial/1923  
+https://zhuanlan.zhihu.com/p/25380611   
 
 ## commonjs与es6模块化有什么区别
 1.CommonJS 模块是运行时加载，ES6 模块是编译时输出接口。     
@@ -969,6 +989,14 @@ TCP 能够提供错误校验和，甄别有害的数据包
 3.CommonJS是对模块的浅拷贝，ES6 Module是对模块的引入，即ES6 Module只存只读，不能改变其值，具体点就是指针指向不能变，类似const 。      
 4.import的接口是read-only（只读状态），不能修改其变量值。 即不能修改其变量的指针指向，但可以改变变量内部指针指向。可以对commonJS对重新赋值（改变指针指向），但是对ES6 Module赋值会编译报错。      
 ## 为什么要用路由，有hash还要history
+- hash模式较丑，history模式较优雅         
+- pushState设置的新URL可以是与当前URL同源的任意URL；而hash只可修改#后面的部分，故只可设置与当前同文档的URL   
+- pushState设置的新URL可以与当前URL一模一样，这样也会把记录添加到栈中；
+  而hash设置的新值必须与原来不一样才会触发记录添加到栈中
+- pushState通过stateObject可以添加任意类型的数据到记录中；而hash只可添加短字符串
+- pushState可额外设置title属性供后续使用
+- hash兼容IE8以上，history兼容IE10以上
+- history模式需要后端配合将所有访问都指向index.html，否则用户刷新页面，会导致404错误
 
 ## prefetch 和 preload
 prefetch是一种利用浏览器的空闲时间加载页面将来可能用到的资源的一种机制； 
