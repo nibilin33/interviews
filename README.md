@@ -1144,7 +1144,13 @@ function New(fn) {
   fn.apply(res,arguments[1]);
   return res;
 }    
-```    
+```   
+## JavaScript原型和原型链是什么
+原型：一个可以被复制（或者叫克隆）的一个类，通过复制原型可以创建一个一模一样的新对象，也可以说原型就是一个模板，在设计语言中更准确的说是一个对象模板   
+①所有 引用类型 都有一个 __proto__（隐式原型）属性，属性值是一个普通的对象
+②所有 函数 都有一个 prototype（原型）属性，属性值是一个普通的对象
+③所有 引用类型的 __proto__ 属性 指向 它的 构造函数的prototype 
+原型链：原型链是原型对象创建过程的历史记录，当访问一个对象的某个属性时，会先在这个对象本身属性上查找，如果没有找到，则会去它的__proto__隐式原型上查找，即它的构造函数的prototype，如果还没有找到就会再在构造函数的prototype的__proto__中查找，这样一层一层向上查找就会形成一个链式结构    
 ## Prototype和Proto区别   
 __proto__可以理解为"构造器的原型"    
 ``` 
@@ -1609,6 +1615,8 @@ vuex 中的 store 本质就是没有 template 的隐藏着的 vue 组件
 利用闭包实现数据私有化或模拟私有方法。这个方式也称为模块模式（module pattern）。    
 部分参数函数（partial applications）柯里化（currying）.
 
+“闭包就是能够读取其他函数内部变量的函数。例如在javascript中，只有函数内部的子函数才能读取局部变量，所以闭包可以理解成“定义在一个函数内部的函数“。在本质上，闭包是将函数内部和函数外部连接起来的桥梁。”
+
 ## 匿名函数的典型应用场景是什么
 
 匿名函数可以在 IIFE 中使用，来封装局部作用域内的代码，以便其声明的变量不会暴露到全局作用域。        
@@ -1820,7 +1828,14 @@ translate()是transform的一个值。改变transform或opacity不会触发浏�
 02. 将指定的参数传递给构造函数
 03. 将执行上下文（this）绑定到新创建的对象中
 04. 如果构造函数有返回值，那么返回值将取代第一步中新创建的对象   
-
+## 介绍一下javascript的执行上下文
+当函数在执行的前一刻，会创建一个称为执行期上下文的内部对象，一个执行期上下文定义了一个函数执行时的环境，
+函数每次执行时对应的执行上下文都是独一无二的，所以多次调用一个函数会导致创建多个执行上下文，当函数执行完毕时，
+执行上下文就会被销毁。    
+每个执行上下文的基本组成：变量对象，this指针，作用域链
+## 介绍一下javascript的作用域链和作用域
+作用域链就是执行环境中变量对象中变量和函数访问的顺序   
+作用域：变量和函数的可访问范围，控制着变量和函数的可见性与生命周期变量的作用范围    
 ## isPrototypeOf方法与instanceof 运算符有哪些区别
 
 isPrototypeOf 用于检测调用此方法对象是否存在于指定对象的原型链中，    
@@ -2266,7 +2281,10 @@ process.nextTick
 Promise   
 Async/Await(实际就是promise)    
 MutationObserver(html5新特性)   
-
+## 宏任务和微任务有什么区别
+1. 宏任务：当前调用栈中执行的代码成为宏任务。（主代码快，定时器等等，由宿主触发）。   
+2. 微任务： 当前（此次事件循环中）宏任务执行完，在下一个宏任务开始之前需要执行的任务,可以理解为回调事件。
+   （promise.then，proness.nextTick等等）。 宏任务中的事件放在callback queue中，由事件触发线程维护；微任务的事件放在微任务队列中，由js引擎线程维护。
 ## 如何监控网页崩溃?  
 
 01. 利用页面崩溃无法触发 beforeunload 事件来实现 
@@ -2569,6 +2587,16 @@ flex-basis
 flex    
 align-self    
 [详细](http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html)    
+## flex: 1; 是什么意思？
+ flex: 1; 的值是 flex-grow: 1; flex-shrink: 1; flex-basis: 0%; 
+ 意思就是： 元素占据剩余宽度的 1 份，收缩比例为 1，因为 flex-basis 具有最高优先级，元素首次分配宽度（flex-direction: colunm;    
+ 则为高度）如果父元素有设置宽度，则为 0%；父元素没有设置宽度，则和 auto效果一致。         
+首先 flex 是 flex-grow, flex-shrink, flex-basis. 三个属性的简写，默认值为 0 1 auto。    
+该属性有两个快捷值：auto(1 1 auto) 和 none(0 0 auto)。建议优先写 flex 属性，而不是写三个分离的属性，因为浏览器会自动计算其相关值。      
+flex-grow 默认为0， 只能是正整数。即父元素有剩余空间也不放大元素。如果为 1，则把剩余空间的一份加给自己的宽度。    
+flex-shrink 默认为1，只能是正整数。即父元素空间不足则按比例收缩。如果为 0，则不收缩   
+flex-basis 默认为 auto, 即元素本身的大小。这个属性定义了在分配多余空间之前，元素占据的主轴空间，浏览器根据这个属性计算是否有多余空间。可以设置为和 width 和 height 属性一样的值，比如 220px，则元素占据固定空间。   
+
 ## 如何用正则实现 trim()？
 ``` js
 /(^\s*)|(\s*$)/g
@@ -3378,6 +3406,7 @@ Service Worker 在 Web Worker 的基础上加上了持久离线缓存能力.
 click 事件，通过js来做跳转     
   
 ## react 专题   
+### [基本原理](https://segmentfault.com/a/1190000015648248)     
 ### [什么时候使用状态管理器？](https://github.com/haizlin/fe-interview/issues/953)
 ### [render函数中return如果没有使用()会有什么问题？](https://github.com/haizlin/fe-interview/issues/952)
 ### [componentWillUpdate可以直接修改state的值吗？](https://github.com/haizlin/fe-interview/issues/951)

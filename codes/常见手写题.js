@@ -313,6 +313,7 @@ function parseToMoney(value) {
   })
   return res + (sm.length > 1 ? '.' + sm[1] : '');
 }
+parseToMoney(1087654.321); 
 // 14. 判断是否是电话号码
 ///^1[3|4|5|6|7|8|9][0-9]{9}$/
 // 15. 在输入框中如何判断输入的是一个正确的网址
@@ -483,7 +484,7 @@ function asyncToGenerator(generatorFunc) {
     // 返回一个promise 因为外部是用.then的方式 或者await的方式去使用这个函数的返回值的
     // var test = asyncToGenerator(testG)
     // test().then(res => console.log(res))
-    returnnewPromise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
 
       // 内部定义一个step函数 用来一步一步的跨过yield的阻碍
       // key有next和throw两种取值，分别对应了gen的next和throw方法
@@ -543,3 +544,7 @@ function asyncToGenerator(generatorFunc) {
     })
   }
 }
+// 29. 实现深拷贝，考虑函数以及循环引用的情况(禁止使用JSON序列化)。
+// https://wenku.baidu.com/view/f60173424bd7c1c708a1284ac850ad02de8007db.html
+
+// 30.用flex实现九宫格布局
