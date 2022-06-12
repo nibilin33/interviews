@@ -983,11 +983,14 @@ https://zhuanlan.zhihu.com/p/25380611
 
 ## commonjs与es6模块化有什么区别
 1.CommonJS 模块是运行时加载，ES6 模块是编译时输出接口。     
+2.CommonJS 模块的require()是同步加载模块，ES6 模块的import命令是异步加载，
+有一个独立的模块依赖的解析阶段。      
+3.CommonJS是对模块的浅拷贝，ES6 Module是对模块的引入，即ES6 Module只存只读，不能改变其值，
+具体点就是指针指向不能变，类似const 。      
+4.import的接口是read-only（只读状态），不能修改其变量值。
+ 即不能修改其变量的指针指向，但可以改变变量内部指针指向。
+ 可以对commonJS对重新赋值（改变指针指向），但是对ES6 Module赋值会编译报错。   
 
-2.CommonJS 模块的require()是同步加载模块，ES6 模块的import命令是异步加载，有一个独立的模块依赖的解析阶段。      
-
-3.CommonJS是对模块的浅拷贝，ES6 Module是对模块的引入，即ES6 Module只存只读，不能改变其值，具体点就是指针指向不能变，类似const 。      
-4.import的接口是read-only（只读状态），不能修改其变量值。 即不能修改其变量的指针指向，但可以改变变量内部指针指向。可以对commonJS对重新赋值（改变指针指向），但是对ES6 Module赋值会编译报错。      
 ## 为什么要用路由，有hash还要history
 - hash模式较丑，history模式较优雅         
 - pushState设置的新URL可以是与当前URL同源的任意URL；而hash只可修改#后面的部分，故只可设置与当前同文档的URL   
@@ -1623,6 +1626,13 @@ vuex 中的 store 本质就是没有 template 的隐藏着的 vue 组件
 
 02. 宿主对象是由运行时环境（浏览器或 Node）提供，比如window、XMLHTTPRequest等等。 
 
+## call、apply、bind三者的异同    
+apply 、 call 、bind 三者都是用来改变函数的this对象的指向的；   
+apply 、 call 、bind 三者第一个参数都是this要指向的对象，也就是想指定的上下文；     
+apply 、 call 、bind 三者都可以利用后续参数传参；   
+bind 是返回对应函数，便于稍后调用；apply 、call 则是立即调用 。   
+bind()方法会创建一个新函数，称为绑定函数，当调用这个绑定函数时，绑定函数会以创建它时传入 bind()方法的第一个参数作为 this，
+传入 bind() 方法的第二个以及以后的参数加上绑定函数运行时本身的参数按照顺序作为原函数的参数来调用原函数。
 ## call和.apply有什么区别？
 
 .call和.apply都用于调用函数，       
