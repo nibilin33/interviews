@@ -1954,7 +1954,22 @@ px 在缩放页面时无法调整那些使用它作为单位的字体、按钮�
 
 em 的值并不是固定的，会继承父级元素的字体大小，代表倍数；   
 
-rem 的值并不是固定的，始终是基于根元素 <html> 的，也代表倍数。    
+rem 的值并不是固定的，始终是基于根元素 <html> 的，也代表倍数。
+
+## rem 和 vw 方案分别有什么优缺点
+rem：rem是相对单位，设置根元素 html 的 font-size，比如给 html 设置字体大小为100px，1rem = 100px;
+rem缺点:    
+1.和根元素font-size值强耦合，系统字体放大或缩小时，会导致布局错乱     
+2.html文件头部需插入一段js代码      
+rem优点：     
+当页面中所有元素都使用rem单位时，你只需要改变根元素font-size值，所有元素就会按比例放大或者缩小。因此我们只需要写一小段js代码，根据屏幕宽度改变html的font-size值，就可以做到弹性布局。这种方法确实便捷，兼容性也很好，是目前非常主流的弹性布局方案。
+vw：
+简单来说 vw 是视口单位，相当于把视口等分成了100，1vw = 1;     
+vw的缺点：
+因为相对于视口，所以失去了最大宽度/高度的限制       
+rem+vw优点:
+让两种方式得到互补
+因为vw本身可以监控窗口变化，那么就可以省去动态设置根元素的js，在日常使用中可以继续用rem
 
 ## ios滑动不流畅    
 
@@ -2463,13 +2478,20 @@ a['b']['c']和a.b.c，转换成AST前者的的树是含计算的，后者只是s
 MVVM是Model-View-ViewModel的简写。它本质上就是MVC 的改进版。
 MVVM 就是将其中的View 的状态和行为抽象化，让我们将视图 UI 和业务逻辑分开。
 当然这些事 ViewModel 已经帮我们做了，它可以取出 Model 的数据同时帮忙处理 View 中由于需要展示内容而涉及的业务逻辑。
-
 MVC 业务逻辑、数据、界面显示分离的方法组织代码    
 
 ## 说说z-index有什么需要注意的地方    
 
 background/border < -z-index< block < float < 
-inline < z-index:auto < z-index     
+inline < z-index:auto < z-index    
+七个层叠等级，从最低到最高排列，依次是：
+背景和边框 ：形成层叠上下文的元素的背景和边框，它是整个上下文中层叠等级最低的。   
+Z-Index 为负数 ：设置了 z-index 为负数的子元素以及由它所产生的层叠上下文    
+块级盒模型：位于正常文档流中的、块级的、非定位的子元素    
+浮动盒模型 ：浮动的、非定位的子元素   
+内联盒模型 ：位于正常文档流中的、内联的、非定位的子元素
+Z-index 为 0：设置了 z-index 为 0 的、定位的子元素以及由它所产生的层叠上下文
+Z-Index 为正数 ：设置了 z-index 为正数的、定位的子元素以及由它所产生的层叠上下文，它是整个上下文中层叠等级最高的 
 
 ## 说说DOM事件流
 
@@ -2588,7 +2610,8 @@ flex
 align-self    
 [详细](http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html)    
 ## flex: 1; 是什么意思？
- flex: 1; 的值是 flex-grow: 1; flex-shrink: 1; flex-basis: 0%; 
+ flex: 1; 
+ 的值是 flex-grow: 1; flex-shrink: 1; flex-basis: 0%; 
  意思就是： 元素占据剩余宽度的 1 份，收缩比例为 1，因为 flex-basis 具有最高优先级，元素首次分配宽度（flex-direction: colunm;    
  则为高度）如果父元素有设置宽度，则为 0%；父元素没有设置宽度，则和 auto效果一致。         
 首先 flex 是 flex-grow, flex-shrink, flex-basis. 三个属性的简写，默认值为 0 1 auto。    
