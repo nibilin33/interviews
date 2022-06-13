@@ -424,6 +424,10 @@
     - [在React使用高阶组件(HOC)有遇到过哪些问题？如何解决？](#%E5%9C%A8react%E4%BD%BF%E7%94%A8%E9%AB%98%E9%98%B6%E7%BB%84%E4%BB%B6hoc%E6%9C%89%E9%81%87%E5%88%B0%E8%BF%87%E5%93%AA%E4%BA%9B%E9%97%AE%E9%A2%98%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3)
     - [在使用React过程中什么时候用高阶组件(HOC)？](#%E5%9C%A8%E4%BD%BF%E7%94%A8react%E8%BF%87%E7%A8%8B%E4%B8%AD%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E7%94%A8%E9%AB%98%E9%98%B6%E7%BB%84%E4%BB%B6hoc)
     - [说说React diff的原理是什么？](#%E8%AF%B4%E8%AF%B4react-diff%E7%9A%84%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88)
+      react为了降低复杂度，提出了三个前提：
+      只对同级比较，跨层级的dom不会进行复用
+      不同类型节点生成的dom树不同，此时会直接销毁老节点及子孙节点，并新建节点
+      可以通过key来对元素diff的过程提供复用的线索
     - [React怎么提高列表渲染的性能？](#react%E6%80%8E%E4%B9%88%E6%8F%90%E9%AB%98%E5%88%97%E8%A1%A8%E6%B8%B2%E6%9F%93%E7%9A%84%E6%80%A7%E8%83%BD)
     - [使用ES6的class定义的组件不支持mixins了，那用什么可以替代呢？](#%E4%BD%BF%E7%94%A8es6%E7%9A%84class%E5%AE%9A%E4%B9%89%E7%9A%84%E7%BB%84%E4%BB%B6%E4%B8%8D%E6%94%AF%E6%8C%81mixins%E4%BA%86%E9%82%A3%E7%94%A8%E4%BB%80%E4%B9%88%E5%8F%AF%E4%BB%A5%E6%9B%BF%E4%BB%A3%E5%91%A2)
     - [为何说虚拟DOM会提高性能？](#%E4%B8%BA%E4%BD%95%E8%AF%B4%E8%99%9A%E6%8B%9Fdom%E4%BC%9A%E6%8F%90%E9%AB%98%E6%80%A7%E8%83%BD)
@@ -585,9 +589,12 @@
     - [Redux它的三个原则是什么？](#redux%E5%AE%83%E7%9A%84%E4%B8%89%E4%B8%AA%E5%8E%9F%E5%88%99%E6%98%AF%E4%BB%80%E4%B9%88)
     - [什么是单一数据源？](#%E4%BB%80%E4%B9%88%E6%98%AF%E5%8D%95%E4%B8%80%E6%95%B0%E6%8D%AE%E6%BA%90)
     - [什么是Redux？说说你对Redux的理解？有哪些运用场景？](#%E4%BB%80%E4%B9%88%E6%98%AFredux%E8%AF%B4%E8%AF%B4%E4%BD%A0%E5%AF%B9redux%E7%9A%84%E7%90%86%E8%A7%A3%E6%9C%89%E5%93%AA%E4%BA%9B%E8%BF%90%E7%94%A8%E5%9C%BA%E6%99%AF)
-  - [vue 专题](#vue-%E4%B8%93%E9%A2%98)
+    - 为什么react组件首字母要大写？
+      React根据首字母是否大写来区分react组件还是dom元素   
+    - [React 面试](https://juejin.cn/post/6844904093492707336#heading-68) 
+  - [vue专题](#vue-%E4%B8%93%E9%A2%98)
     - vue与react的对比,如何选型？从性能，生态圈，数据量，数据的传递上，作比较
-      
+
     - [从0到1自己构架一个vue项目，说说有哪些步骤、哪些重要插件、目录结构你会怎么组织](#%E4%BB%8E0%E5%88%B01%E8%87%AA%E5%B7%B1%E6%9E%84%E6%9E%B6%E4%B8%80%E4%B8%AAvue%E9%A1%B9%E7%9B%AE%E8%AF%B4%E8%AF%B4%E6%9C%89%E5%93%AA%E4%BA%9B%E6%AD%A5%E9%AA%A4%E5%93%AA%E4%BA%9B%E9%87%8D%E8%A6%81%E6%8F%92%E4%BB%B6%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84%E4%BD%A0%E4%BC%9A%E6%80%8E%E4%B9%88%E7%BB%84%E7%BB%87)
     - [你知道vue的模板语法用的是哪个web模板引擎的吗？说说你对这模板引擎的理解](#%E4%BD%A0%E7%9F%A5%E9%81%93vue%E7%9A%84%E6%A8%A1%E6%9D%BF%E8%AF%AD%E6%B3%95%E7%94%A8%E7%9A%84%E6%98%AF%E5%93%AA%E4%B8%AAweb%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E%E7%9A%84%E5%90%97%E8%AF%B4%E8%AF%B4%E4%BD%A0%E5%AF%B9%E8%BF%99%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E%E7%9A%84%E7%90%86%E8%A7%A3)
     - [你知道v-model的原理吗？说说看](#%E4%BD%A0%E7%9F%A5%E9%81%93v-model%E7%9A%84%E5%8E%9F%E7%90%86%E5%90%97%E8%AF%B4%E8%AF%B4%E7%9C%8B)
@@ -945,7 +952,8 @@ Expires: Wed, 11 May 2018 07:20:00 GMT
 catche-control是http1.1提出的概念，优先级高于expires，描述的是一个相对时间    
 
 ### 强缓存和协商缓存的区别, 各自的应用场景有哪些？
-强制缓存是根据过期时间来决定是用本地缓存还是请求新资源；协商缓存每次都要经过服务器对比后决定采用本地缓存还是返回新资源    
+强制缓存是根据过期时间来决定是用本地缓存还是请求新资源；
+协商缓存每次都要经过服务器对比后决定采用本地缓存还是返回新资源    
 强缓存使用场景：公共js\css\image等      
 协商缓存使用场景：html资源    
 ### UDP 和 TCP 的区别   
@@ -972,7 +980,34 @@ WebSocket 是一种在单个TCP连接上进行全双工通信的协议
 
 ### axios和ajax的区别是什么?
 Axios 是一个基于 Promise 的 HTTP 库，可以用在浏览器和 node.js 中。
+### 跨域请求有哪些方式？   
+由于浏览器同源策略，凡是发送请求url的协议、域名、端口三者之间任意一与当前页面地址不同即为跨域
 
+(1)、porxy代理
+
+定义和用法：proxy代理用于将请求发送给后台服务器，通过服务器来发送请求，然后将请求的结果传递给前端。
+
+实现方法：通过nginx代理；
+
+注意点：1、如果你代理的是https协议的请求，那么你的proxy首先需要信任该证书（尤其是自定义证书）或者忽略证书检查，否则你的请求无法成功。
+
+(2)、CORS 【Cross-Origin Resource Sharing】
+
+定义和用法：是现代浏览器支持跨域资源请求的一种最常用的方式。
+
+使用方法：一般需要后端人员在处理请求数据的时候，添加允许跨域的相关操作
+(3)、jsonp
+
+定义和用法：通过动态插入一个script标签。浏览器对script的资源引用没有同源限制，同时资源加载到页面后会立即执行（没有阻塞的情况下）。
+
+特点：通过情况下，通过动态创建script来读取他域的动态资源，获取的数据一般为json格式。
+### 什么是option请求？
+“options 请求就是预检请求,可用于检测服务器允许的http方法。当发起跨域请求时,由于安全原因,触发一定条件时浏览器会在正式请求之前自动先发起 OPTIONS 请求,即 CORS 预检请求,服务器若接受该跨域请求,浏览器才继续发起正式请求。”
+【服务器】需要额外配置，服务器响应时新增一组 HTTP 头部字段，标识除了它自己以外的哪些源可以访问服务器资源，以此突破浏览器同源限制，在不同域之间可以共享资源：
+Access-Control-Allow-Origin  // 允许访问该资源的外域 URI 
+Access-Control-Allow-Methods // 实际请求所允许使用的 HTTP 方法，用于预检请求的响应
+Access-Control-Allow-Headers  // 实际请求中允许携带的首部字段，用于预检请求的响应
+Access-Control-Max-Age // 指定了preflight请求的结果能够被缓存多久
 ## WebP 相对于 PNG、JPG 有什么优势？
 WebP 的优势体现在它具有更优的图像数据压缩算法，能带来更小的图片体积，   
 而且拥有肉眼识别无差异的图像质量；同时具备了无损和有损的压缩模式、Alpha 透明以及动画的特性，      
@@ -1010,7 +1045,8 @@ prefetch是一种利用浏览器的空闲时间加载页面将来可能用到的
 preload主要用于预加载当前页面需要的资源；而prefetch主要用于加载将来页面可能需要的资源
 prefetch加载的资源可以获取非当前页面所需要的资源，并且将其放入缓存至少5分钟（无论资源是否可以缓存）；   
 并且，当页面跳转时，未完成的prefetch请求不会被中断；      
-
+preload 是告诉浏览器页面必定需要的资源，浏览器一定会加载这些资源。
+prefetch 是告诉浏览器页面可能需要的资源，浏览器不一定会加载这些资源。
 ## 线程和进程区别 
 进程是资源分配的最小单位，线程是进程的一个执行单元    
 
@@ -1468,6 +1504,11 @@ float造成的影响：
 反方向的浮动元素：互不影响，位于同一条水平线上，当空间不够时会被挤下    
 4、对子元素的影响          
 当一个元素浮动时，在没有清除浮动的情况下，它无法撑开其父元素，但它可以让自己的浮动子元素撑开它自身，并且在没有定义具体宽度情况下，使自身的宽度从100%变为自适应（浮动元素display:block）。其高度和宽度均为浮动元素高度和非浮动元素高度之间的最大值。   
+## 行内元素和块元素有什么区别
+1. 行内元素不会占据整行，在一条直线上排列，都是同一行，水平方向排列；
+块级元素会占据一行，垂直方向排列。
+2. 块级元素可以包含行内元素和块级元素；行内元素不能包含块级元素。
+3. 行内元素与块级元素属性的不同，主要是盒模型属性上，行内元素设置width无效，height无效(可以设置line-height)，margin上下无效，padding上下无效。
 
 ## 清除浮动的所有方法     
 
@@ -1917,6 +1958,17 @@ RESTful的缺点
 04. DllPlugin可以将特定的类库提前打包然后引入。这种方式可以极大的减少打包类库的次数，只有当类库更新版本才有需要重新打包，并且也实现了将公共代码抽离成单独文件的优化方案. 
 05. Scope Hoisting会分析出模块之间的依赖关系，尽可能的把打包出来的模块合并到一个函数中去。
 06. Tree Shaking 可以实现删除项目中未被引用的代码    
+## 介绍一下webpack的scope hoisting
+将所有模块按照引用顺序放在一个函数作用域中，并适当的重命名一些变量名，防止变量名冲突，从而减少代码体积，减少闭包函数的内存开销。
+
+## 介绍一下webpack的Tree-shaking
+当有如下情况出现时：
+1. 一个模块引用了没有被使用
+2. 一个模块中可能有很多方法，但是在实际使用中可能并没有全部被使用到
+3. 代码中Dead code
+4. 以上条件并不完全适用于副作用函数
+5. 以上条件不完全适用于class
+tree-shaking需要对代码进行静态分析，因为import 是静态引入，require是动态引入，代码有没有被用到，不能等到代码运行时在做判断，需要在定义后就进行判断，当判断到代码没有被用到，且没有副作用时，tree-shaking会给代码加上注释，在生成bundle前删除代码。
 
 ## 如何设计一个组件？   
 
@@ -2557,14 +2609,13 @@ XSS指的是攻击者利用漏洞，向 Web 页面中注入恶意代码，当用
 ## 虚拟DOM的优劣如何?   
 
 优点:     
-
 保证性能下限: 虚拟DOM可以经过diff找出最小差异, 然后批量进行patch, 这种操作虽然比不上手动优化, 但是比起粗暴的DOM操作性能要好很多, 因此虚拟DOM可以保证性能下限
 无需手动操作DOM: 虚拟DOM的diff和patch都是在一次更新中自动进行的, 我们无需手动操作DOM, 极大提高开发效率
 跨平台: 虚拟DOM本质上是JavaScript对象, 而DOM与平台强相关, 相比之下虚拟DOM可以进行更方便地跨平台操作, 例如服务器渲染、移动端开发等等
 缺点:   
 无法进行极致优化: 在一些性能要求极高的应用中虚拟DOM无法进行针对性的极致优化, 
 比如VScode采用直接手动操作DOM的方式进行极端的性能优化   
------------------------------
+
 虚拟dom相当于在js和真实dom中间加了一个缓存利用dom diff算法避免了没有必要的dom操作从而提高性能
 
 具体实现步骤如下
@@ -3105,7 +3156,22 @@ Webpack 的运行流程是一个串行的过程，从启动到结束会依次执
   初始化：启动构建，读取与合并配置参数，加载 Plugin，实例化 Compiler
   编译：从 Entry 出发，针对每个 Module 串行调用对应的 Loader 去翻译文件的内容，再找到该 Module 依赖的 Module，递归地进行编译处理
   输出：将编译后的 Module 组合成 Chunk，将 Chunk 转换成文件，输出到文件系统中   
-
+## rollup 和 webpack 
+Webpack大而全，Rollup小而美
+1. Rollup 是一个JavaScript模块打包器，可以将小块代码编译成大块复杂的代码，例如 library 或应用程序。Rollup就是专门针对类库进行打包，它的优点是小巧而专注
+加载非ESM的第三方模块比较复杂
+模块最终都会被打包到一个函数中，无法实现HMR
+浏览器环境中，代码拆分功能依赖AMD库
+2. webpack ，偏向资源依赖处理
+构建复杂的单页应用程序(SPA)。特别是 webpack 的两个特性改变了一切：
+代码拆分(Code Splitting) 使你可以将应用程序分解成可管理的代码块，可以按需加载，这意味着你的用户可以快速获取交互性的网站，
+而不必等到整个应用程序下载和解析完成。当然你可以手动来完成这项工作，那么祝你好运。
+静态资源(Static assets) 如图像和 CSS 可以导入到你的应用程序中，而且还能够被作为依赖图中的另一个节点。
+再也不用关心你的文件是否放在正确的文件夹中，再也不用为文件 URL 增添 hash 而使用 hack 脚本，因为 webpack 会帮我们处理这些事情
+## vite和webpack的区别
+Vite是基于esbuild预构建依赖。而esbuild是采用go语言编写，因为go语言的操作是纳秒级别，而js是以毫秒计数，所以vite比用js编写的打包器快10-100倍。
+webpack: 分析依赖=> 编译打包=> 交给本地服务器进行渲染。首先分析各个模块之间的依赖，然后进行打包，在启动webpack-dev-server，请求服务器时，直接显示打包结果。webpack打包之后存在的问题：随着模块的增多，会造成打出的 bundle 体积过大，进而会造成热更新速度明显拖慢。
+vite: 启动服务器=> 请求模块时按需动态编译显示。是先启动开发服务器，请求某个模块时再对该模块进行实时编译，因为现代游览器本身支持ES-Module，所以会自动向依赖的Module发出请求。所以vite就将开发环境下的模块文件作为浏览器的执行文件，而不是像webpack进行打包后交给本地服务器。
 ## source map是什么？生产环境怎么用？    
 source map 是将编译、打包、压缩后的代码映射回源代码的过程。打包压缩后的代码不具备良好的可读性，想要调试源码就需要 soucre map。
 map文件只要不打开开发者工具，浏览器是不会加载的。
@@ -3755,7 +3821,43 @@ click 事件，通过js来做跳转
 ### [Redux它的三个原则是什么？](https://github.com/haizlin/fe-interview/issues/731)
 ### [什么是单一数据源？](https://github.com/haizlin/fe-interview/issues/730)
 ### [什么是Redux？说说你对Redux的理解？有哪些运用场景？](https://github.com/haizlin/fe-interview/issues/729)  
-## vue 专题  
+## vue专题  
+### Vue 3.0 性能提升主要是通过哪几方面体现的？
+1. 响应式系统提升
+vue2在初始化的时候，对data中的每个属性使用definepropery调用getter和setter使之变为响应式对象。如果属性值为对象，还会递归调用defineproperty使之变为响应式对象。vue3使用proxy对象重写响应式。proxy的性能本来比defineproperty好，proxy可以拦截属性的访问、赋值、删除等操作，不需要初始化的时候遍历所有属性，另外有多层属性嵌套的话，只有访问某个属性的时候，才会递归处理下一级的属性。
+优势：
+可以监听动态新增的属性；
+可以监听删除的属性 ；
+可以监听数组的索引和 length 属性；
+2. 编译优化
+优化编译和重写虚拟dom，让首次渲染和更新dom性能有更大的提升 vue2 通过标记静态根节点,优化 diff 算法 vue3 标记和提升所有静态根节点,diff 的时候只比较动态节点内容Fragments, 模板里面不用创建唯一根节点,可以直接放同级标签和文本内容
+
+静态提升
+patch flag, 跳过静态节点,直接对比动态节点,缓存事件处理函数
+3. 源码体积的优化
+vue3移除了一些不常用的api，例如：inline-template、filter等 使用tree-shaking
+
+### Composition Api 与 Vue 2.x使用的Options Api 有什么区别？    
+Options Api
+包含一个描述组件选项（data、methods、props等）的对象 options；API开发复杂组件，同一个功能逻辑的代码被拆分到不同选项 ；使用mixin重用公用代码，也有问题：命名冲突，数据来源不清晰；
+
+composition Api
+vue3 新增的一组 api，它是基于函数的 api，可以更灵活的组织组件的逻辑。解决options api在大型项目中，options api不好拆分和重用的问题。
+
+### Proxy 相对于 Object.defineProperty有哪些优点？
+proxy的性能本来比defineproperty好，proxy可以拦截属性的访问、赋值、删除等操作，不需要初始化的时候遍历所有属性，另外有多层属性嵌套的话，只有访问某个属性的时候，才会递归处理下一级的属性。      
+可以监听监听数组变化
+可以劫持整个对象
+操作时不是对原对象操作,是 new Proxy 返回的一个新对象
+可以劫持的操作有 13 种
+
+### Vue 3.0 在编译方面有哪些优化？    
+vue.js 3.x中标记和提升所有的静态节点，diff的时候只需要对比动态节点内容；
+
+Fragments（升级vetur插件):
+template中不需要唯一根节点，可以直接放文本或者同级标签静态提升(hoistStatic),当使用 hoistStatic 时,所有静态的节点都被提升到 render 方法之外.只会在应用启动的时候被创建一次,之后使用只需要应用提取的静态节点，随着每次的渲染被不停的复用。patch flag, 在动态标签末尾加上相应的标记,只能带 patchFlag 的节点才被认为是动态的元素,会被追踪属性的修改,能快速的找到动态节点,而不用逐个逐层遍历，提高了虚拟dom diff的性能。缓存事件处理函数cacheHandler,避免每次触发都要重新生成全新的function去更新之前的函数 tree shaking 通过摇树优化核心库体积,减少不必要的代码量     
+### vue 3.0 初始化流程
+创建渲染器 --> 创建 app 实例 --> 调用 mount 方法 --> 创建 vnode (基于初始化时传入的 option) --> 调用 render --> patch --> processComponent --> mountComponent --> 调用 setup 获取他的结果 -> 调用 compile 获取容器下 innerHTML 的 render function -> 兼容 vue2.x 的 API --> setupRenderEffect --> 构建 subTree --> processElement --> mountElement --> 递归 patch 子元素 --> 添加 props --> 插入到对应父节点下    
 ### [从0到1自己构架一个vue项目，说说有哪些步骤、哪些重要插件、目录结构你会怎么组织](https://github.com/haizlin/fe-interview/issues/983)
 ### [你知道vue的模板语法用的是哪个web模板引擎的吗？说说你对这模板引擎的理解](https://github.com/haizlin/fe-interview/issues/561)
 ### [你知道v-model的原理吗？说说看](https://github.com/haizlin/fe-interview/issues/560)
@@ -3833,6 +3935,12 @@ click 事件，通过js来做跳转
 ### [怎么缓存当前打开的路由组件，缓存后想更新当前组件怎么办呢？](https://github.com/haizlin/fe-interview/issues/427)
 ### [说说你对vue组件的设计原则的理解](https://github.com/haizlin/fe-interview/issues/426)
 ### [你了解vue的diff算法吗？](https://github.com/haizlin/fe-interview/issues/425)
+vue在进行比对时遵循以下原则：
+1. 尽量不动
+2. 能修改属性修改属性
+3. 能移动dom移动dom
+4. 实在不行再删除或新增真实dom
+  然后vue的diff会根据新旧domTree进行深度优先同层比对，如果父节点比对发现不同则父节点的所有子节点无需进行比对跟着父节点一起死去，如果父节点比对发现相同则继续往下比对父节点的子节点然后再进行下一个父节点的子节点进行比较，以此递归比较下去，比较时首先会比较标签名是否一致，然后会比较元素的key值是否相同，如果是input元素则还会比较type类型，如果都相同表示相同，如果有一个不相同表示不相同，vue的diff算法会在新旧dom树的头尾处记录头尾指针位置，相互聚拢，逐渐比较，来保证真实dom的高复用，当新虚拟dom树的头指针大于新虚拟dom树的尾指针则表示新虚拟dom树比对完成，diff结束，然后vue会根据新虚拟dom树的比对结果的真实dom树加入根节点中完成页面真实dom渲染完毕
 ### [vue如何优化首页的加载速度？](https://github.com/haizlin/fe-interview/issues/424)
 ### [vue打包成最终的文件有哪些？](https://github.com/haizlin/fe-interview/issues/423)
 ### [ajax、fetch、axios这三都有什么区别？](https://github.com/haizlin/fe-interview/issues/422)
@@ -3996,6 +4104,29 @@ click 事件，通过js来做跳转
 ### [你理解的vuex是什么呢？哪些场景会用到？不用会有问题吗？有哪些特性？](https://github.com/haizlin/fe-interview/issues/386)
 ### [使用vuex的优势是什么？](https://github.com/haizlin/fe-interview/issues/385)
 ### [有用过vuex吗？它主要解决的是什么问题？推荐在哪些场景用？](https://github.com/haizlin/fe-interview/issues/384)
+### vue和react的diff算法的区别
+diff算法：对dom进行different比较不同的一种算法（虚拟）
+
+共同点：vue和diff算法，都是不进行跨层级比较，只做同级比较
+
+不同点：
+
+  1.vue进行diff时，调用patch打补丁函数，一边比较一边给真实的dom打补丁，vue对比节点时，当节点元素类型相同，类名不同时，认为是不同的元素，删除重新创建，而react认为是同类型的节点，进行修改操作
+
+  2.vue列表对比的时候，采用从两端到中间的方式，旧集合和新集合两端各存在两个指针，两两进行比较，每次对比结束后，指针向队列中间移动；react则是从左往右一次对比，利用元素的index和lastindex进行比较
+
+  3.当一个集合把最后一个节点移动到最前面，react会把前面的节点依次向后移动，而Vue只会把最后一个节点放在最前面，这样的操作来看，Vue的diff性能是高于react的
+### vue中computed和watch的区别是什么？
+区别：计算属性computed支持缓存，只有依赖数据发生改变，才会重新进行计算；不支持异步，当computed内有异步操作时无效，无法监听数据的变化。而监听属性watch不支持缓存，数据变，直接会触发相应的操作；支持异步。  
+### Vue computed 实现原理
+1、每个computed属性都会生成对应的Watcher实例，watcher拥有value属性和get方法，computed的getter函数会在get方法中调用，并返回赋值给value。初始设置dirty和lazy为true，当lazy为true时不会立即执行get方法，而是会在读取computed值时执行；
+
+2、将computed属性添加到组件实例上，通过get、set进行属性值的获取或设置，并且重新定义getter方法；
+
+3、页面初始化时，会读取computed属性值，触发重新定义的getter，由于观察者的dirty值为true，将会调用原始的getter函数，当getter方法读取data数据时会触发原始的get方法(数据劫持中的get方法)，将computed对应的watcher添加到data依赖收集器(dep)中。观察者的get方法执行完后，更新观察者的value，并将dirty置为false，表示value值已更新，之后执行观察者的depend方法，将上层观察者也添加到getter函数中data的依赖收集器(dep)中，最后返回computed的value值；
+
+4、当更改了computed属性getter函数依赖的data值时，将会触发之前dep收集的watcher，依次调用watcher的update方法，先调用computed的观察者的update方法，由于lazy为true，会将dirty先设置为true，表示computed属性getter函数依赖data发生变化，但不调用观察者的get方法更新value值。这时调用包含更新页面方法的观察者的update方法，在更新页面时会读取computed属性值，触发重新定义的getter函数，由于dirty为true，调用该观察者的get方法，更新value并返回，完成页面渲染；
+
 
 ## 使用过git merge和git rebase吗？它们之间有什么区别？
 

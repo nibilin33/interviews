@@ -547,4 +547,5 @@ function asyncToGenerator(generatorFunc) {
 // 29. 实现深拷贝，考虑函数以及循环引用的情况(禁止使用JSON序列化)。
 // https://wenku.baidu.com/view/f60173424bd7c1c708a1284ac850ad02de8007db.html
 
-// 30.用flex实现九宫格布局
+// 30.实现发布订阅（eventEmiter）
+

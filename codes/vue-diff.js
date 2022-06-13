@@ -5,9 +5,11 @@ const diff = (oldArr, newArr) => {
     newEnd = newArr.length - 1;
   let patchOld = [];
   while (oldStart <= oldEnd && newStart <= newEnd) {
+    // 旧头和新头一样，指针后移动
     if (oldArr[oldStart] === newArr[newStart]) {
       oldStart++;
       newStart++;
+      // 如果不一样，优先处理极端情况，头尾比较
     } else if (oldArr[oldEnd] === newArr[newEnd]) {
       oldEnd--;
       newEnd--;
@@ -28,6 +30,7 @@ const diff = (oldArr, newArr) => {
       oldEnd--;
       newStart++;
     } else {
+      // 头尾处理完，在旧里面查找是否有这个节点，有就移动，没有就新增
       let indexInOld = oldArr
         .slice(oldStart, oldEnd)
         .findIndex(it => it == newArr[newStart]);
