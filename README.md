@@ -1032,7 +1032,30 @@ CSS 选择器时是从右往左解析
 减少要搜索的目标范围
 https://www.fly63.com/article/detial/1923  
 https://zhuanlan.zhihu.com/p/25380611   
+## src和href的区别
+src和href的作用都是用于请求资源。
+区别：
+1.请求资源类型不同
+href，超文本引用，用于建立文档与资源的联系，常用的有：link、a。
+src，将其所指向的资源下载并应用到当前页面，常见的有script、img。
+2.作用结果不同
+href，用于文档与资源之间确立联系。
+src，请求到的资源替换当前内容。
+3.浏览器的解析不同
+href，将资源解析成css文件，并行加载请求资源，不会阻塞对当前文档的处理。
+src，会暂停其他资源的处理，直到该资源加载、解析和执行完毕，将其所指向资源应用到当前内容。这也是为什么把js文件放在底部而不是头部发热原因。
 
+src和href的区别
+src是指向外部资源的位置，指向的内容会嵌⼊到⽂档中当前标签所在的位置，在请求src资源时会将其指向的资源下载并应⽤到⽂档内，如js脚本，img图⽚和frame等元素。当浏览器解析到该元素时，会暂停其他资源的下载和处理，知道将该资源加载、编译、执⾏完毕，所以⼀般js脚本会放在底部⽽不是头部。
+href是指网络资源所在位置（的超链接），⽤来建⽴和当前元素或⽂档之间的连接，当浏览器识别到它他指向的⽂件时，就会并⾏下载资源，不会停⽌对当前⽂档的处理。比如link标签。
+## new 一个构造函数，如果函数返回 return {} 、 return null ， return 1 ， return true 会发生什么情况？
+如果函数返回一个对象，那么new 这个函数调用返回这个函数的返回对象，否则返回 new 创建的新对象   
+## symbol 有什么用处
+1.防止变量名起冲突    
+2.可以使用symbol避免魔术字符串
+4.symbol作为键名时，不被常规方法遍历出来，因此可以给对象定义非私有，但只用于内部使用的方法和属性
+
+Symbol.for() 可以在全局访问 symbol
 ## commonjs与es6模块化有什么区别
 1.CommonJS 模块是运行时加载，ES6 模块是编译时输出接口。     
 2.CommonJS 模块的require()是同步加载模块，ES6 模块的import命令是异步加载，
@@ -2404,6 +2427,38 @@ MutationObserver(html5新特性)
 1. 宏任务：当前调用栈中执行的代码成为宏任务。（主代码快，定时器等等，由宿主触发）。   
 2. 微任务： 当前（此次事件循环中）宏任务执行完，在下一个宏任务开始之前需要执行的任务,可以理解为回调事件。
    （promise.then，proness.nextTick等等）。 宏任务中的事件放在callback queue中，由事件触发线程维护；微任务的事件放在微任务队列中，由js引擎线程维护。
+  
+```js
+async function async1(){
+    console.log('async1 start');
+await async2();
+    console.log('async1 end')
+}
+async function async2(){
+    console.log('async2')
+}
+console.log('script start');
+setTimeout(function(){
+    console.log('setTimeout')
+},0);
+async1();
+new  Promise(function(resolve){
+    console.log('promise1');
+resolve()
+}).then(function(){
+    console.log('promise2')
+});
+console.log('script end')
+```
+1. 先执⾏同步和⽴即执⾏任务，⽐如说
+console.log()、new Promise()
+2. 再依次执⾏微任务，⽐如说
+函数和
+函数
+thenable
+catchable
+3. 当微任务执⾏完成后开始执⾏宏任务，⽐如说定时器，事件回调等
+
 ## 如何监控网页崩溃?  
 
 01. 利用页面崩溃无法触发 beforeunload 事件来实现 

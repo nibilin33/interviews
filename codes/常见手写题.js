@@ -45,6 +45,16 @@ Function.prototype.myApply = function (obj) {
   console.log('apply')
   return result;
 }
+/**
+ * 
+bind的特性
+传递的第一个参数做为调用它的函数的this指向（bind可传递若干参数）。
+若第一个参数传递基础数据类型，则调用他的函数的this指向该基础数据类型的包装类实例化对象。
+若第一个参数为null或undefined，则调用他的函数的this指向window。
+bind的第二个之后的参数为调用它的函数的参数列表。
+bind方法会返回一个新的方法，并且该方法满足柯里化，仍可以传递参数，但这个方法的this不可被call、apply、bind改变。
+bind方法返回的新方法，如果使用new实例化，那么原本通过bind绑定的this指向的对象会失效，this将指向到新实例化的对象上，且可以使用原方法原型链上的属性或方法。
+*/
 Function.prototype.myBind = function (obj) {
   let ob = obj || window;
   let arg = [...arguments].slice(1);
@@ -549,3 +559,20 @@ function asyncToGenerator(generatorFunc) {
 
 // 30.实现发布订阅（eventEmiter）
 
+// 31. javascript 实现继承
+const inherit = (child,parent) => {
+  let fn = function(){};
+  fn.prototype = parent.prototype;
+  child.prototype = new fn();
+  child.prototype.constructor = child;
+}
+
+// 32. 实现ajax
+function ajax (method,url,data) {
+  let request = new XMLHttpRequest();
+  request.open(method,url);
+  request.onreadystatechange = (res)=>{
+  }
+  request.send();
+}
+// 33. 实现differenceBy
