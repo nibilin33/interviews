@@ -16,10 +16,7 @@ function sockMerchant(n, ar) {
         }
     }
     Object.keys(colorMap).forEach((key)=>{
-        if(colorMap[key]%2!=0){
-            colorMap[key]=colorMap[key]-1;
-        }
-        pairs+=colorMap[key]/2;
+        pairs+=parseInt(colorMap[key]/2);
     });
     return pairs;
 }
