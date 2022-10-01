@@ -31,7 +31,7 @@ function caesarCipher(s, k) {
             }
             result += String.fromCodePoint(code);
         } else {
-            result += s[i]
+            result += s[i];
         }
     }
     return result;
