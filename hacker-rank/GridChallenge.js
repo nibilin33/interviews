@@ -11,6 +11,7 @@ function gridChallenge(grid) {
     for(let i=0;i<grid.length;i++) {
         grid[i]=grid[i].split('').sort((a,b)=>a.localeCompare(b));
         if(i>0) {
+            // after sorting compare existing vertical characters
             for(let j=0;j<grid[i].length;j++) {
                 if(grid[i-1][j]>grid[i][j]) {
                     return 'NO';
