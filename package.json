@@ -9,6 +9,7 @@
   "license": "ISC",
   "dependencies": {
     "crypto": "^1.0.1",
-    "doctoc": "^1.4.0"
+    "doctoc": "^1.4.0",
+    "request": "^2.88.2"
   }
 }
