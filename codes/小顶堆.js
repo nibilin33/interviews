@@ -1,3 +1,4 @@
+// 插入O(logn)
 class Heap{
     constructor(){
         this.store = [];
