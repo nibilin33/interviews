@@ -18,20 +18,19 @@
  * @return {ListNode}
  */
 var removeNthFromEnd = function(head, n) {
-    var preHead = new ListNode(0);
-    preHead.next = head;
-    var before = preHead;
-    var tail = preHead;
-    var index = 0;
-    while(tail) {
-        tail = tail.next;
-        if(index>n) {
-            before = before.next;
-        }
-        index++;
+  var preHead = new ListNode(0);
+  preHead.next = head;
+  var before = preHead;
+  var tail = preHead;
+  var index = 0;
+  while (tail) {
+    tail = tail.next;
+    if (index > n) {
+      before = before.next;
     }
-    before.next = before.next.next;
-    return preHead.next;
+    index++;
+  }
+  before.next = before.next.next;
+  return preHead.next;
 };
 // @lc code=end
-

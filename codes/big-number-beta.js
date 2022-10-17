@@ -45,9 +45,9 @@ const add = (num1, num2) => {
     let res = Number(num1[i]) + Number(num2[i]) + cr;
     result.push(res % 10);
     if (res > 9) {
-        cr = 1;
-      } else {
-        cr = 0;
+      cr = 1;
+    } else {
+      cr = 0;
     }
   }
   return {
@@ -60,10 +60,10 @@ const sub = (num1, num2) => {
   let result = [];
   for (let i = num1.length - 1; i >= 0; i--) {
     let res = Number(num1[i]) - Number(num2[i]) + cr;
-    result.push((10+res)%10);
-    if(res<0) {
+    result.push((10 + res) % 10);
+    if (res < 0) {
       cr = -1;
-    }else{
+    } else {
       cr = 0;
     }
   }
@@ -82,12 +82,12 @@ const addFun = (num1, num2) => {
     numCy,
     numResult,
     dotResult = null;
-// num1>num2
+  // num1>num2
   let isChange = cmp(num1[1], num2[1]);
   if (isChange === 0) {
     isChange = cmp(num1[2], num2[2]);
   }
-  if (isChange<0) {
+  if (isChange < 0) {
     let tmp = num1;
     num1 = num2;
     num2 = tmp;
@@ -114,24 +114,24 @@ const addFun = (num1, num2) => {
   dot = dotResult.result;
   dotCy = dotResult.cr;
   let result = [];
-  if (numCy>0) {
+  if (numCy > 0) {
     num.push(numCy);
   }
-  for (let i = 0; i<num.length; i++) {
-    let res =num[i] + dotCy;
-    if(res<0) {
+  for (let i = 0; i < num.length; i++) {
+    let res = num[i] + dotCy;
+    if (res < 0) {
       dotCy = -1;
-      result.push(10+res);
+      result.push(10 + res);
       continue;
     }
-    if(res>9) {
+    if (res > 9) {
       dotCy = 1;
-    }else{
+    } else {
       dotCy = 0;
     }
-    result.push(res%10);
+    result.push(res % 10);
   }
-  if(dotCy>0) {
+  if (dotCy > 0) {
     result.push(dotCy);
   }
   let dotty = dot

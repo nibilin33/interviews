@@ -12,47 +12,47 @@
 // 2. 之后有新元素进入A的时候，比较大小，如果小于B的栈顶，就让进入B
 // 3. 出栈的时候同时处理B
 var MinStack = function() {
-    this.mainStack = [];
-    this.minStack = [];
+  this.mainStack = [];
+  this.minStack = [];
 };
 
-/** 
+/**
  * @param {number} x
  * @return {void}
  */
 MinStack.prototype.push = function(x) {
-    if(!this.mainStack.length) {
-        this.minStack.push(x);
-    }
-    this.mainStack.push(x);
-    if(x<=this.minStack[this.minStack.length-1]) {
-        this.minStack.push(x);
-    }
+  if (!this.mainStack.length) {
+    this.minStack.push(x);
+  }
+  this.mainStack.push(x);
+  if (x <= this.minStack[this.minStack.length - 1]) {
+    this.minStack.push(x);
+  }
 };
 
 /**
  * @return {void}
  */
 MinStack.prototype.pop = function() {
-    let popValue = this.mainStack.pop();
-    let popIndex = this.minStack.indexOf(popValue);
-    if(popIndex>-1) {
-        this.minStack.splice(popIndex,1);
-    }
+  let popValue = this.mainStack.pop();
+  let popIndex = this.minStack.indexOf(popValue);
+  if (popIndex > -1) {
+    this.minStack.splice(popIndex, 1);
+  }
 };
 
 /**
  * @return {number}
  */
 MinStack.prototype.top = function() {
-    return this.mainStack[this.mainStack.length-1];
+  return this.mainStack[this.mainStack.length - 1];
 };
 
 /**
  * @return {number}
  */
 MinStack.prototype.getMin = function() {
-    return this.minStack[this.minStack.length-1];
+  return this.minStack[this.minStack.length - 1];
 };
 
 /**
@@ -64,7 +64,6 @@ MinStack.prototype.getMin = function() {
  * var param_4 = obj.getMin()
  */
 
-
 //  var obj = new MinStack();
 //   obj.push(0);
 //   obj.push(1);
@@ -72,6 +71,5 @@ MinStack.prototype.getMin = function() {
 //   console.log(obj.getMin());
 //   obj.pop();
 //   console.log(obj.getMin());
- 
-// @lc code=end
 
+// @lc code=end

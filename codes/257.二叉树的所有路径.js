@@ -17,20 +17,19 @@
  * @return {string[]}
  */
 var binaryTreePaths = function(root) {
-    let result = [];
-    const deep=(path,node)=>{
-        if(!node) return;
-        path+=node.val;
-        if((node.left == null) && (node.right == null)) {
-            result.push(path);
-        }else{
-            path+='->';
-            deep(path,node.left);
-            deep(path,node.right);
-        }
+  let result = [];
+  const deep = (path, node) => {
+    if (!node) return;
+    path += node.val;
+    if (node.left == null && node.right == null) {
+      result.push(path);
+    } else {
+      path += "->";
+      deep(path, node.left);
+      deep(path, node.right);
     }
-    deep('',root);
-    return result;
+  };
+  deep("", root);
+  return result;
 };
 // @lc code=end
-

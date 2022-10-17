@@ -2,38 +2,28 @@
  * initialize your data structure here.
  * 定义栈的数据结构，请在该类型中实现一个能够得到栈的最小元素的 min 函数在该栈中，调用 min、push 及 pop 的时间复杂度都是 O(1)。
  */
- var MinStack = function() {
+var MinStack = function() {};
 
-};
-
-/** 
+/**
  * @param {number} x
  * @return {void}
  */
-MinStack.prototype.push = function(x) {
-
-};
+MinStack.prototype.push = function(x) {};
 
 /**
  * @return {void}
  */
-MinStack.prototype.pop = function() {
-
-};
+MinStack.prototype.pop = function() {};
 
 /**
  * @return {number}
  */
-MinStack.prototype.top = function() {
-
-};
+MinStack.prototype.top = function() {};
 
 /**
  * @return {number}
  */
-MinStack.prototype.min = function() {
-
-};
+MinStack.prototype.min = function() {};
 
 /**
  * Your MinStack object will be instantiated and called as such:

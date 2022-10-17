@@ -12,23 +12,23 @@
 //  先从头节点顺序遍历链表直至链尾，把每个遍历到的节点都存储到map中
 //  再从头节点顺序遍历，更新map中对应节点的next指针和random指针
 //  返回map中的头节点，也就是复制后的头节点
- 
+
 /**
  * @param {Node} head
  * @return {Node}
  */
- var copyRandomList = function(head) {
-    let map = new Map();
-    let node = head;
-    while(node) {
-        map.set(node,new Node(node.val));
-        node = node.next;
-    }
-    node = head;
-    while(node) {
-       map.get(node).next = map.get(node.next) || null;
-       map.get(node).random = map.get(node.random) || null;
-       node = node.next;
-    }
-    return map.get(head);
+var copyRandomList = function(head) {
+  let map = new Map();
+  let node = head;
+  while (node) {
+    map.set(node, new Node(node.val));
+    node = node.next;
+  }
+  node = head;
+  while (node) {
+    map.get(node).next = map.get(node.next) || null;
+    map.get(node).random = map.get(node.random) || null;
+    node = node.next;
+  }
+  return map.get(head);
 };

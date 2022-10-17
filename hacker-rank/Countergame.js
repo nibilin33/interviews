@@ -21,31 +21,27 @@ note: Binary check whether is powers of two (n&(n-1))===1 是否是2的冥
 最后连续几个0的情况走是2的冥的操作，几个0就操作几次 
 */
 function counterGame(n) {
-    // Write your code here
-    let target = n.toString(2);
-    let paycount = 0;
- 
-    for (let i = target.length - 1; i > 0; i--) {
-        if (target[i] == 0) {
-            paycount++;
-        } else {
-            break;
-        }
+  // Write your code here
+  let target = n.toString(2);
+  let paycount = 0;
+
+  for (let i = target.length - 1; i > 0; i--) {
+    if (target[i] == 0) {
+      paycount++;
+    } else {
+      break;
     }
-    return (target.split('').filter((name) => name == 1).length + paycount) % 2 == 1 ? 'Richard' : 'Louise';
+  }
+  return (target.split("").filter(name => name == 1).length + paycount) % 2 == 1
+    ? "Richard"
+    : "Louise";
 }
 
 function main() {
-    const arr = [
-        1560834904,
-        1768820483,
-        1533726144,
-        1620434450,
-        1463674015
-    ]
-    arr.forEach((n) => {
-        const result = counterGame(n);
-        console.log(result);
-    });
+  const arr = [1560834904, 1768820483, 1533726144, 1620434450, 1463674015];
+  arr.forEach(n => {
+    const result = counterGame(n);
+    console.log(result);
+  });
 }
 main();

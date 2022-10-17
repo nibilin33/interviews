@@ -9,23 +9,25 @@
  */
 
 function superDigit(n, k) {
-    // Write your code here
-    let total = n.split('').reduce((pre,current)=>Number(pre)+Number(current))*k;
-    let p = total.toString();
-    while(p.length>1) {
-        let newP = p.split('').reduce((pre,current)=>Number(pre)+Number(current));
-        p=newP.toString();
-    }
-    return p;
-
+  // Write your code here
+  let total =
+    n.split("").reduce((pre, current) => Number(pre) + Number(current)) * k;
+  let p = total.toString();
+  while (p.length > 1) {
+    let newP = p
+      .split("")
+      .reduce((pre, current) => Number(pre) + Number(current));
+    p = newP.toString();
+  }
+  return p;
 }
 function main() {
-    const n = '9875';
+  const n = "9875";
 
-    const k = 100000;
+  const k = 100000;
 
-    const result = superDigit(n, k);
+  const result = superDigit(n, k);
 
-    console.log(result);
+  console.log(result);
 }
 main();

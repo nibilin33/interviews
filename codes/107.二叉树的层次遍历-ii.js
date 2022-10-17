@@ -17,20 +17,18 @@
  * @return {number[][]}
  */
 var levelOrderBottom = function(root) {
-    if(!root) return [];
-    let result = [];
-    const deep = (node,depth) =>{
-        if(!node) return;
-        if(typeof result[depth]=='undefined') {
-            result[depth]=[];
-        }
-        result[depth].push(node.val);
-        deep(node.left,depth+1);
-        deep(node.right,depth+1);
-
+  if (!root) return [];
+  let result = [];
+  const deep = (node, depth) => {
+    if (!node) return;
+    if (typeof result[depth] == "undefined") {
+      result[depth] = [];
     }
-    deep(root,0);
-    return result.reverse();
+    result[depth].push(node.val);
+    deep(node.left, depth + 1);
+    deep(node.right, depth + 1);
+  };
+  deep(root, 0);
+  return result.reverse();
 };
 // @lc code=end
-

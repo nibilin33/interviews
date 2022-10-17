@@ -17,14 +17,12 @@
  * @return {boolean}
  */
 var isValidBST = function(root) {
-    const deep = (root,low,up)=>{
-        if(!root) return true;
-        if (root.val <= low || root.val >= up) return false;
-        return deep(root.left, low, root.val) && deep(root.right, root.val, up);
-
-    }
-    return deep(root,-Infinity,Infinity);
+  const deep = (root, low, up) => {
+    if (!root) return true;
+    if (root.val <= low || root.val >= up) return false;
+    return deep(root.left, low, root.val) && deep(root.right, root.val, up);
+  };
+  return deep(root, -Infinity, Infinity);
 };
 //[2,1,3]true,[1,1]false
 // @lc code=end
-

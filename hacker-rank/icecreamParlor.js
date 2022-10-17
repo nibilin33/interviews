@@ -9,26 +9,24 @@
  */
 
 function icecreamParlor(m, arr) {
-    // Write your code here
-    for(let i=0;i<arr.length;i++){
-        let rest = m - arr[i];
-        for(let j=i+1;j<arr.length;j++) {
-            if(rest === arr[j]) {
-                return [i+1,j+1];
-            }
-        }
+  // Write your code here
+  for (let i = 0; i < arr.length; i++) {
+    let rest = m - arr[i];
+    for (let j = i + 1; j < arr.length; j++) {
+      if (rest === arr[j]) {
+        return [i + 1, j + 1];
+      }
     }
-    return [];
- 
+  }
+  return [];
 }
 
 function main() {
-    const m = 6;
+  const m = 6;
 
-    const arr = [1,3,4,5,6];
+  const arr = [1, 3, 4, 5, 6];
 
-    const result = icecreamParlor(m, arr);
-    console.log(result);
-
+  const result = icecreamParlor(m, arr);
+  console.log(result);
 }
 main();

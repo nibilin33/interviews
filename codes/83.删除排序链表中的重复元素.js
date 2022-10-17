@@ -17,21 +17,20 @@
  * @return {ListNode}
  */
 var deleteDuplicates = function(head) {
-    let visited = new Set();
-    let hd = head;
-    let pre = null;
-    while(head) {
-        let next = head.next;
-        // 如果出现重复相同节点，pre不能移动
-        if(visited.has(head.val)) {
-            pre.next = next;
-        }else{
-            pre=head;
-        }
-        visited.add(head.val);
-        head=next;
+  let visited = new Set();
+  let hd = head;
+  let pre = null;
+  while (head) {
+    let next = head.next;
+    // 如果出现重复相同节点，pre不能移动
+    if (visited.has(head.val)) {
+      pre.next = next;
+    } else {
+      pre = head;
     }
-    return hd;
+    visited.add(head.val);
+    head = next;
+  }
+  return hd;
 };
 // @lc code=end
-

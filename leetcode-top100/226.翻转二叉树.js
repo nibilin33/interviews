@@ -19,18 +19,17 @@
  */
 // 递归左边变右边
 var invertTree = function(root) {
-    function invert(node) {
-        if(node == null){
-            return;
-        }
-        let tmp = node.left;
-        node.left = node.right;
-        node.right = tmp;
-        invert(node.left);
-        invert(node.right);
-    } 
-    invert(root)
-    return root;
+  function invert(node) {
+    if (node == null) {
+      return;
+    }
+    let tmp = node.left;
+    node.left = node.right;
+    node.right = tmp;
+    invert(node.left);
+    invert(node.right);
+  }
+  invert(root);
+  return root;
 };
 // @lc code=end
-

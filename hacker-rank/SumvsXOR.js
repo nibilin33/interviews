@@ -15,16 +15,22 @@ n+x = n xor x
  思路：等价于二进制0的个数的排列组合
  */
 function sumXor(n) {
-    // Write your code here
-    if(n===0) {
-        return 1;
-    }
-    return Math.pow(2,n.toString(2).split('').filter((name)=>name==0).length);
+  // Write your code here
+  if (n === 0) {
+    return 1;
+  }
+  return Math.pow(
+    2,
+    n
+      .toString(2)
+      .split("")
+      .filter(name => name == 0).length
+  );
 }
 
 function main() {
-    const n = 1000000000000000; // 1073741824
-    const result = sumXor(n);
-    console.log(result);
+  const n = 1000000000000000; // 1073741824
+  const result = sumXor(n);
+  console.log(result);
 }
 main();

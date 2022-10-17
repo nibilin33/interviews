@@ -8,21 +8,21 @@
  */
 
 function pageCount(n, p) {
-    // Write your code here
-    if(n%2==0){
-        n=n+1;
-    }
-    return Math.min(parseInt((n-p)/2),parseInt(p/2));
+  // Write your code here
+  if (n % 2 == 0) {
+    n = n + 1;
+  }
+  return Math.min(parseInt((n - p) / 2), parseInt(p / 2));
 }
 
 function main() {
-    // 7,4 ->1
-    // 5,6 -> 1
-    const n = 6;
+  // 7,4 ->1
+  // 5,6 -> 1
+  const n = 6;
 
-    const p = 4;
+  const p = 4;
 
-    const result = pageCount(n, p);// 1
-    console.log(result);
+  const result = pageCount(n, p); // 1
+  console.log(result);
 }
-main()
+main();

@@ -19,30 +19,29 @@
  */
 // 层序遍历，返回当前层的最后一位
 var rightSideView = function(root) {
-   if(root === null) {
-       return [];
-   }
-   let que = [root];
-   let visited = [];
-   let result = [root.val];
-   while(que.length > 0) {
-       let node = que.shift();
-       if(node.left) {
-         visited.push(node.left);
-       }
-       if(node.right) {
-         visited.push(node.right);
-       }
-       if(que.length === 0) {
-            if(visited.length > 0) {
-                que = que.concat(visited);
-                const v = visited.pop();
-                result.push(v.val);
-            }
-            visited = [];
-       }
-   }
-   return result;
+  if (root === null) {
+    return [];
+  }
+  let que = [root];
+  let visited = [];
+  let result = [root.val];
+  while (que.length > 0) {
+    let node = que.shift();
+    if (node.left) {
+      visited.push(node.left);
+    }
+    if (node.right) {
+      visited.push(node.right);
+    }
+    if (que.length === 0) {
+      if (visited.length > 0) {
+        que = que.concat(visited);
+        const v = visited.pop();
+        result.push(v.val);
+      }
+      visited = [];
+    }
+  }
+  return result;
 };
 // @lc code=end
-

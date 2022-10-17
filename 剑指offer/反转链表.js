@@ -10,15 +10,15 @@
  * @param {ListNode} head
  * @return {ListNode}
  */
-// 当前的next 指向之前的 
+// 当前的next 指向之前的
 var reverseList = function(head) {
-    let pre = null;
-    let cur = head;
-    while(cur!=null) {
-        let nextTemp = curr.next;
-        cur.next = pre;
-        pre = cur;
-        cur = nextTemp;
-    }
-    return pre;
+  let pre = null;
+  let cur = head;
+  while (cur != null) {
+    let nextTemp = curr.next;
+    cur.next = pre;
+    pre = cur;
+    cur = nextTemp;
+  }
+  return pre;
 };

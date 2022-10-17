@@ -17,21 +17,21 @@ satisfying the relation exists. Otherwise, return NO.
  */
 
 function twoArrays(k, A, B) {
-    // Write your code here
-    A = A.sort((a,b)=>a-b);
-    B = B.sort((a,b)=>b-a);
-    for(let i=0;i<A.length;i++) {
-        if(A[i]+B[i]<k) {
-            return 'NO';
-        }
+  // Write your code here
+  A = A.sort((a, b) => a - b);
+  B = B.sort((a, b) => b - a);
+  for (let i = 0; i < A.length; i++) {
+    if (A[i] + B[i] < k) {
+      return "NO";
     }
-    return 'YES';
+  }
+  return "YES";
 }
 function main() {
-    const k = 10;
-    const A = [2, 1, 3];
-    const B = [7, 8, 9];
-    const result = twoArrays(k, A, B);
-    console.log(result);
+  const k = 10;
+  const A = [2, 1, 3];
+  const B = [7, 8, 9];
+  const result = twoArrays(k, A, B);
+  console.log(result);
 }
 main();

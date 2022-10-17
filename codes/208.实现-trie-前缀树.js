@@ -6,60 +6,60 @@
 
 // @lc code=start
 function Node(val) {
-    this.val = val||null;
-    this.child = {};
-    this.isEnd = false;
+  this.val = val || null;
+  this.child = {};
+  this.isEnd = false;
 }
 var Trie = function() {
-    this.root = new Node();
+  this.root = new Node();
 };
 
-/** 
+/**
  * @param {string} word
  * @return {void}
  */
 Trie.prototype.insert = function(word) {
-    let cur = this.root;
-    for(let ch of word) {
-        if(typeof cur.child[ch] === 'undefined') {
-            cur.child[ch] = new Node(ch);
-        }
-        cur = cur.child[ch]
+  let cur = this.root;
+  for (let ch of word) {
+    if (typeof cur.child[ch] === "undefined") {
+      cur.child[ch] = new Node(ch);
     }
-        cur.isEnd = true;
+    cur = cur.child[ch];
+  }
+  cur.isEnd = true;
 };
 
-/** 
+/**
  * @param {string} word
  * @return {boolean}
  */
 Trie.prototype.search = function(word) {
-    let cur = this.root;
-    for(let ch of word) {
-        if(typeof cur.child[ch] === 'undefined') {
-            return false;
-        }
-       cur = cur.child[ch];
+  let cur = this.root;
+  for (let ch of word) {
+    if (typeof cur.child[ch] === "undefined") {
+      return false;
     }
-    if(cur.isEnd) {
-        return true;
-    }
-    return false;
+    cur = cur.child[ch];
+  }
+  if (cur.isEnd) {
+    return true;
+  }
+  return false;
 };
 
-/** 
+/**
  * @param {string} prefix
  * @return {boolean}
  */
 Trie.prototype.startsWith = function(prefix) {
-    let cur = this.root;
-    for(let ch of prefix) {
-        if(typeof cur.child[ch] === 'undefined') {
-            return false;
-        }
-       cur = cur.child[ch];
+  let cur = this.root;
+  for (let ch of prefix) {
+    if (typeof cur.child[ch] === "undefined") {
+      return false;
     }
-    return true;
+    cur = cur.child[ch];
+  }
+  return true;
 };
 
 /**
@@ -70,4 +70,3 @@ Trie.prototype.startsWith = function(prefix) {
  * var param_3 = obj.startsWith(prefix)
  */
 // @lc code=end
-

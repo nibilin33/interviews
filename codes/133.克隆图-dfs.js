@@ -18,24 +18,22 @@
  * @return {Node}
  */
 var cloneGraph = function(node) {
-    let visited = {};
-    function dfs(node) {
-        if(!(node instanceof Node)) {
-            return node;
-        }
-        if(visited[node.val]) {
-            return visited[node.val];
-        }
-        let clone = new Node(node.val,[]);
-        visited[node.val] = clone;
-        for(let i=0;i<node.neighbors.length;i++) {
-            let item = node.neighbors[i];
-            clone.neighbors.push(dfs(item));
-        }
-        return clone;
-
+  let visited = {};
+  function dfs(node) {
+    if (!(node instanceof Node)) {
+      return node;
     }
-    return dfs(node);
+    if (visited[node.val]) {
+      return visited[node.val];
+    }
+    let clone = new Node(node.val, []);
+    visited[node.val] = clone;
+    for (let i = 0; i < node.neighbors.length; i++) {
+      let item = node.neighbors[i];
+      clone.neighbors.push(dfs(item));
+    }
+    return clone;
+  }
+  return dfs(node);
 };
 // @lc code=end
-

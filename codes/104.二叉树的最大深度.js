@@ -18,15 +18,15 @@
  * @return {number}
  */
 var maxDepth = function(root) {
-    if(root === null) {
-        return 0;
-    }
-    function loopTree(node) {
-        return node ? Math.max(loopTree(node.right)+1,loopTree(node.left)+1): 0;
-    }
-    let height = loopTree(root);
-    return height;
-
+  if (root === null) {
+    return 0;
+  }
+  function loopTree(node) {
+    return node
+      ? Math.max(loopTree(node.right) + 1, loopTree(node.left) + 1)
+      : 0;
+  }
+  let height = loopTree(root);
+  return height;
 };
 // @lc code=end
-

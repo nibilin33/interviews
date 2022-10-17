@@ -14,25 +14,23 @@
 // 当前元素的下标与弹出元素下标作差，得出当前有效括号字符串的长度
 
 var longestValidParentheses = function(s) {
-    let max = 0;
-    let stack = [];
-    stack.push(-1);
-    for(let i=0;i<s.length;i++) {
-        if(s[i] === '(') {
-            stack.push(i);
-        }else{
-            stack.pop();
-            if(stack.length) {
-                max = Math.max(max,i - stack[stack.length - 1]);
-            }else{
-                stack.push(i);
-            }
-        }
+  let max = 0;
+  let stack = [];
+  stack.push(-1);
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === "(") {
+      stack.push(i);
+    } else {
+      stack.pop();
+      if (stack.length) {
+        max = Math.max(max, i - stack[stack.length - 1]);
+      } else {
+        stack.push(i);
+      }
     }
-    return max;
-
+  }
+  return max;
 };
 // var input = ')()())';
 // longestValidParentheses(input);
 // @lc code=end
-

@@ -1,0 +1,11 @@
+.reverse-txt{
+  transform: rotate(180deg);
+}
+.change-direction::selection{
+  background: #ffb7b7;
+  text-decoration:underline;
+}
+.change-direction{
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}

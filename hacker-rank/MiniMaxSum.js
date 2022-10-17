@@ -13,19 +13,19 @@ as a single line of two space-separated long integers.
  */
 
 function miniMaxSum(arr) {
-    // Write your code here
-    arr = arr.sort((a,b)=> a-b);
-    let same = 0;
-    for(let i=1;i<arr.length-1;i++) {
-        same += arr[i];
-    }
-    console.log((same+arr[0])+' '+(same+arr[arr.length-1]));
+  // Write your code here
+  arr = arr.sort((a, b) => a - b);
+  let same = 0;
+  for (let i = 1; i < arr.length - 1; i++) {
+    same += arr[i];
+  }
+  console.log(same + arr[0] + " " + (same + arr[arr.length - 1]));
 }
 
 function main() {
-    //prints: 16 24
-    const arr = [1,3,5,7,9];
-  
-    miniMaxSum(arr);
+  //prints: 16 24
+  const arr = [1, 3, 5, 7, 9];
+
+  miniMaxSum(arr);
 }
 main();

@@ -19,19 +19,19 @@
  */
 
 function insertNodeAtPosition(llist, data, position) {
-    // Write your code here
-    let head = llist;
-    let point = llist;
-    let node = new SinglyLinkedListNode(data);
-    let count = 0;
-    while(head) {
-        let next = head.next;
-        count++;
-        if(count == position) {
-            head.next = node;
-            node.next = next;
-        }
-        head = next;
+  // Write your code here
+  let head = llist;
+  let point = llist;
+  let node = new SinglyLinkedListNode(data);
+  let count = 0;
+  while (head) {
+    let next = head.next;
+    count++;
+    if (count == position) {
+      head.next = node;
+      node.next = next;
     }
-    return point;
+    head = next;
+  }
+  return point;
 }

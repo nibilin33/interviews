@@ -3,22 +3,25 @@
 */
 
 function flippingBits(n) {
-    // Write your code here
-    n = n.toString(2);
-    const inverse = n.split('').map((num)=>{
-        if(num == 0) {
-            return 1;
-        }else{
-            return 0;
-        }
-    }).join('');
-    const binary = inverse.padStart(32,'1')
-    return parseInt(binary,2);
+  // Write your code here
+  n = n.toString(2);
+  const inverse = n
+    .split("")
+    .map(num => {
+      if (num == 0) {
+        return 1;
+      } else {
+        return 0;
+      }
+    })
+    .join("");
+  const binary = inverse.padStart(32, "1");
+  return parseInt(binary, 2);
 }
 
 function main() {
-    const n = 802743475; // 3492223820
-    const result = flippingBits(n);
-    console.log(result);
+  const n = 802743475; // 3492223820
+  const result = flippingBits(n);
+  console.log(result);
 }
 main();

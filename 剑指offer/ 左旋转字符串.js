@@ -6,6 +6,6 @@
  * "cdefgab"
  */
 var reverseLeftWords = function(s, n) {
-    let result = s.substring(n,s.length)+s.substring(0,n);
-    return result;
+  let result = s.substring(n, s.length) + s.substring(0, n);
+  return result;
 };

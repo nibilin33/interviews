@@ -11,8 +11,5 @@
  * @param {number[]} rightChild
  * @return {boolean}
  */
-var validateBinaryTreeNodes = function(n, leftChild, rightChild) {
-
-};
+var validateBinaryTreeNodes = function(n, leftChild, rightChild) {};
 // @lc code=end
-

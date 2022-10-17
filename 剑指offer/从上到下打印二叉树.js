@@ -10,20 +10,20 @@
  * @return {number[]}
  */
 var levelOrder = function(root) {
-    if(root === null) {
-        return [];
+  if (root === null) {
+    return [];
+  }
+  let result = [];
+  let que = [root];
+  while (que.length > 0) {
+    let node = que.shift();
+    if (node.left) {
+      que.push(node.left);
     }
-    let result = [];
-    let que = [root];
-    while(que.length > 0) {
-        let node = que.shift();
-        if(node.left) {
-            que.push(node.left);
-        }
-        if(node.right) {
-            que.push(node.right);
-        }
-        result.push(node.val);
+    if (node.right) {
+      que.push(node.right);
     }
-    return result;
+    result.push(node.val);
+  }
+  return result;
 };

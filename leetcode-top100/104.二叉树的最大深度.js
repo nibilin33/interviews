@@ -19,15 +19,14 @@
  */
 // 递归遍历左右，取最大一个
 var maxDepth = function(root) {
-    function loopTree(node, dep) {
-        if(node === null ) {
-            return dep;
-        }
-        dep++
-        return Math.max(loopTree(node.left,dep),loopTree(node.right,dep))
+  function loopTree(node, dep) {
+    if (node === null) {
+      return dep;
     }
-    
-    return loopTree(root,0)
+    dep++;
+    return Math.max(loopTree(node.left, dep), loopTree(node.right, dep));
+  }
+
+  return loopTree(root, 0);
 };
 // @lc code=end
-

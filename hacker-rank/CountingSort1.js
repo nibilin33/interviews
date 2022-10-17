@@ -8,17 +8,16 @@ For more details, you can see Comparison-basedLowerBoundsforSorting.pdf
 return int[100]: a frequency array
 */
 function countingSort(arr) {
-    // Write your code here
-    let rs = new Array(100).fill(0);
-    for(let i=0;i<arr.length;i++) {
-        rs[arr[i]]+=1;
-    }
-    return rs;
-
+  // Write your code here
+  let rs = new Array(100).fill(0);
+  for (let i = 0; i < arr.length; i++) {
+    rs[arr[i]] += 1;
+  }
+  return rs;
 }
 function main() {
-    const arr = [1,1,3,2,1]; // [0,3,1,1]
-    const result = countingSort(arr);
-    console.log(result);
+  const arr = [1, 1, 3, 2, 1]; // [0,3,1,1]
+  const result = countingSort(arr);
+  console.log(result);
 }
 main();

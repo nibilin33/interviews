@@ -18,20 +18,18 @@
  * @return {boolean}
  */
 // 快慢指针：
-// p1每次移动一节，p2 移动2节，然后比较两个指针    
+// p1每次移动一节，p2 移动2节，然后比较两个指针
 // 节点是否一样。
 var hasCycle = function(head) {
-    let p1 = head;
-    let p2 = head;
-    while(p2!=null && p2.next!=null) {
-        p1 = p1.next;
-        p2 = p2.next.next;
-        if(p1 === p2) {
-            return true;
-        }
+  let p1 = head;
+  let p2 = head;
+  while (p2 != null && p2.next != null) {
+    p1 = p1.next;
+    p2 = p2.next.next;
+    if (p1 === p2) {
+      return true;
     }
-    return false;
-    
+  }
+  return false;
 };
 // @lc code=end
-

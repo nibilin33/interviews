@@ -11,35 +11,35 @@
  * @param {TreeNode} root
  * @return {number[][]}
  */
- var levelOrder = function(root) {
-    if(!root) {
-          return [];
-      }
-      let que = [root];
-      let result = [];
-      let visited = [];
-      let level = 0;
-      while(que.length>0) {
-          let node = que.shift();
-          if(typeof result[level] === 'undefined') {
-              result[level] = [];
-          }
-          if (level%2 ===0) {
-              result[level].push(node.val);
-          } else {
-              result[level].unshift(node.val);
-          }
-          if(node.left) {
-              visited.push(node.left);
-          } 
-          if(node.right) {
-              visited.push(node.right);
-          }
-          if(que.length === 0) {
-              level++;
-              que = que.concat(visited);
-              visited = [];
-          }
-      }
-      return result;
-  };
+var levelOrder = function(root) {
+  if (!root) {
+    return [];
+  }
+  let que = [root];
+  let result = [];
+  let visited = [];
+  let level = 0;
+  while (que.length > 0) {
+    let node = que.shift();
+    if (typeof result[level] === "undefined") {
+      result[level] = [];
+    }
+    if (level % 2 === 0) {
+      result[level].push(node.val);
+    } else {
+      result[level].unshift(node.val);
+    }
+    if (node.left) {
+      visited.push(node.left);
+    }
+    if (node.right) {
+      visited.push(node.right);
+    }
+    if (que.length === 0) {
+      level++;
+      que = que.concat(visited);
+      visited = [];
+    }
+  }
+  return result;
+};

@@ -19,17 +19,16 @@
  */
 // 给节点加个访问属性，如果发现访问了两遍，就是有环
 var hasCycle = function(head) {
-    let isCycle = false;
-    while(head) {
-        if(typeof head.count  == 'undefined') {
-            head.count = 1;
-        }else{
-            isCycle = true;
-            break;
-        }
-        head = head.next;
+  let isCycle = false;
+  while (head) {
+    if (typeof head.count == "undefined") {
+      head.count = 1;
+    } else {
+      isCycle = true;
+      break;
     }
-    return isCycle;
+    head = head.next;
+  }
+  return isCycle;
 };
 // @lc code=end
-

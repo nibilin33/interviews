@@ -6,40 +6,39 @@
  */
 // 返回最大子序列的和，和对应下标的和
 function maxSubarray(arr) {
-    // Write your code here
-    let sum = 0;
-    let i = 0;
-    let maxSum = 0;
-    let maxSequence = 0;
-    while(i<arr.length){
-        if(arr[i]>0) {
-            maxSequence+=arr[i];
-        }
-        if(sum+arr[i]<0) {
-            sum = 0;
-        }else{
-            sum+=arr[i];
-            if(maxSum < sum) {
-                maxSum = sum;
-            }
-        }
-        i++;
+  // Write your code here
+  let sum = 0;
+  let i = 0;
+  let maxSum = 0;
+  let maxSequence = 0;
+  while (i < arr.length) {
+    if (arr[i] > 0) {
+      maxSequence += arr[i];
     }
-    if(maxSum === 0) {
-       let sub = Math.max(...arr);
-       if(sub<0) {
-           maxSum = sub;
-           maxSequence = sub;
-       }
+    if (sum + arr[i] < 0) {
+      sum = 0;
+    } else {
+      sum += arr[i];
+      if (maxSum < sum) {
+        maxSum = sum;
+      }
     }
-    return [maxSum,maxSequence];
-
+    i++;
+  }
+  if (maxSum === 0) {
+    let sub = Math.max(...arr);
+    if (sub < 0) {
+      maxSum = sub;
+      maxSequence = sub;
+    }
+  }
+  return [maxSum, maxSequence];
 }
 
 function main() {
-    const arr = [-2,-3,-1,-4,-6];
+  const arr = [-2, -3, -1, -4, -6];
 
-    const result = maxSubarray(arr);
-    console.log(result);
+  const result = maxSubarray(arr);
+  console.log(result);
 }
 main();

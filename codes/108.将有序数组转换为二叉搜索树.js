@@ -18,17 +18,16 @@
  */
 // 二叉搜索树的中序遍历是一个升序序列,根据中序遍历得二叉树
 var sortedArrayToBST = function(nums) {
-    const createTree = (left,right)=>{
-      if(left>right) {
-          return null;
-      }
-      let p = Math.round((left+right)/2);
-      let root = new TreeNode(nums[p]);
-      root.left = createTree(left,p-1);
-      root.right = createTree(p+1,right);
-      return root;
+  const createTree = (left, right) => {
+    if (left > right) {
+      return null;
     }
-    return createTree(0,nums.length-1);
+    let p = Math.round((left + right) / 2);
+    let root = new TreeNode(nums[p]);
+    root.left = createTree(left, p - 1);
+    root.right = createTree(p + 1, right);
+    return root;
+  };
+  return createTree(0, nums.length - 1);
 };
 // @lc code=end
-

@@ -16,15 +16,14 @@
  */
 // return SinglyLinkedListNode pointer: a reference to the head of the reversed list
 function reverse(llist) {
-    // Write your code here
-    let head = llist;
-    let point = null;
-    while(head) {
-        let next = head.next;
-        head.next = point;
-        point = head;
-        head = next;
-    }
-    return point;
-
+  // Write your code here
+  let head = llist;
+  let point = null;
+  while (head) {
+    let next = head.next;
+    head.next = point;
+    point = head;
+    head = next;
+  }
+  return point;
 }

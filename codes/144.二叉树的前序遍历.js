@@ -17,15 +17,14 @@
  * @return {number[]}
  */
 var preorderTraversal = function(root) {
-    let result = [];
-    const deep = (node)=>{
-        if(!node) return;
-        result.push(node.val);
-        deep(node.left);
-        deep(node.right);
-    }
-    deep(root);
-    return result;
+  let result = [];
+  const deep = node => {
+    if (!node) return;
+    result.push(node.val);
+    deep(node.left);
+    deep(node.right);
+  };
+  deep(root);
+  return result;
 };
 // @lc code=end
-

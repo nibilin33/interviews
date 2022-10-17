@@ -19,26 +19,25 @@ If the current player is unable to make a move, they lose the game.
  */
 
 function towerBreakers(n, m) {
-    // Write your code here
-    if(m === 1) {
-        return 2;
-    }
-    if(n%2===0) {
-        return 2;
-    }
-        return 1;
-
+  // Write your code here
+  if (m === 1) {
+    return 2;
+  }
+  if (n % 2 === 0) {
+    return 2;
+  }
+  return 1;
 }
-function main(){
-    // 2,2 -> 2, 1,4->1
-    // 100000 1 -> 2
-    // 100001 1 -> 2
-    // 374625 796723 -> 1
-    // 950929 183477 -> 1
-    // 732159 779867 -> 1
-    const n=950929;
-    const m=183477;
-    const result = towerBreakers(n, m);
-    console.log(result);
+function main() {
+  // 2,2 -> 2, 1,4->1
+  // 100000 1 -> 2
+  // 100001 1 -> 2
+  // 374625 796723 -> 1
+  // 950929 183477 -> 1
+  // 732159 779867 -> 1
+  const n = 950929;
+  const m = 183477;
+  const result = towerBreakers(n, m);
+  console.log(result);
 }
 main();

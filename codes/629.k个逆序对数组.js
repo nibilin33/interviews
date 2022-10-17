@@ -10,8 +10,5 @@
  * @param {number} k
  * @return {number}
  */
-var kInversePairs = function(n, k) {
-
-};
+var kInversePairs = function(n, k) {};
 // @lc code=end
-

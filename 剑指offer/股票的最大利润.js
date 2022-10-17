@@ -2,19 +2,19 @@
  * @param {number[]} prices
  * @return {number}
  */
- var maxProfit = function(prices) {
-    let len = prices.length;
-    let max = 0;
-    let i = 0;
-    while(i<len) {
-        for(let j=len-1;j>i;j--) {
-            if(prices[j]>prices[i]) {
-                 max = Math.max(max,prices[j]-prices[i]);
-            }
-        }
-        i++;
+var maxProfit = function(prices) {
+  let len = prices.length;
+  let max = 0;
+  let i = 0;
+  while (i < len) {
+    for (let j = len - 1; j > i; j--) {
+      if (prices[j] > prices[i]) {
+        max = Math.max(max, prices[j] - prices[i]);
+      }
     }
-    return max;
+    i++;
+  }
+  return max;
 };
 // 第二种解法 贪心算法
 /*

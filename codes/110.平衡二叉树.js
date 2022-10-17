@@ -17,14 +17,17 @@
  * @return {boolean}
  */
 var isBalanced = function(root) {
-    if(!root) return true;
-    const height = (node)=>{
-        if(!node) {
-            return -1;
-        }
-        return 1+Math.max(height(node.left),height(node.right));
+  if (!root) return true;
+  const height = node => {
+    if (!node) {
+      return -1;
     }
-    return Math.abs(height(root.left)-height(root.right))<2 && isBalanced(root.left) && isBalanced(root.right);
+    return 1 + Math.max(height(node.left), height(node.right));
+  };
+  return (
+    Math.abs(height(root.left) - height(root.right)) < 2 &&
+    isBalanced(root.left) &&
+    isBalanced(root.right)
+  );
 };
 // @lc code=end
-

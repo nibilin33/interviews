@@ -12,25 +12,24 @@ to the sum of all elements to the right.
  */
 // Returns string: either YES or NO
 function balancedSums(arr) {
-    // Write your code here
-    if(arr.length <=1) {
-        return 'YES';
+  // Write your code here
+  if (arr.length <= 1) {
+    return "YES";
+  }
+  let left = 0;
+  let total = arr.reduce((pre, current) => pre + current);
+  for (let i = 0; i < arr.length; i++) {
+    let right = total - left - arr[i];
+    if (right == left) {
+      return "YES";
     }
-    let left = 0;
-    let total = arr.reduce((pre,current)=>pre+current);
-    for(let i=0;i<arr.length;i++) {
-        let right = total - left - arr[i];
-        if(right == left) {
-            return 'YES';
-        }
-        left+=arr[i];
-    }
-    return 'NO';
-
+    left += arr[i];
+  }
+  return "NO";
 }
 function main() {
-    const arr = [1];
-    const result = balancedSums(arr); // yes
-    console.log(result);
+  const arr = [1];
+  const result = balancedSums(arr); // yes
+  console.log(result);
 }
 main();

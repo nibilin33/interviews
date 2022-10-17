@@ -4,18 +4,17 @@ For each query string, determine how many times it occurs in the list of input s
 Return an array of the results.
 */
 function matchingStrings(strings, queries) {
-    // Write your code here
-    return queries.map((target)=>{
-        let count = strings.filter((v)=>target==v);
-        return count.length;
-    });
+  // Write your code here
+  return queries.map(target => {
+    let count = strings.filter(v => target == v);
+    return count.length;
+  });
 }
 
 function main() {
-
-    let strings = ['ab','ab','abc'];
-    let queries = ['ab','abc','bc'];
-    const res = matchingStrings(strings, queries);
-    console.log(res);
+  let strings = ["ab", "ab", "abc"];
+  let queries = ["ab", "abc", "bc"];
+  const res = matchingStrings(strings, queries);
+  console.log(res);
 }
 main();

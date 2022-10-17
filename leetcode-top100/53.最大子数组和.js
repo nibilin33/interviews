@@ -10,17 +10,17 @@
  * @return {number}
  */
 var maxSubArray = function(nums) {
-    let res = nums[0];
-    let sum = 0;
-    for(let i=0;i<nums.length;i++) {
-        if(sum>0) {
-            sum = sum + nums[i]
-        }else{
-            sum = nums[i]
-        }
-        res = Math.max(sum,res);
+  let res = nums[0];
+  let sum = 0;
+  for (let i = 0; i < nums.length; i++) {
+    if (sum > 0) {
+      sum = sum + nums[i];
+    } else {
+      sum = nums[i];
     }
-    return res;
+    res = Math.max(sum, res);
+  }
+  return res;
 };
 // @lc code=end
 /**
@@ -29,4 +29,3 @@ var maxSubArray = function(nums) {
  * 当当前和成为负数时,则表明此前序列无法为后面提供最大子序列和,因此必须重新确定序列首项.
    上文引用来自https://www.cnblogs.com/sunnysola/p/4795691.html
  */
-

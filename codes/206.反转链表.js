@@ -24,16 +24,15 @@
 // 3,4
 // 4.next = 3;
 var reverseList = function(head) {
-    let prev = null;
-    let curr = head; 
-    while (curr != null) {
-        let nextTemp = curr.next;
-        curr.next = prev;
-        //待反转节点指向下一个节点 
-        prev = curr;
-        curr = nextTemp;
-    }
-    return prev;
+  let prev = null;
+  let curr = head;
+  while (curr != null) {
+    let nextTemp = curr.next;
+    curr.next = prev;
+    //待反转节点指向下一个节点
+    prev = curr;
+    curr = nextTemp;
+  }
+  return prev;
 };
 // @lc code=end
-

@@ -10,15 +10,11 @@
  * @return {number}
  */
 var maximalSquare = function(matrix) {
-    let max = 0;
-    let row = matrix.length;
-    let colum = matrix[0].length;
-    for(let i=0;i<row;i++) {
-        for(let j=0;j<colum;j++) {
-            
-
-        }
-    }
+  let max = 0;
+  let row = matrix.length;
+  let colum = matrix[0].length;
+  for (let i = 0; i < row; i++) {
+    for (let j = 0; j < colum; j++) {}
+  }
 };
 // @lc code=end
-

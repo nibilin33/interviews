@@ -17,30 +17,28 @@
  * @return {number[]}
  */
 var findMode = function(root) {
-    if(!root) return [];
-    let max = 0;
-    let obj = new Object();
-    const deep = (root)=>{
-        if(!root) return;
-        if(typeof obj[root.val]=== 'undefined') {
-            obj[root.val] = 0;
-        }
-        obj[root.val]++;
-        if(max<obj[root.val]) {
-            max = obj[root.val];
-        }
-        deep(root.right);
-        deep(root.left);
+  if (!root) return [];
+  let max = 0;
+  let obj = new Object();
+  const deep = root => {
+    if (!root) return;
+    if (typeof obj[root.val] === "undefined") {
+      obj[root.val] = 0;
     }
-    deep(root);
-    let result = [];
-    for(let n in obj) {
-        if(obj[n]===max) {
-            result.push(n);
-        }
+    obj[root.val]++;
+    if (max < obj[root.val]) {
+      max = obj[root.val];
     }
-    return result;
-
+    deep(root.right);
+    deep(root.left);
+  };
+  deep(root);
+  let result = [];
+  for (let n in obj) {
+    if (obj[n] === max) {
+      result.push(n);
+    }
+  }
+  return result;
 };
 // @lc code=end
-

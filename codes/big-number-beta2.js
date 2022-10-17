@@ -19,7 +19,7 @@ class BigNumber {
       num[3] ? num[3] : "0"
     ];
   }
-  add(num1Str,num2Str) {
+  add(num1Str, num2Str) {
     let carry = 0;
     let result = [];
     for (let i = num1Str.length - 1; i >= 0; i--) {

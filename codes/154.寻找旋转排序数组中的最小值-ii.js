@@ -11,13 +11,12 @@
  */
 // 原来就是局部有序，旋转几次，前面就增加几个有序，找到临界点
 var findMin = function(numbers) {
-    for(let i=0;i<numbers.length;i++) {
-        let j = i+1;
-        if(numbers[j]<numbers[i]) {
-            return numbers[j];
-        }
+  for (let i = 0; i < numbers.length; i++) {
+    let j = i + 1;
+    if (numbers[j] < numbers[i]) {
+      return numbers[j];
     }
-    return numbers[0];
+  }
+  return numbers[0];
 };
 // @lc code=end
-

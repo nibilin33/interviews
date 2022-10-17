@@ -11,15 +11,14 @@
  */
 // 把数组的值变成下标
 var singleNumber = function(nums) {
-    let d = new Map();
-    for(let i=0;i<nums.length;i++) {
-        if(typeof d.get(nums[i])=== 'undefined') {
-            d.set(nums[i],1);
-        }else{
-            d.delete(nums[i]);
-        }
+  let d = new Map();
+  for (let i = 0; i < nums.length; i++) {
+    if (typeof d.get(nums[i]) === "undefined") {
+      d.set(nums[i], 1);
+    } else {
+      d.delete(nums[i]);
     }
-    return d.keys().next().value;
+  }
+  return d.keys().next().value;
 };
 // @lc code=end
-

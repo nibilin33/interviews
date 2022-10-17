@@ -3,13 +3,15 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "md": "doctoc README.md"
+    "md": "doctoc README.md",
+    "prettify": "prettier --write ./**/*.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "crypto": "^1.0.1",
     "doctoc": "^2.2.1",
+    "prettier": "^1.19.1",
     "request": "^2.88.2"
   }
 }

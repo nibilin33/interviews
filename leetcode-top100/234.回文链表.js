@@ -18,18 +18,17 @@
  */
 // 数组存访问过的，判断是否对称
 var isPalindrome = function(head) {
-    let visited=[];
-    while(head) {
-        visited.push(head.val);
-        head = head.next;
+  let visited = [];
+  while (head) {
+    visited.push(head.val);
+    head = head.next;
+  }
+  let len = visited.length;
+  for (let i = 0; i < len / 2; i++) {
+    if (visited[i] !== visited[len - i - 1]) {
+      return false;
     }
-    let len = visited.length;
-    for(let i=0;i<len/2;i++) {
-        if(visited[i] !== visited[len-i-1]) {
-            return false;
-        }
-    }
-    return true;
+  }
+  return true;
 };
 // @lc code=end
-

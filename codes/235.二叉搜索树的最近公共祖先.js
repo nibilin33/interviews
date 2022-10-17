@@ -23,19 +23,18 @@
 // 直到p、q既不同时大于root，也不同时小于root，则root就是p、q的最近公共祖先，返回root。
 
 var lowestCommonAncestor = function(root, p, q) {
-    while(root) {
-        let val = root.val;
-        let pval = p.val;
-        let qval = q.val;
-        if(val>pval && val>qval) {
-            return lowestCommonAncestor(root.left,p,q);
-        }else if(val<pval && val < qval) {
-            return lowestCommonAncestor(root.right,p,q);
-        }else{
-            return root;
-        }
+  while (root) {
+    let val = root.val;
+    let pval = p.val;
+    let qval = q.val;
+    if (val > pval && val > qval) {
+      return lowestCommonAncestor(root.left, p, q);
+    } else if (val < pval && val < qval) {
+      return lowestCommonAncestor(root.right, p, q);
+    } else {
+      return root;
     }
-    return null;
+  }
+  return null;
 };
 // @lc code=end
-

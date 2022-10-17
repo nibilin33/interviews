@@ -9,15 +9,15 @@
  * @param {ListNode} head
  * @return {number[]}
  */
- var reversePrint = function(head) {
-    let result = [];
-    function reverse(node) {
-        if(node === null) {
-            return;
-        }
-        reverse(node.next);
-        result.push(node.val);
+var reversePrint = function(head) {
+  let result = [];
+  function reverse(node) {
+    if (node === null) {
+      return;
     }
-    reverse(head);
-    return result;
+    reverse(node.next);
+    result.push(node.val);
+  }
+  reverse(head);
+  return result;
 };

@@ -18,17 +18,16 @@
  * @return {number[]}
  */
 var postorderTraversal = function(root) {
-    let result = [];
-    function loopTree(node) {
-        if(node === null) {
-            return;
-        }
-        loopTree(node.left);
-        loopTree(node.right);
-        result.push(node.val);
+  let result = [];
+  function loopTree(node) {
+    if (node === null) {
+      return;
     }
-    loopTree(root);
-    return result;
+    loopTree(node.left);
+    loopTree(node.right);
+    result.push(node.val);
+  }
+  loopTree(root);
+  return result;
 };
 // @lc code=end
-

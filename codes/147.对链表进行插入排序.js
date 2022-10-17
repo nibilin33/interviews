@@ -17,24 +17,23 @@
  * @return {ListNode}
  */
 var insertionSortList = function(head) {
-    if(!head) return head;
-    var preHead = new ListNode(-Infinity);
-    var curr = head;
-    // 找下一个插入的位置
-    var pre = preHead;
-    var next = null;
-    while(curr){
-        next = curr.next;
-        while(pre.next && pre.next.val < curr.val){
-            pre = pre.next;
-        }
-        curr.next = pre.next;
-        pre.next = curr;
-        pre = preHead;
-        curr = next;
+  if (!head) return head;
+  var preHead = new ListNode(-Infinity);
+  var curr = head;
+  // 找下一个插入的位置
+  var pre = preHead;
+  var next = null;
+  while (curr) {
+    next = curr.next;
+    while (pre.next && pre.next.val < curr.val) {
+      pre = pre.next;
     }
-    return preHead.next;
+    curr.next = pre.next;
+    pre.next = curr;
+    pre = preHead;
+    curr = next;
+  }
+  return preHead.next;
 };
 
 // @lc code=end
-

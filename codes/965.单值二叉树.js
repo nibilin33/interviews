@@ -17,14 +17,13 @@
  * @return {boolean}
  */
 var isUnivalTree = function(root) {
-    const deep = (node) =>{
-        if(!node) return true;
-        if(node.val !== root.val) {
-            return false;
-        }
-        return deep(node.left)&&deep(node.right);
+  const deep = node => {
+    if (!node) return true;
+    if (node.val !== root.val) {
+      return false;
     }
-    return deep(root);
+    return deep(node.left) && deep(node.right);
+  };
+  return deep(root);
 };
 // @lc code=end
-

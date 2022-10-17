@@ -17,17 +17,16 @@
  * @return {number[]}
  */
 var inorderTraversal = function(root) {
-    const result = [];
-    const deep = (node)=>{
-        if(!node){
-            return;
-        }
-        deep(node.left);
-        result.push(node.val);
-        deep(node.right);
+  const result = [];
+  const deep = node => {
+    if (!node) {
+      return;
     }
-    deep(root);
-    return result;
+    deep(node.left);
+    result.push(node.val);
+    deep(node.right);
+  };
+  deep(root);
+  return result;
 };
 // @lc code=end
-

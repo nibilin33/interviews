@@ -18,17 +18,16 @@
  * @return {number[]}
  */
 var inorderTraversal = function(root) {
-    let result = [];
-    function loopTree(node) {
-        if(!node) {
-           return;
-        }
-        loopTree(node.left);
-        result.push(node.val);
-        loopTree(node.right);
+  let result = [];
+  function loopTree(node) {
+    if (!node) {
+      return;
     }
-    loopTree(root);
-    return result;
+    loopTree(node.left);
+    result.push(node.val);
+    loopTree(node.right);
+  }
+  loopTree(root);
+  return result;
 };
 // @lc code=end
-

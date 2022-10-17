@@ -17,16 +17,15 @@
  * @return {TreeNode}
  */
 var invertTree = function(root) {
-    const deep = (node)=>{
-        if(!node) return;
-        let tmp = node.left;
-        node.left = node.right;
-        node.right = tmp;
-        deep(node.left);
-        deep(node.right);
-    }
-    deep(root);
-    return root;
+  const deep = node => {
+    if (!node) return;
+    let tmp = node.left;
+    node.left = node.right;
+    node.right = tmp;
+    deep(node.left);
+    deep(node.right);
+  };
+  deep(root);
+  return root;
 };
 // @lc code=end
-

@@ -18,17 +18,17 @@
  * @return {boolean}
  */
 var isSymmetric = function(root) {
-    function loopTree(left,right) {
-        if(left == null && right == null) {
-            return true;
-        }
-        if (!left || !right || left.val !== right.val){
-            return false;
-        }
-        return loopTree(left.left,right.right) && loopTree(left.right,right.left);
+  function loopTree(left, right) {
+    if (left == null && right == null) {
+      return true;
     }
-    const result = loopTree(root.left,root.right);
-    return result;
+    if (!left || !right || left.val !== right.val) {
+      return false;
+    }
+    return loopTree(left.left, right.right) && loopTree(left.right, right.left);
+  }
+  const result = loopTree(root.left, root.right);
+  return result;
 };
 // @lc code=end
 

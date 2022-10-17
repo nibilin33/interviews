@@ -24,20 +24,19 @@
 // 对当前节点处理结束后，继续处理链表中的下一个节点，直到所有节点都处理结束。
 
 var flatten = function(root) {
-    let curr = root;
-    while (curr !== null) {
-        if (curr.left !== null) {
-            const next = curr.left;
-            let predecessor = next;
-            while (predecessor.right !== null) {
-                predecessor = predecessor.right;
-            }
-            predecessor.right = curr.right;
-            curr.left = null;
-            curr.right = next;
-        }
-        curr = curr.right;
+  let curr = root;
+  while (curr !== null) {
+    if (curr.left !== null) {
+      const next = curr.left;
+      let predecessor = next;
+      while (predecessor.right !== null) {
+        predecessor = predecessor.right;
+      }
+      predecessor.right = curr.right;
+      curr.left = null;
+      curr.right = next;
     }
+    curr = curr.right;
+  }
 };
 // @lc code=end
-
