@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./App.css";
 
 function App() {
@@ -82,14 +81,21 @@ function App() {
       </code>
       <time datetime="2014-11-06">6</time>-
       <time datetime="2014-11-09">9 November 2014</time>
-
-      <p>The grapefruit pie had a radius of 12cm and a height of
-2cm.</p>
-<dl>
-  <meter min="0" max="20"value="12">12cm</meter>
-   <meter min="0" max="10" value="2">2cm</meter>
-</dl>
-    <p>Progress: <progress max="100"><span>0</span>%</progress></p>
+      <p>The grapefruit pie had a radius of 12cm and a height of 2cm.</p>
+      <dl>
+        <meter min="0" max="20" value="12">
+          12cm
+        </meter>
+        <meter min="0" max="10" value="2">
+          2cm
+        </meter>
+      </dl>
+      <p>
+        Progress:{" "}
+        <progress max="100">
+          <span>0</span>%
+        </progress>
+      </p>
     </div>
   );
 }
