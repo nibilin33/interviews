@@ -1,4 +1,7 @@
 import styled from "styled-components";
+import {
+  Fragment
+} from "react";
 
 const Header = styled.header`
   width: 100%;
@@ -28,9 +31,8 @@ const ContactButton = styled.button`
 
 const IssuesPage = () => {
   return (
-    <div>
+    <Fragment>
       <Header>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="/public/vite.svg" alt="Prolog logo" />
         <a href="">Dashboard</a>
       </Header>
@@ -41,10 +43,9 @@ const IssuesPage = () => {
           )
         }
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="/public/vite.svg" alt="Contact" />
       </ContactButton>
-    </div>
+    </Fragment>
   );
 };
 
