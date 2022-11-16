@@ -1,8 +1,22 @@
 import "./App.css";
+import routes from "./routes";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
+      <BrowserRouter>
+        <Switch>
+          {routes.map((item, index) => (
+            <Route
+              exact={item.isExact}
+              component={item.component}
+              path={item.path}
+              key={index}
+            />
+          ))}
+        </Switch>
+      </BrowserRouter>
       <p className="reverse-txt">颠倒文字</p>
       <p className="change-direction">选中高亮文字</p>
       <mark>高亮</mark>
