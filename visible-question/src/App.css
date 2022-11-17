@@ -12,3 +12,10 @@
 .App{
   width: 100%;
 }
+.test-link{
+  display: flex;
+  flex-wrap: wrap;
+}
+.test-link a {
+  width: 200px;
+}

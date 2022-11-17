@@ -37,5 +37,17 @@ The modal should open when the user clicks the contact button.
 Don’t use a modal library.
 
 # [React Online Test](https://www.testdome.com/tests/react-js-online-test/104)  
-1. FocusableInput
-    
+1. FocusableInput(easy)
+2. ToggleMessage(easy)
+3. TextInput(easy)
+4. TodoList(easy)
+5. Username(hard)
+6. GroceryApp(hard)
+   
+# [React Components Test](https://github.com/midudev/react-live-coding)
+1. feed
+For each page you will need to fetch this JSON feed feed/sample.json, then:     
+Display the first 21 entries        
+Where the entry has a releaseYear attribute value >= 2010       
+Sorted by the title attribute value in ascending alphanumeric order   
+2. autoComplte  

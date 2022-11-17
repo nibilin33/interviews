@@ -1,18 +1,7 @@
 import styled from "styled-components";
-import {
-  Fragment
-} from "react";
-
-const Header = styled.header`
-  width: 100%;
-  height: 80px;
-  padding: 0 2rem;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: white;
-`;
+import { Fragment, useState } from "react";
+import { createPortal } from "react-dom";
+import Header from './Header';
 
 const ContactButton = styled.button`
   position: absolute;
@@ -28,23 +17,45 @@ const ContactButton = styled.button`
     background: #6941c6;
   }
 `;
-
+const ModalContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.35);
+`;
+const Dialog = (props = {}) => {
+  if (!props.visible) {
+    return null;
+  }
+  return (
+    <ModalContainer>
+      <ContactButton onClick={
+          () => {
+            if(typeof props.onClose === 'function') {
+              props.onClose();
+            }
+          }
+        }>Cancel</ContactButton>
+    </ModalContainer>
+  );
+};
 const IssuesPage = () => {
+  const [dialog, setDialog] = useState(false);
   return (
     <Fragment>
       <Header>
-        <img src="/public/vite.svg" alt="Prolog logo" />
-        <a href="">Dashboard</a>
       </Header>
       <ContactButton
-        onClick={() =>
-          alert(
-            "Implement this in Challenge 2 - Modal:\n\nhttps://profy.dev/rjs-challenge-modal"
-          )
+        onClick={
+          () => {
+            setDialog(true);
+          }
         }
       >
         <img src="/public/vite.svg" alt="Contact" />
       </ContactButton>
+      {createPortal(<Dialog visible={dialog} onClose={()=>setDialog(false)}/>, document.body)}
     </Fragment>
   );
 };
