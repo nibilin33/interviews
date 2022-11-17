@@ -1,6 +1,7 @@
-import React from "react";
+import React, {useRef} from "react";
 /*
-This application should allow the user to update their username by inputting a custom value and clicking the button.
+This application should allow the user to update their username
+by inputting a custom value and clicking the button.
 The Username component is finished and should not be changed, 
 but the App component is missing parts. Finish the App component 
 so that the Username component displays the inputted text when the button is clicked.
@@ -24,16 +25,16 @@ class Username extends React.Component {
 }
 
 export default function App() {
-  function clickHandler() {}
-
+  function clickHandler() {
+    userRef.current.changeValue(inputRef.current.value);
+  }
+  const inputRef = useRef(null);
+  const userRef = useRef(null);
   return (
     <div>
       <button onClick={clickHandler}>Change Username</button>
-      <input type="text" />
-      <Username />
+      <input type="text" ref={inputRef}/>
+      <Username ref={userRef}/>
     </div>
   );
 }
-
-//   document.querySelector("input").value = "John Doe";
-//   document.querySelector("button").click();

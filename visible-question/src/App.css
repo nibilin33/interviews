@@ -11,6 +11,8 @@
 }
 .App{
   width: 100%;
+  max-height: 100vh;
+  overflow-y: auto;
 }
 .test-link{
   display: flex;
@@ -18,4 +20,9 @@
 }
 .test-link a {
   width: 200px;
+}
+.scrollable{
+  max-height: 100%;
+  height: inherit;
+  overflow-y: auto;
 }

@@ -23,13 +23,15 @@ button next to the Oranges should result in HTML like:
 const Product = props => {
     const plus = () => {
       // Call props.onVote to increase the vote count for this product
+      props.onVote(props.votes+1);
     };
     const minus = () => {
       // Call props.onVote to decrease the vote count for this product
+      props.onVote(props.votes-1);
     };
     return (
       <li>
-        <span>{/* Product name */}</span> - <span>votes: {/* Number of votes*/}</span>
+        <span>{props.name}</span> - <span>votes: {props.votes}</span>
         <button onClick={plus}>+</button>{" "}
         <button onClick={minus}>-</button>
       </li>
@@ -40,11 +42,17 @@ const Product = props => {
     let [products, setProducts] = React.useState(props.products);
     const onVote = (dir, index) => {
       // Update the products array accordingly ...
+      products[index].votes = dir;
+      setProducts([...products]);
     };
   
     return (
       <ul>
-        {/* Render an array of products, which should call onVote when + or - is clicked */}
+        {products.map((item,index)=>{
+            return <Product {...item} key={index} onVote={(value)=>{
+                onVote(value,index);
+            }}></Product>
+        })}
       </ul>
     );
   }

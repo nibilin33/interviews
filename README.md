@@ -4,6 +4,7 @@ see [interview-questions.md](interview-questions.md) file
 ## HR questions
 see [HR-qa.docx](HR-qa.docx) file   
 ## react coding test    
+react component preview in vscode https://previewjs.com/docs        
 see [visible-question](visible-question/README.md)  
 [Display simple JSX](https://codepen.io/angelo_jin/pen/wvrygZa)         
 [Display array of users to browser](https://codepen.io/angelo_jin/pen/QWqQdXE)      

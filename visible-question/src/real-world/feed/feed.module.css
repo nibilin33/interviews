@@ -1,0 +1,16 @@
+.feed{
+    display: flex;
+    flex-wrap: wrap;
+}
+.feed-item{
+    width: 100px;
+    height: 200px;
+    display: flex;
+    margin: 0 10px;
+    flex-direction: column;
+    text-align: center;
+}
+.feed-img{
+   width: 100%; 
+   height: 100%;
+}

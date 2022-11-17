@@ -27,16 +27,22 @@ class FocusableInput extends Component {
   ref = createRef();
 
   render() {
-    return <TextInput ref={this.ref} />;
+    return <TextInput ref={this.ref} {...this.props}/>;
   }
 
   // When the focused prop is changed from false to true,
   // and the input is not focused, it should receive focus.
   // If focused prop is true, the input should receive the focus.
   // Implement your solution below:
-  componentDidUpdate(prevProps) {}
+  componentDidUpdate(prevProps) {
+    this.ref.current.focus();
+  }
 
-  componentDidMount() {}
+  componentDidMount() {
+    if(this.props.focused) {
+        this.ref.current.focus();
+    }
+  }
 }
 
 FocusableInput.defaultProps = {

@@ -41,8 +41,9 @@ Don’t use a modal library.
 2. ToggleMessage(easy)
 3. TextInput(easy)
 4. TodoList(easy)
-5. Username(hard)
-6. GroceryApp(hard)
+5. Username(mid)
+6. GroceryApp(mid)
+Cards Widget, Error Catcher, Product Rating, Click Button, Email Input, List Wrapper, Subscription, Login Form, Product Search, Async Paragraph, Shopping List, Pet Form, Tooltip Component, Simple Calculator, Tab Strip, Theme Context Switcher, Player Status, Reorder, Contact Form, Email Form, Post Comment, Details.
    
 # [React Components Test](https://github.com/midudev/react-live-coding)
 1. feed
@@ -51,3 +52,4 @@ Display the first 21 entries
 Where the entry has a releaseYear attribute value >= 2010       
 Sorted by the title attribute value in ascending alphanumeric order   
 2. autoComplte  
+3. infinite scroll
