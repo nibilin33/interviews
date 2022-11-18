@@ -53,3 +53,12 @@ Where the entry has a releaseYear attribute value >= 2010
 Sorted by the title attribute value in ascending alphanumeric order   
 2. autoComplte  
 3. infinite scroll
+4. dragable
+5. component recursive rendering
+6. Tab
+7. Tree component
+8. Timer components
+
+# Unit Test
+[jest](https://jestjs.io/docs/cli) + [testing-library](https://testing-library.com/docs/react-testing-library/example-intro)      
+
