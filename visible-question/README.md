@@ -62,3 +62,5 @@ Sorted by the title attribute value in ascending alphanumeric order
 # Unit Test
 [jest](https://jestjs.io/docs/cli) + [testing-library](https://testing-library.com/docs/react-testing-library/example-intro)      
 
+# [React-redux](https://react-redux.js.org/tutorials/quick-start)
+npm install @reduxjs/toolkit react-redux -S     
