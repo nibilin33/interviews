@@ -48,6 +48,9 @@ const routes = [
   },{
     path: '/Feed',
     component: React.lazy(() => import('./real-world/feed/Feed'))
+  },{
+    path: '/TestContext',
+    component: React.lazy(() => import('./Test'))
   }
 ]
 
